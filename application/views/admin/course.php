@@ -1,84 +1,3 @@
-<!doctype html>
-<html lang="en">
-
-<head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Etrain</title>
-    <link rel="icon" href="img/favicon.png">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.min.css">
-    <!-- animate CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/animate.css">
-    <!-- owl carousel CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/owl.carousel.min.css">
-    <!-- themify CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/themify-icons.css">
-    <!-- flaticon CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/flaticon.css">
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/nice-select.css">
-    <!-- font awesome CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/magnific-popup.css">
-    <!-- swiper CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/slick.css">
-    <!-- style CSS -->
-    <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/style.css">
-</head>
-
-<body>
-    <!--::header part start::-->
-    <header class="main_menu single_page_menu">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-12">
-                    <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand logo_1" href="index.html"> <img src="img/single_page_logo.png" alt="logo"> </a>
-                        <a class="navbar-brand logo_2" href="index.html"> <img src="img/logo.png" alt="logo"> </a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-
-                        <div class="collapse navbar-collapse main-menu-item justify-content-end"
-                            id="navbarSupportedContent">
-                            <ul class="navbar-nav align-items-center">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="index.html">Home</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="about.html">About</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="cource.html">Courses</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="blog.html">Blog</a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Pages
-                                    </a>
-                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="single-blog.html">Single blog</a>
-                                        <a class="dropdown-item" href="elements.html">Elements</a>
-                                    </div>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="contact.html">Contact</a>
-                                </li>
-                                <li class="d-none d-lg-block">
-                                    <a class="btn_1" href="#">Get a Quote</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- Header part end-->
 
 	<!-- breadcrumb start-->
     <section class="breadcrumb breadcrumb_bg">
@@ -87,8 +6,11 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
+                            <p>Admin Access</p>
 							<h2>Course</h2>
-							<p>Home <span>/</span>Elements</p>
+                            <button type="button" class="genric-btn info-border circle medium" data-toggle="modal" data-target="#exampleModal">
+                                <i class="fa fa-plus"></i> Add Course
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -96,138 +18,241 @@
         </div>
     </section>
 
-    <!-- Start Button -->
-	<section class="button-area">
-		<div class="container box_1170 border-top-generic">
-			<h3 class="text-heading">Create Course</h3>
-			<form>
-                <!-- <div class="form-group row">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                    <div class="col-sm-10">
-                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                    </div>
-                </div> -->
-                <div class="form-group row">
-                    <label for="judul" class="col-sm-2 col-form-label">Judul</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Judul">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Deskripsi</label>
-                    <div class="col-sm-10">
-                        <textarea name="" class="form-control" id="" cols="30" rows="10">Deskripsi...
 
-                        </textarea>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="Eligibility" class="col-sm-2 col-form-label">Eligibility</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Eligibility">
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="Outline" class="col-sm-2 col-form-label">Outline</label>
-                    <div class="col-sm-10">
-                    <input type="text" class="form-control" placeholder="Outline">
-                    </div>
-                </div>
-                
-            </form>
-			
-		</div>
-	</section>
-
-	<!-- footer part start-->
-    <footer class="footer-area">
+    <section class="special_cource padding_top">
         <div class="container">
-            <div class="row justify-content-between">
-                <div class="col-sm-6 col-md-4 col-xl-3">
-                    <div class="single-footer-widget footer_1">
-                        <a href="index.html"> <img src="img/logo.png" alt=""> </a>
-                        <p>But when shot real her. Chamber her one visite removal six
-                            sending himself boys scot exquisite existend an </p>
-                        <p>But when shot real her hamber her </p>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-md-4 col-xl-4">
-                    <div class="single-footer-widget footer_2">
-                        <h4>Newsletter</h4>
-                        <p>Stay updated with our latest trends Seed heaven so said place winged over given forth fruit.
-                        </p>
-                        <form action="#">
-                            <div class="form-group">
-                                <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder='Enter email address'
-                                        onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Enter email address'">
-                                    <div class="input-group-append">
-                                        <button class="btn btn_1" type="button"><i class="ti-angle-right"></i></button>
+            
+            <div class="row">
+                
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_special_cource">
+                        <a href="">
+                            <img src="<?php echo base_url() ?>asset/img/special_cource_1.png" class="special_img" alt="">
+                            </a><div class="special_cource_text"><a href="">
+                                </a><a href="course-details.html" class="btn_4">Web Development</a>
+                                <h4>$130.00</h4>
+                                <a href="course-details.html"><h3>Web Development</h3></a>
+                                <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                                <div class="author_info">
+                                    <div class="author_img">
+                                        <img src="img/author/author_1.png" alt="">
+                                        <div class="author_info_text">
+                                            <p>Conduct by:</p>
+                                            <h5><a href="#">James Well</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="author_rating">
+                                        <div class="rating">
+                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                            <a href="#"><img src="img/icon/star.svg" alt=""></a>
+                                        </div>
+                                        <p>3.8 Ratings</p>
                                     </div>
                                 </div>
                             </div>
-                        </form>
-                        <div class="social_icon">
-                            <a href="#"> <i class="ti-facebook"></i> </a>
-                            <a href="#"> <i class="ti-twitter-alt"></i> </a>
-                            <a href="#"> <i class="ti-instagram"></i> </a>
-                            <a href="#"> <i class="ti-skype"></i> </a>
-                        </div>
+                        
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 col-md-4">
-                    <div class="single-footer-widget footer_2">
-                        <h4>Contact us</h4>
-                        <div class="contact_info">
-                            <p><span> Address :</span> Hath of it fly signs bear be one blessed after </p>
-                            <p><span> Phone :</span> +2 36 265 (8060)</p>
-                            <p><span> Email : </span>info@colorlib.com </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="copyright_part_text text-center">
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <p class="footer-text m-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_special_cource">
+                        <img src="<?php echo base_url() ?>asset/img/special_cource_2.png" class="special_img" alt="">
+                        <div class="special_cource_text">
+                            <a href="course-details.html" class="btn_4">design</a>
+                            <h4>$160.00</h4>
+                            <a href="course-details.html"> <h3>Web UX/UI Design </h3></a>
+                            <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                            <div class="author_info">
+                                <div class="author_img">
+                                    <img src="img/author/author_2.png" alt="">
+                                    <div class="author_info_text">
+                                        <p>Conduct by:</p>
+                                        <h5><a href="#">James Well</a></h5>
+                                    </div>
+                                </div>
+                                <div class="author_rating">
+                                    <div class="rating">
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/star.svg" alt=""></a>
+                                    </div>
+                                    <p>3.8 Ratings</p>
+                                </div>
                             </div>
                         </div>
+
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_special_cource">
+                        <img src="<?php echo base_url() ?>asset/img/special_cource_3.png" class="special_img" alt="">
+                        <div class="special_cource_text">
+                            <a href="course-details.html" class="btn_4">Wordpress</a>
+                            <h4>$140.00</h4>
+                            <a href="course-details.html">  <h3>Wordpress Development</h3> </a> 
+                            <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
+                            <div class="author_info">
+                                <div class="author_img">
+                                    <img src="img/author/author_3.png" alt="">
+                                    <div class="author_info_text">
+                                        <p>Conduct by:</p>
+                                        <h5><a href="#">James Well</a></h5>
+                                    </div>
+                                </div>
+                                <div class="author_rating">
+                                    <div class="rating">
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
+                                        <a href="#"><img src="img/icon/star.svg" alt=""></a>
+                                    </div>
+                                    <p>3.8 Ratings</p>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
+    
 
-    <!-- jquery plugins here-->
-    <!-- jquery -->
-    <script src="<?php echo base_url() ?>asset/js/jquery-1.12.1.min.js"></script>
-    <!-- popper js -->
-    <script src="<?php echo base_url() ?>asset/js/popper.min.js"></script>
-    <!-- bootstrap js -->
-    <script src="<?php echo base_url() ?>asset/js/bootstrap.min.js"></script>
-    <!-- easing js -->
-    <script src="<?php echo base_url() ?>asset/js/jquery.magnific-popup.js"></script>
-    <!-- swiper js -->
-    <script src="<?php echo base_url() ?>asset/js/swiper.min.js"></script>
-    <!-- swiper js -->
-    <script src="<?php echo base_url() ?>asset/js/masonry.pkgd.js"></script>
-    <!-- particles js -->
-    <script src="<?php echo base_url() ?>asset/js/owl.carousel.min.js"></script>
-    <script src="<?php echo base_url() ?>asset/js/jquery.nice-select.min.js"></script>
-    <!-- swiper js -->
-    <script src="<?php echo base_url() ?>asset/js/slick.min.js"></script>
-    <script src="<?php echo base_url() ?>asset/js/jquery.counterup.min.js"></script>
-    <script src="<?php echo base_url() ?>asset/js/waypoints.min.js"></script>
-    <!-- custom js -->
-    <script src="<?php echo base_url() ?>asset/js/custom.js"></script>
-</body>
+            <!-- Modal -->
+            <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <!-- <h5 class="modal-title" id="exampleModalLabel">Modal title</h5> -->
+                                <h3 class="text-heading">Create Course</h3>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                            <form action="<?php echo base_url() ?>admin/course" method="post" enctype="multipart/form-data" onsubmit="return cek_form(this)" >
 
-</html>
+                                <div class="mt-10">
+                                    <input type="text" name="title" placeholder="Judul" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Judul'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="kategori" placeholder="Kategori" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kategori'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="eligibility" placeholder="Eligibility" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Eligibility'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="outline" placeholder="Outline" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Outline'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="preview" placeholder="Preview" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Preview'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <textarea name="objective" class="single-textarea" placeholder="Deskripsi" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Deskripsi'" required=""></textarea>
+                                </div>
+                                <!-- <div class="input-group-icon mt-10">
+                                    <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div>
+                                    <input type="text" name="address" placeholder="Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Address'" required="" class="single-input">
+                                </div> -->
+                                <br >
+                                <h3 class="text-heading">Schedule</h3>
+                                <div class="input-group-icon mt-10">
+                                    <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
+                                    <div class="form-select" id="default-select" >
+                                        <!-- <select style="display: none;">
+                                            <option value="1">Dhaka</option>
+                                            <option value="1">Dilli</option>
+                                            <option value="1">Newyork</option>
+                                            <option value="1">Islamabad</option>
+                                        </select> -->
+                                        <div class="nice-select" tabindex="0">
+                                            <span class="current">Pemateri </span>
+                                            <ul class="list">
+                                                <li data-value="1" class="option selected">City</li>
+                                                <li data-value="1" class="option">Dhaka</li>
+                                                <li data-value="1" class="option">Dilli</li>
+                                                <li data-value="1" class="option">Newyork</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="mt-10">
+                                    <input type="text" name="tempat" placeholder="Tempat" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tempat'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="number" name="harga" placeholder="Harga" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Harga'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="quota" placeholder="Quota" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Quota'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <label for="">Tanggal</label>
+                                    <input type="date" name="tanggal"  required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="jam" placeholder="Jam" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jam'" required="" class="single-input">
+                                </div>
+                                <div class="mt-10">
+                                    <label for="">Batas Pendaftaran</label>
+                                    <input type="date" name="schedule"  required="" class="single-input">
+                                </div>
+
+                                <div class=" mt-10">
+                                    <label>Type</label>
+                                    <br />
+
+                                    <input name="online" type="radio" id="primary-radio" value="Online" >  Online<br />
+                                    <input name="online" type="radio" id="primary-radio" value="Online" checked="cheked">  Offline
+                                    
+                                </div>
+                                
+                                <div class="mt-10">
+                                    <label for="">Image Course</label><br />
+                                    <input type="file" name="img">
+                                </div>
+
+
+                                <!-- <div class="mt-10">
+                                    <textarea class="single-textarea" placeholder="Message" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Message'" required=""></textarea>
+                                </div> -->
+
+                                <!-- For Gradient Border Use -->
+                                <!-- <div class="mt-10">
+                                            <div class="primary-input">
+                                                <input id="primary-input" type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'">
+                                                <label for="primary-input"></label>
+                                            </div>
+                                        </div> -->
+                                <!-- <div class="mt-10">
+                                    <input type="text" name="first_name" placeholder="Primary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Primary color'" required="" class="single-input-primary">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="first_name" placeholder="Accent color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Accent color'" required="" class="single-input-accent">
+                                </div>
+                                <div class="mt-10">
+                                    <input type="text" name="first_name" placeholder="Secondary color" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Secondary color'" required="" class="single-input-secondary">
+                                </div> -->
+                        </div>
+
+
+                        <div class="modal-footer">
+                            <button type="submit" class="genric-btn info-border circle medium" id="sv_course">
+                                <i class="fa fa-save"></i> Save 
+                            </button>
+                            <button type="button" class="genric-btn danger-border circle medium" >
+                                <i class="fa fa-spinner fa-spin"></i> Loading 
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+

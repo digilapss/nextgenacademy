@@ -36,7 +36,10 @@ class Academy extends CI_Controller {
         if (file_exists(APPPATH."views/".$halaman.'.php')) {
             # code...
 
-            $this->load->view('home');
+			$this->load->view('side/header');
+			$this->load->view('home');
+			$this->load->view('side/footer');
+			
 
         } else {
             show_404();
