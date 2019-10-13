@@ -30,13 +30,22 @@ class Admin extends CI_Controller {
         ini_set('display_error','off');
         error_reporting(0);
     
-    }
+    }   
     
     public function dashboard(){
+		$this->load->view('side/header');
         $this->load->view('admin/dashboard');
+		$this->load->view('side/footer');
     }
+
     public function course(){
+		$this->load->view('side/header');
         $this->load->view('admin/course');
+		$this->load->view('side/footer');
+    }
+
+    public function sv_course(){
+        echo '';
     }
 
 
