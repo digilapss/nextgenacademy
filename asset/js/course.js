@@ -18,9 +18,11 @@ $(document).ready(function(){
         }
 	});
 	
+	$('#load_course').hide()
 	$("#sv_course").click(function(){
       
 		$(this).hide();
+		$('#load_course').show()
 	
 	});
 })

@@ -39,6 +39,11 @@ class Admin extends CI_Controller {
     }
 
     public function course(){
+
+        if($this->session->userdata('role') !== 'mentor'){
+            redirect(base_url());
+        }
+
 		$this->load->view('side/header');
         $this->load->view('admin/course');
 		$this->load->view('side/footer');

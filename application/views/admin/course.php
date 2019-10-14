@@ -247,7 +247,7 @@
                             <button type="submit" class="genric-btn info-border circle medium" id="sv_course">
                                 <i class="fa fa-save"></i> Save 
                             </button>
-                            <button type="button" class="genric-btn danger-border circle medium" >
+                            <button type="button" class="genric-btn danger-border circle medium " id="load_course" >
                                 <i class="fa fa-spinner fa-spin"></i> Loading 
                             </button>
                         </div>
@@ -255,4 +255,5 @@
                     </div>
                 </div>
             </div>
+
 
