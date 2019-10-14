@@ -47,6 +47,7 @@ class User extends CI_Controller {
 
 			if ($cek_login->num_rows()>0) {
 				# code...
+				
 				foreach ($cek_login->result() as $row) {
 					# code...
 					$data = array(         'account_id' => $row->account_id,
@@ -58,11 +59,15 @@ class User extends CI_Controller {
 										   'image' => $row->img_user,
 										   'ip_address' => $row->ip_address,
 										);
-   
+					
 					$this->session->set_userdata($data);
-   
+
+				}
+
+				if( $this->session->userdata('role') === 'mentor' ){
+					redirect(base_url().'admin/course');
+				} else {
 					redirect(base_url());
-					// return 1 ;
 				}
    
 			} else {
