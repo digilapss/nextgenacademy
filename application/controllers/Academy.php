@@ -25,7 +25,7 @@ class Academy extends CI_Controller {
 
         parent::__construct();
 
-    
+		$this->load->model('Course');
         ini_set('display_error','off');
         error_reporting(0);
     
@@ -36,13 +36,36 @@ class Academy extends CI_Controller {
         if (file_exists(APPPATH."views/".$halaman.'.php')) {
             # code...
 
+			$data['list_course'] = $this->Course->list_course(3) ;
+
 			$this->load->view('side/header');
-			$this->load->view('home');
+			$this->load->view($halaman, $data);
 			$this->load->view('side/footer');
 			
 
         } else {
-            show_404();
+
+			$course_detail = $this->Course->one_course($halaman);
+
+			if($course_detail->num_rows() > 0){
+
+				foreach($course_detail->result() as $row_course_detail){
+
+					$data['course_title'] = $row_course_detail->title ;
+					$data['course_kategori'] = $row_course_detail->kategori ;
+					$data['course_objective'] = $row_course_detail->objective ;
+					$data['course_image'] = $row_course_detail->image_course ;
+				}
+
+				$this->load->view('side/header');
+				$this->load->view('course_detail', $data);
+				$this->load->view('side/footer');
+
+			} else {
+
+				show_404();
+			}
+
         }
     }
 }
