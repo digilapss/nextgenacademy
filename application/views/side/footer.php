@@ -52,7 +52,7 @@
         </div>
     </footer>
     <!-- footer part end-->
-
+    
     <!-- jquery plugins here-->
     <!-- jquery -->
     <script src="<?php echo base_url() ?>asset/js/jquery-1.12.1.min.js"></script>
@@ -75,7 +75,9 @@
     <script src="<?php echo base_url() ?>asset/js/waypoints.min.js"></script>
     <!-- custom js -->
     <script src="<?php echo base_url() ?>asset/js/custom.js"></script>
-    <script src="<?php echo base_url() ?>asset/js/course.js"></script>
+    <script src="<?php echo base_url() ?>asset/js/course.js"></script>  
+
+    
 
 </body>
 

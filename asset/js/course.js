@@ -17,12 +17,67 @@ $(document).ready(function(){
         	}
         }
 	});
-	
-	$('#load_course').hide()
-	$("#sv_course").click(function(){
-      
-		$(this).hide();
-		$('#load_course').show()
-	
-	});
+
 })
+
+$("#load_course").hide();
+function cek_form(form){
+    
+    if (form.pemateri.value == "0"){
+
+		$(".pemateri_text").remove();
+		$(".pemateri_alert").append("<p class='pemateri_text text-danger' >Pilih pemateri</p>");
+		form.pemateri.focus();
+	
+		return (false);
+		
+	}  else if (!$("input[name='type_course']:checked").val()) {
+
+		$(".type_course_text").remove();
+		$(".type_course_alert").append("<p class='type_course_text text-danger' >Pilih Type </p>");
+		
+		return (false);
+		
+    } else {
+
+		$("#sv_course").hide();
+		$("#load_course").show()
+		return (true);
+	} 
+
+}	
+
+
+$('#pemateri').on('change', function() {
+	$(".pemateri_text").remove();
+	
+});
+
+
+
+
+function course_img(img,idpreview){
+    var gb = img.files;
+            
+    for (var i = 0; i < gb.length; i++){
+         var gbPreview = gb[i];
+         var imageType = /image.*/;
+         var preview=document.getElementById(idpreview);            
+         var reader = new FileReader();
+                
+        if (gbPreview.type.match(imageType)) {
+                preview.file = gbPreview;
+
+                    reader.onload = (function(element) { 
+                        return function(e) { 
+                            element.src = e.target.result; 
+                        }; 
+                    })(preview);
+
+                reader.readAsDataURL(gbPreview);
+        }else{
+                alert("Type file tidak sesuai. Khusus image.");
+        }
+               
+    }    
+}

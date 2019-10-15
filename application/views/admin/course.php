@@ -18,12 +18,11 @@
         </div>
     </section>
 
-
     <section class="special_cource padding_top">
         <div class="container">
             
             <div class="row">
-                
+
                 <div class="col-sm-6 col-lg-4">
                     <div class="single_special_cource">
                         <a href="">
@@ -122,7 +121,7 @@
         </div>
     </section>
     
-
+        
             <!-- Modal -->
             <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg" role="document">
@@ -136,7 +135,7 @@
                         </div>
                         <div class="modal-body">
                             
-                            <form action="<?php echo base_url() ?>admin/course" method="post" enctype="multipart/form-data" onsubmit="return cek_form(this)" >
+                        <form action="#" method="post" enctype="multipart/form-data" role="form" onsubmit="return cek_form(this)">
 
                                 <div class="mt-10">
                                     <input type="text" name="title" placeholder="Judul" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Judul'" required="" class="single-input">
@@ -162,24 +161,26 @@
                                 </div> -->
                                 <br >
                                 <h3 class="text-heading">Schedule</h3>
+                                <small class="pemateri_alert" ></small>
                                 <div class="input-group-icon mt-10">
                                     <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
                                     <div class="form-select" id="default-select" >
-                                        <!-- <select style="display: none;">
+                                        <select name="pemateri" id="pemateri">
+                                            <option value="0" selected >- Pilih -</option>
                                             <option value="1">Dhaka</option>
                                             <option value="1">Dilli</option>
                                             <option value="1">Newyork</option>
                                             <option value="1">Islamabad</option>
-                                        </select> -->
-                                        <div class="nice-select" tabindex="0">
-                                            <span class="current">Pemateri </span>
+                                        </select>
+                                        <!-- <div class="nice-select" tabindex="0">
+                                            <span class="current" data-value="1">Pemateri </span>
                                             <ul class="list">
                                                 <li data-value="1" class="option selected">City</li>
                                                 <li data-value="1" class="option">Dhaka</li>
                                                 <li data-value="1" class="option">Dilli</li>
                                                 <li data-value="1" class="option">Newyork</li>
                                             </ul>
-                                        </div>
+                                        </div> -->
                                     </div>
                                 </div>
 
@@ -208,16 +209,19 @@
                                 <div class=" mt-10">
                                     <label>Type</label>
                                     <br />
+                                    <small class="type_course_alert" ></small>
 
-                                    <input name="online" type="radio" id="primary-radio" value="Online" >  Online<br />
-                                    <input name="online" type="radio" id="primary-radio" value="Online" checked="cheked">  Offline
+                                    <input name="type_course" type="radio" id="type_course" value="Online" >  Online<br />
+                                    <input name="type_course" type="radio" id="type_course" value="Offline" >  Offline
                                     
                                 </div>
                                 
                                 <div class="mt-10">
                                     <label for="">Image Course</label><br />
-                                    <input type="file" name="img">
+                                    <input type="file" name="course_img" class="info-border circle small" id="filename1" title="Course image Upload " accept="image/*" onchange="course_img(this,'preview')" required>
                                 </div>
+                                <br />
+                                <img id="preview" src="https://images.unsplash.com/photo-1560523160-754a9e25c68f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1020&q=80" alt="" width="200px"/>
 
 
                                 <!-- <div class="mt-10">
@@ -242,9 +246,8 @@
                                 </div> -->
                         </div>
 
-
                         <div class="modal-footer">
-                            <button type="submit" class="genric-btn info-border circle medium" id="sv_course">
+                            <button type="submit" class="genric-btn info-border circle medium sv_course" id="sv_course">
                                 <i class="fa fa-save"></i> Save 
                             </button>
                             <button type="button" class="genric-btn danger-border circle medium " id="load_course" >
@@ -255,5 +258,3 @@
                     </div>
                 </div>
             </div>
-
-
