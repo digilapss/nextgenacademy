@@ -72,7 +72,9 @@ class User extends CI_Controller {
    
 			} else {
 
-				$this->session->set_flashdata( 'login_error', 'Email / Password salah');
+				$this->session->set_flashdata( 'login_error', '<div class="alert alert-danger" role="alert">
+					Email / Password salah
+				</div> ');
 				redirect(base_url().'user/signin');
 
 			}
@@ -111,7 +113,9 @@ class User extends CI_Controller {
 
 				if ($cek_login->num_rows()>0) {
 
-					$this->session->set_flashdata('signup_alert', 'Email anda sudah terdaftar, silahkan <a href="'.base_url().'user/signin">Signin</a> ') ;
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+						Email anda sudah terdaftar, silahkan <a href="'.base_url().'user/signin">Signin</a>
+					</div>  ') ;
 					redirect(base_url().'user/signup');
 				} else {
 
@@ -125,12 +129,17 @@ class User extends CI_Controller {
 					$this->Login->signup($useraccount);
 					if(!$this->db->affected_rows()){
 
-						$this->session->set_flashdata('signup_alert', 'Ulangi Password tidak cocok') ;
+						$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+							Ulangi Password tidak cocok
+						</div>  ') ;
 						redirect(base_url().'user/signup');
 
 					} else {
 
-						$this->session->set_flashdata('login_error', 'Registrasi Sukses, Silahkan login') ;
+						$this->session->set_flashdata('login_error', '<div class="alert alert-success" role="alert">
+							Registrasi Sukses, Silahkan login
+						  </div>') ;
+						  
 						redirect(base_url().'user/signin');
 						
 					}

@@ -1,4 +1,7 @@
 
+
+
+
     <!-- banner part start-->
     <section class="banner_part">
         <div class="container">
@@ -64,6 +67,63 @@
         </div>
     </section>
     <!-- upcoming_event part start-->
+
+
+        <!--::review_part start::-->
+        <section class="special_cource padding_top">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xl-5">
+                    <div class="section_tittle text-center">
+                        <p>popular courses</p>
+                        <h2>Special Courses</h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <?php foreach($list_course->result() as $row_list_course){ ?>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="single_special_cource">
+                            <a href="<?php echo $row_list_course->objective ?>">
+                                <img src="<?php echo $row_list_course->image_course ?>" class="special_img" alt="<?php echo $row_list_course->title ?>">
+                                <div class="special_cource_text">
+                                    <a href="<?php echo $row_list_course->index_course ?>" class="btn_4"><?php echo $row_list_course->kategori ?></a>
+                                    <h4>$130.00</h4>
+                                    <a href="<?php echo $row_list_course->index_course ?>"><h3><?php echo $row_list_course->title ?></h3></a>
+                                    <p><?php echo $row_list_course->preview ?></p>
+                                    <div class="author_info">
+                                        <div class="author_img">
+                                            <img src="<?php echo base_url() ?>asset/img/author/author_1.png" alt="">
+                                            <div class="author_info_text">
+                                                <p>Conduct by:</p>
+                                                <h5><a href="#">James Well</a></h5>
+                                            </div>
+                                        </div>
+                                        <div class="author_rating">
+                                            <div class="rating">
+                                                <a href="#"><img src="<?php echo base_url() ?>asset/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="<?php echo base_url() ?>asset/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="<?php echo base_url() ?>asset/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="<?php echo base_url() ?>asset/img/icon/color_star.svg" alt=""></a>
+                                                <a href="#"><img src="<?php echo base_url() ?>asset/img/icon/star.svg" alt=""></a>
+                                            </div>
+                                            <p>3.8 Ratings</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                <?php } ?>
+
+            </div>
+        </div>
+    </section>
+    <!--::blog_part end::-->
 
     <!-- learning part start-->
     <section class="learning_part">

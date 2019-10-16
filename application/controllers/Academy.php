@@ -54,6 +54,7 @@ class Academy extends CI_Controller {
 					$data['course_title'] = $row_course_detail->title ;
 					$data['course_kategori'] = $row_course_detail->kategori ;
 					$data['course_objective'] = $row_course_detail->objective ;
+					$data['course_preview'] = $row_course_detail->preview ;
 					$data['course_image'] = $row_course_detail->image_course ;
 				}
 
