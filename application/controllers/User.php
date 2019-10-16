@@ -130,7 +130,10 @@ class User extends CI_Controller {
 
 					} else {
 
-						$this->session->set_flashdata('login_error', 'Registrasi Sukses, Silahkan login') ;
+						$this->session->set_flashdata('login_error', '<div class="alert alert-success" role="alert">
+							Registrasi Sukses, Silahkan login
+						  </div>') ;
+						  
 						redirect(base_url().'user/signin');
 						
 					}
