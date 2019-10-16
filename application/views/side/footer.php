@@ -7,23 +7,21 @@
             <div class="row justify-content-between">
                 <div class="col-sm-6 col-md-4 col-xl-3">
                     <div class="single-footer-widget footer_1">
-                        <a href="index.html"> <img src="<?php echo base_url() ?>asset/img/logo.png" alt=""> </a>
-                        <p>But when shot real her. Chamber her one visite removal six
-                            sending himself boys scot exquisite existend an </p>
-                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="madiun.nextgen" target="_blank" style="color: #0c2e60;">Madiun NextGent</a> </p>
+                        <a href="index.html"> <img src="<?php echo base_url() ?>asset/img/nga_logo.png" width="90" alt=""> </a>
+                        <p>Kami percaya setip usaha akan lebih berarti ketika membuat orang lain lebih berarti. </p>
+                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="<?php echo base_url() ?>" target="_blank" style="color: #0c2e60;">Madiun NextGent</a> </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-xl-4">
                     <div class="single-footer-widget footer_2">
-                        <h4>Newsletter</h4>
-                        <p>Stay updated with our latest trends Seed heaven so said place winged over given forth fruit.
-                        </p>
+                        <h4>Berlangganan Berita</h4>
+                        <p>Tetap Update dengan segala informasi terbaru dari Madiun Next Gen</p>
                         <form action="#">
                             <div class="form-group">
                                 <div class="input-group mb-3">
-                                    <input type="text" class="form-control" placeholder='Enter email address'
+                                    <input type="text" class="form-control" placeholder='Masukkan Alamat Email'
                                         onfocus="this.placeholder = ''"
-                                        onblur="this.placeholder = 'Enter email address'">
+                                        onblur="this.placeholder = 'Masukkan Alamat Email'">
                                     <div class="input-group-append">
                                         <button class="btn btn_1" type="button"><i class="ti-angle-right"></i></button>
                                     </div>
@@ -41,9 +39,9 @@
                     <div class="single-footer-widget footer_2">
                         <h4>Contact us</h4>
                         <div class="contact_info">
-                            <p><span> Address :</span> Hath of it fly signs bear be one blessed after </p>
-                            <p><span> Phone :</span> +2 36 265 (8060)</p>
-                            <p><span> Email : </span>info@colorlib.com </p>
+                            <p><span> Alamat :</span> Jl. Raya Saradan, Kab Madiun</p>
+                            <p><span> Telephone :</span> +6285235060891</p>
+                            <p><span> Email : </span> madiun.ng@gmail.com </p>
                         </div>
                     </div>
                 </div>
@@ -77,7 +75,7 @@
     <script src="<?php echo base_url() ?>asset/js/custom.js"></script>
     <script src="<?php echo base_url() ?>asset/js/course.js"></script>  
 
-    
+
 
 </body>
 
