@@ -150,12 +150,12 @@
                 <?php foreach($list_course->result() as $row_list_course){ ?>
                     <div class="col-sm-6 col-lg-4">
                         <div class="single_special_cource">
-                            <a href="">
-                                <img src="<?php echo $row_list_course->image_course ?>" class="special_img" alt="">
+                            <a href="<?php echo $row_list_course->objective ?>">
+                                <img src="<?php echo $row_list_course->image_course ?>" class="special_img" alt="<?php echo $row_list_course->title ?>">
                                 <div class="special_cource_text">
                                     <a href="<?php echo $row_list_course->index_course ?>" class="btn_4"><?php echo $row_list_course->kategori ?></a>
                                     <h4>$130.00</h4>
-                                    <a href="course-details.html"><h3><?php echo $row_list_course->title ?></h3></a>
+                                    <a href="<?php echo $row_list_course->index_course ?>"><h3><?php echo $row_list_course->title ?></h3></a>
                                     <p><?php echo $row_list_course->objective ?></p>
                                     <div class="author_info">
                                         <div class="author_img">
