@@ -2,14 +2,14 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:800|Poppins:300,400,500,600,700,800|Roboto:300,400,500");
 /* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
 .btn_1, .btn_2:hover, .main_menu .navbar-toggler:after, .banner_part .banner_text .btn_1, .feature_part .single_feature:hover span {
-  background-image: linear-gradient(to left, #FFC000 0%, #FFC000 100%, #FFC000 0%);
+  background-image: linear-gradient(to left, #FF8100 0%, #FF8100 100%, #FF8100 0%);
 }
 
 /* line 6, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
 .member_counter {
-  background-image: -moz-linear-gradient(0deg, #FFC000 0%, #FFC000 100%);
-  background-image: -webkit-linear-gradient(0deg, #FFC000 0%, #FFC000 100%);
-  background-image: -ms-linear-gradient(0deg, #FFC000 0%, #FFC000 100%);
+  background-image: -moz-linear-gradient(0deg, #FF8100 0%, #FF8100 100%);
+  background-image: -webkit-linear-gradient(0deg, #FF8100 0%, #FF8100 100%);
+  background-image: -ms-linear-gradient(0deg, #FF8100 0%, #FF8100 100%);
 }
 
 html {
