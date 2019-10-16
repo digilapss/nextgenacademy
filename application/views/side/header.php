@@ -90,7 +90,8 @@
                                     
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <?php echo $this->session->userdata('name')  ?>
+                                    <i class="fa fa-user"></i>    
+                                    <?php echo $this->session->userdata('name')  ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <?php 
@@ -98,6 +99,7 @@
                                                 echo '<a class="dropdown-item" href="'.base_url().'admin/course">Course</a>';
                                             }
                                         ?>
+                                        <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/logout">Sign Out</a>
                                     </div>
                                 </li>
@@ -105,12 +107,9 @@
                                 <?php } else {
                                     ?>
                                     
-                                <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url('') ?>user/signin">
-                                    <i class="fa fa-user"></i>    
-                                    Sign In
-                                    </a>
-                                </li>
+                                    <li class="d-none d-lg-block">
+                                        <a class="btn_1" href="<?php echo base_url() ?>user/signin">Masuk</a>
+                                    </li>
 
                                     <?php 
                                 } ?>
