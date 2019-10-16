@@ -81,7 +81,7 @@
                                     <a class="nav-link" href="<?php echo base_url('') ?>">Beranda</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url('') ?>">Hubungi Kami</a>
+                                    <a class="nav-link" href="<?php echo base_url('') ?>hubungikami">Hubungi Kami</a>
                                 </li>
                                 <?php  if($this->session->userdata('account_id') ){  
                                     
