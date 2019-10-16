@@ -92,7 +92,7 @@
                                     <a href="<?php echo $row_list_course->index_course ?>" class="btn_4"><?php echo $row_list_course->kategori ?></a>
                                     <h4>$130.00</h4>
                                     <a href="<?php echo $row_list_course->index_course ?>"><h3><?php echo $row_list_course->title ?></h3></a>
-                                    <p><?php echo $row_list_course->course_preview ?></p>
+                                    <p><?php echo $row_list_course->preview ?></p>
                                     <div class="author_info">
                                         <div class="author_img">
                                             <img src="<?php echo base_url() ?>asset/img/author/author_1.png" alt="">
