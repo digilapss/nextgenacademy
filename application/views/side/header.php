@@ -5,8 +5,29 @@
     <!-- Required meta tags -->
     <title>Madiun NextGen | Madiun Next Generation</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="<?php echo base_url() ?>asset/img/favicon.png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    
+    <!-- Google / Search Engine Tags -->
+    <meta itemprop="name" content="Madiun NextGen | Madiun Next Generation">
+    <meta itemprop="description" content="Madiun NextGen ( Next generation ) adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
+    <meta itemprop="image" content="<?php echo base_url() ?>asset/img/nga_logo.png">
+    
+    <!-- Facebook Meta Tags -->
+    <meta property="og:url" content="https://www.nextgenacademy.id">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Madiun NextGen | Madiun Next Generation">
+    <meta property="og:description" content="Madiun NextGen ( Next generation ) adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
+    <meta property="og:image" content="<?php echo base_url() ?>asset/img/nga_logo.png">
+    
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Madiun NextGen | Madiun Next Generation">
+    <meta name="twitter:description" content="Madiun NextGen ( Next generation ) adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
+    <meta name="twitter:image" content="<?php echo base_url() ?>asset/img/nga_logo.png">
+    
+
+    <link rel="icon" href="<?php echo base_url() ?>asset/img/nga_logo.png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/bootstrap.min.css">
     <!-- animate CSS -->
