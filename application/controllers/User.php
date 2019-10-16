@@ -80,7 +80,9 @@ class User extends CI_Controller {
 
 		} else {
 
+			$this->load->view('side/header');
 			$this->load->view('signin');
+			$this->load->view('side/footer');
 		}
 	}
 
@@ -149,7 +151,9 @@ class User extends CI_Controller {
 
 		} else {
 
+			$this->load->view('side/header');
 			$this->load->view('signup');
+			$this->load->view('side/footer');
 		}
 	}
 
