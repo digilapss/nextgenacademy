@@ -52,10 +52,16 @@ class Academy extends CI_Controller {
 				foreach($course_detail->result() as $row_course_detail){
 
 					$data['course_title'] = $row_course_detail->title ;
-					$data['course_kategori'] = $row_course_detail->kategori ;
+					$data['course_name_pemateri'] = $row_course_detail->name ;
+					$data['course_kategori'] = $row_course_detail->course_category_name ;
 					$data['course_objective'] = $row_course_detail->objective ;
 					$data['course_preview'] = $row_course_detail->preview ;
 					$data['course_image'] = $row_course_detail->image_course ;
+					$data['course_fee'] = $row_course_detail->fee ;
+					$data['course_quota'] = $row_course_detail->quota ;
+					$data['course_start_time'] = $row_course_detail->start_time ;
+					$data['course_finish_time'] = $row_course_detail->finish_time ;
+					
 				}
 
 				$this->load->view('side/header');
@@ -68,7 +74,10 @@ class Academy extends CI_Controller {
 			}
 
         }
-    }
+	}
+
+	
+	
 }
 
 

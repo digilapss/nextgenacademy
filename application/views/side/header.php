@@ -95,7 +95,7 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <?php 
-                                            if($this->session->userdata('role') === 'mentor' ){
+                                            if($this->session->userdata('role') === 2 ){
                                                 echo '<a class="dropdown-item" href="'.base_url().'admin/course">Course</a>';
                                             }
                                         ?>

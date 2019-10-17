@@ -89,7 +89,7 @@
                             <a href="<?php echo $row_list_course->objective ?>">
                                 <img src="<?php echo $row_list_course->image_course ?>" class="special_img" alt="<?php echo $row_list_course->title ?>">
                                 <div class="special_cource_text">
-                                    <a href="<?php echo $row_list_course->index_course ?>" class="btn_4"><?php echo $row_list_course->kategori ?></a>
+                                    <a href="<?php echo $row_list_course->index_course ?>" class="btn_4"><?php echo $row_list_course->course_category_name ?></a>
                                     <h4>$130.00</h4>
                                     <a href="<?php echo $row_list_course->index_course ?>"><h3><?php echo $row_list_course->title ?></h3></a>
                                     <p><?php echo $row_list_course->preview ?></p>
