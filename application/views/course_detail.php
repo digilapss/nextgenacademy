@@ -115,26 +115,34 @@
                         <ul>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Trainer’s Name</p>
-                                    <span class="color">George Mathews</span>
+                                    <p>Pemateri </p>
+                                    <span class="color"><?php echo $course_name_pemateri ?></span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Course Fee </p>
-                                    <span>$230</span>
+                                    <p>Biaya </p>
+                                    <span><?php echo $course_fee ?></span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Available Seats </p>
-                                    <span>15</span>
+                                    <p>Kuota </p>
+                                    <span><?php echo $course_quota ?></span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Schedule </p>
-                                    <span>2.00 pm to 4.00 pm</span>
+                                    <!-- <span><?php echo $course_start_time.' Sampai '.$course_finish_time ?></span> -->
+                                    <span>
+                                        <?php 
+                                        $start_course = new DateTime($course_start_time);
+                                        $finish_course = new DateTime($course_finish_time);
+                                        echo $start_course->format('h:i A').' Sampai '.$finish_course->format('h:i A');
+                                        
+                                        ?>
+                                    </span>
                                 </a>
                             </li>
 

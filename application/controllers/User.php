@@ -64,7 +64,7 @@ class User extends CI_Controller {
 
 				}
 
-				if( $this->session->userdata('role') === 'mentor' ){
+				if( $this->session->userdata('role') === 2 ){
 					redirect(base_url().'admin/course');
 				} else {
 					redirect(base_url());
