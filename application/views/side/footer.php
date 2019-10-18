@@ -49,6 +49,8 @@
 
         </div>
     </footer>
+
+    
     <!-- footer part end-->
     
     <!-- jquery plugins here-->

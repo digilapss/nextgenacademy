@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Oct 17, 2019 at 08:50 PM
--- Server version: 10.2.25-MariaDB
--- PHP Version: 7.2.7
+-- Host: localhost
+-- Waktu pembuatan: 18 Okt 2019 pada 18.06
+-- Versi server: 10.4.6-MariaDB
+-- Versi PHP: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `u4880303_nga_staging`
+-- Database: `nga`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account`
+-- Struktur dari tabel `account`
 --
 
 CREATE TABLE `account` (
@@ -49,18 +49,19 @@ CREATE TABLE `account` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `account`
+-- Dumping data untuk tabel `account`
 --
 
 INSERT INTO `account` (`account_id`, `name`, `gender`, `address`, `image`, `born_date`, `phone_number`, `instagram_id`, `email`, `password`, `status`, `role`, `create_time`, `update_time`, `create_by`, `update_by`, `ip_address`) VALUES
 (1, 'Doni', 0, 'Madiun', 'https://images.unsplash.com/photo-1570626742839-59acd9822944?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80', NULL, NULL, NULL, 'doni@gmail.com', '2da9cd653f63c010b6d6c5a5ad73fe32', 1, 1, '2019-10-01 17:00:00', '0000-00-00 00:00:00', NULL, 0, '129.168.1.111'),
-(4, 'Amad Hendro', NULL, NULL, NULL, NULL, '083845786165', NULL, 'ahendroo1@gmail.com', 'ff96d8761c12b16b93fb7405cdac8f65', NULL, 1, NULL, '0000-00-00 00:00:00', NULL, 0, NULL),
-(5, 'Amad Hendro', NULL, NULL, NULL, NULL, '083845786165', NULL, 'ahendrooend@gmail.com', 'ff96d8761c12b16b93fb7405cdac8f65', NULL, NULL, NULL, '0000-00-00 00:00:00', NULL, 0, NULL);
+(4, 'Amad Hendro', NULL, NULL, NULL, NULL, '083845786165', NULL, 'ahendroo1@gmail.com', 'ff96d8761c12b16b93fb7405cdac8f65', 1, 1, NULL, '0000-00-00 00:00:00', NULL, 0, NULL),
+(5, 'Amad Hendro', NULL, NULL, NULL, NULL, '083845786165', NULL, 'ahendrooend@gmail.com', 'ff96d8761c12b16b93fb7405cdac8f65', 1, 2, NULL, '0000-00-00 00:00:00', NULL, 0, NULL),
+(15, 'Tom Cruise', NULL, NULL, NULL, NULL, '083845786165', NULL, 'ahendrooamad@gmail.com', 'ff96d8761c12b16b93fb7405cdac8f65', 1, 2, '2019-10-18 15:52:51', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `account_activation`
+-- Struktur dari tabel `account_activation`
 --
 
 CREATE TABLE `account_activation` (
@@ -77,7 +78,7 @@ CREATE TABLE `account_activation` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog`
+-- Struktur dari tabel `blog`
 --
 
 CREATE TABLE `blog` (
@@ -99,7 +100,7 @@ CREATE TABLE `blog` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog_category`
+-- Struktur dari tabel `blog_category`
 --
 
 CREATE TABLE `blog_category` (
@@ -116,7 +117,7 @@ CREATE TABLE `blog_category` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `blog_comment`
+-- Struktur dari tabel `blog_comment`
 --
 
 CREATE TABLE `blog_comment` (
@@ -134,7 +135,7 @@ CREATE TABLE `blog_comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `class`
+-- Struktur dari tabel `class`
 --
 
 CREATE TABLE `class` (
@@ -152,7 +153,7 @@ CREATE TABLE `class` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course`
+-- Struktur dari tabel `course`
 --
 
 CREATE TABLE `course` (
@@ -174,17 +175,17 @@ CREATE TABLE `course` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `course`
+-- Dumping data untuk tabel `course`
 --
 
 INSERT INTO `course` (`course_id`, `image_course`, `preview`, `objective`, `eligibility`, `outline`, `status`, `create_time`, `update_time`, `create_by`, `update_by`, `ip_address`, `title`, `course_category_id`, `index_course`) VALUES
-(1, 'https://images.unsplash.com/photo-1525571453712-090270b8354f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'course_preview text', 'When you enter into any new area of science, you almost always find yourself with a baffling new language of technical terms to learn before you can converse with the experts. This is certainly true in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the trade, the most prevalent being the telescope.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', NULL, NULL, '2000-10-12 17:00:00', '2019-10-16 12:17:20', NULL, NULL, '129.168.1.111', 'Course Details Test ', 0, 'Course-Details-Test '),
-(2, 'https://images.unsplash.com/photo-1525571453712-090270b8354f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'course_preview text', 'When you enter into any new area of science, you almost always find yourself with a baffling new language of technical terms to learn before you can converse with the experts. This is certainly true in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the trade, the most prevalent being the telescope.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', NULL, NULL, '2000-10-12 17:00:00', '2019-10-16 12:17:20', NULL, NULL, '129.168.1.111', 'Two Course Details ', 0, 'Two-Course-Details-Test-1hgs');
+(1, 'https://images.unsplash.com/photo-1525571453712-090270b8354f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'course_preview text', 'When you enter into any new area of science, you almost always find yourself with a baffling new language of technical terms to learn before you can converse with the experts. This is certainly true in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the trade, the most prevalent being the telescope.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', NULL, NULL, '2000-10-12 17:00:00', '2019-10-16 12:17:20', NULL, NULL, '129.168.1.111', 'Course Details Test ', 1, 'Course-Details-Test '),
+(2, 'https://images.unsplash.com/photo-1525571453712-090270b8354f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60', 'course_preview text', 'When you enter into any new area of science, you almost always find yourself with a baffling new language of technical terms to learn before you can converse with the experts. This is certainly true in astronomy both in terms of terms that refer to the cosmos and terms that describe the tools of the trade, the most prevalent being the telescope.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.\r\n\r\nLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.', NULL, NULL, '2000-10-12 17:00:00', '2019-10-16 12:17:20', NULL, NULL, '129.168.1.111', 'Two Course Details ', 2, 'Two-Course-Details-Test-1hgs');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course_category`
+-- Struktur dari tabel `course_category`
 --
 
 CREATE TABLE `course_category` (
@@ -198,10 +199,18 @@ CREATE TABLE `course_category` (
   `ip_address` varchar(15) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `course_category`
+--
+
+INSERT INTO `course_category` (`course_category_id`, `course_category_name`, `status`, `create_time`, `update_time`, `create_by`, `update_by`, `ip_address`) VALUES
+(1, 'Content Creator', 1, '2019-10-01 17:00:00', '2019-10-16 17:00:00', 1, 1, '129.168.1.111'),
+(2, 'Retail Business', 1, '2019-10-15 17:00:00', '2019-10-08 17:00:00', 1, 1, '129.168.1.111');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course_comment`
+-- Struktur dari tabel `course_comment`
 --
 
 CREATE TABLE `course_comment` (
@@ -219,7 +228,7 @@ CREATE TABLE `course_comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `course_rating`
+-- Struktur dari tabel `course_rating`
 --
 
 CREATE TABLE `course_rating` (
@@ -238,7 +247,7 @@ CREATE TABLE `course_rating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `mentor_rating`
+-- Struktur dari tabel `mentor_rating`
 --
 
 CREATE TABLE `mentor_rating` (
@@ -257,7 +266,7 @@ CREATE TABLE `mentor_rating` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `payment`
+-- Struktur dari tabel `payment`
 --
 
 CREATE TABLE `payment` (
@@ -275,7 +284,7 @@ CREATE TABLE `payment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `rating_category`
+-- Struktur dari tabel `rating_category`
 --
 
 CREATE TABLE `rating_category` (
@@ -293,7 +302,7 @@ CREATE TABLE `rating_category` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `schedule`
+-- Struktur dari tabel `schedule`
 --
 
 CREATE TABLE `schedule` (
@@ -314,10 +323,18 @@ CREATE TABLE `schedule` (
   `ip_address` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `schedule`
+--
+
+INSERT INTO `schedule` (`schedule_id`, `course_id`, `account_id`, `type`, `fee`, `start_time`, `finish_time`, `place`, `quota`, `status`, `create_time`, `update_time`, `create_by`, `update_by`, `ip_address`) VALUES
+(1, 1, 1, 1, 100000, '2019-10-01 17:34:35', '2019-10-26 01:26:00', 'Madiun ', 77, 1, '2019-10-22 17:00:00', '2019-10-23 17:00:00', 1, 1, '129.168.1.111'),
+(2, 2, 4, 1, 140000, '2019-10-01 17:00:00', '2019-10-24 17:00:00', 'Kab. Madiun', 22, 1, '2019-10-14 17:00:00', '2019-10-15 17:00:00', 1, 1, '129.168.1.111');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `testimonial`
+-- Struktur dari tabel `testimonial`
 --
 
 CREATE TABLE `testimonial` (
@@ -337,185 +354,185 @@ CREATE TABLE `testimonial` (
 --
 
 --
--- Indexes for table `account`
+-- Indeks untuk tabel `account`
 --
 ALTER TABLE `account`
   ADD PRIMARY KEY (`account_id`);
 
 --
--- Indexes for table `account_activation`
+-- Indeks untuk tabel `account_activation`
 --
 ALTER TABLE `account_activation`
   ADD PRIMARY KEY (`activation_id`);
 
 --
--- Indexes for table `blog`
+-- Indeks untuk tabel `blog`
 --
 ALTER TABLE `blog`
   ADD PRIMARY KEY (`blog_id`);
 
 --
--- Indexes for table `blog_category`
+-- Indeks untuk tabel `blog_category`
 --
 ALTER TABLE `blog_category`
   ADD PRIMARY KEY (`blog_category_id`);
 
 --
--- Indexes for table `blog_comment`
+-- Indeks untuk tabel `blog_comment`
 --
 ALTER TABLE `blog_comment`
   ADD PRIMARY KEY (`blog_comment_id`);
 
 --
--- Indexes for table `class`
+-- Indeks untuk tabel `class`
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`class_id`);
 
 --
--- Indexes for table `course`
+-- Indeks untuk tabel `course`
 --
 ALTER TABLE `course`
   ADD PRIMARY KEY (`course_id`);
 
 --
--- Indexes for table `course_category`
+-- Indeks untuk tabel `course_category`
 --
 ALTER TABLE `course_category`
   ADD PRIMARY KEY (`course_category_id`);
 
 --
--- Indexes for table `course_comment`
+-- Indeks untuk tabel `course_comment`
 --
 ALTER TABLE `course_comment`
   ADD PRIMARY KEY (`course_comment_id`);
 
 --
--- Indexes for table `course_rating`
+-- Indeks untuk tabel `course_rating`
 --
 ALTER TABLE `course_rating`
   ADD PRIMARY KEY (`course_rating_id`);
 
 --
--- Indexes for table `mentor_rating`
+-- Indeks untuk tabel `mentor_rating`
 --
 ALTER TABLE `mentor_rating`
   ADD PRIMARY KEY (`mentor_rating_id`);
 
 --
--- Indexes for table `payment`
+-- Indeks untuk tabel `payment`
 --
 ALTER TABLE `payment`
   ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indexes for table `rating_category`
+-- Indeks untuk tabel `rating_category`
 --
 ALTER TABLE `rating_category`
   ADD PRIMARY KEY (`rating_category_id`);
 
 --
--- Indexes for table `schedule`
+-- Indeks untuk tabel `schedule`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`schedule_id`);
 
 --
--- Indexes for table `testimonial`
+-- Indeks untuk tabel `testimonial`
 --
 ALTER TABLE `testimonial`
   ADD PRIMARY KEY (`testimonial_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT untuk tabel yang dibuang
 --
 
 --
--- AUTO_INCREMENT for table `account`
+-- AUTO_INCREMENT untuk tabel `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `account_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT for table `account_activation`
+-- AUTO_INCREMENT untuk tabel `account_activation`
 --
 ALTER TABLE `account_activation`
   MODIFY `activation_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `blog`
+-- AUTO_INCREMENT untuk tabel `blog`
 --
 ALTER TABLE `blog`
   MODIFY `blog_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `blog_category`
+-- AUTO_INCREMENT untuk tabel `blog_category`
 --
 ALTER TABLE `blog_category`
   MODIFY `blog_category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `blog_comment`
+-- AUTO_INCREMENT untuk tabel `blog_comment`
 --
 ALTER TABLE `blog_comment`
   MODIFY `blog_comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `class`
+-- AUTO_INCREMENT untuk tabel `class`
 --
 ALTER TABLE `class`
   MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `course`
+-- AUTO_INCREMENT untuk tabel `course`
 --
 ALTER TABLE `course`
   MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `course_category`
+-- AUTO_INCREMENT untuk tabel `course_category`
 --
 ALTER TABLE `course_category`
-  MODIFY `course_category_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `course_category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `course_comment`
+-- AUTO_INCREMENT untuk tabel `course_comment`
 --
 ALTER TABLE `course_comment`
   MODIFY `course_comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `course_rating`
+-- AUTO_INCREMENT untuk tabel `course_rating`
 --
 ALTER TABLE `course_rating`
   MODIFY `course_rating_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `mentor_rating`
+-- AUTO_INCREMENT untuk tabel `mentor_rating`
 --
 ALTER TABLE `mentor_rating`
   MODIFY `mentor_rating_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `payment`
+-- AUTO_INCREMENT untuk tabel `payment`
 --
 ALTER TABLE `payment`
   MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `rating_category`
+-- AUTO_INCREMENT untuk tabel `rating_category`
 --
 ALTER TABLE `rating_category`
   MODIFY `rating_category_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `schedule`
+-- AUTO_INCREMENT untuk tabel `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `schedule_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `testimonial`
+-- AUTO_INCREMENT untuk tabel `testimonial`
 --
 ALTER TABLE `testimonial`
   MODIFY `testimonial_id` int(11) NOT NULL AUTO_INCREMENT;

@@ -2,24 +2,13 @@
 
 class Login extends CI_Model {
 	
-	public function CekLogin($email, $pass, $index){
+	public function CekLogin($email, $pass){
 
-        if($index === 0 ){
-
-            $inipass = md5($pass);
+        $this->db->where('email', $email);
+        $this->db->where('password', md5($pass));
         
-            $this->db->where('email', $email);
-            $this->db->where('password', $inipass);
-            
-            return $this->db->get('account');
-
-        } else if($index === 1 ){
+        return $this->db->get('account');
     
-            $this->db->where('email', $email);
-            
-            return $this->db->get('account');
-
-        }
 		
     }
 
