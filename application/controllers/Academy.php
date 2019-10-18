@@ -61,6 +61,7 @@ class Academy extends CI_Controller {
 					$data['course_quota'] = $row_course_detail->quota ;
 					$data['course_start_time'] = $row_course_detail->start_time ;
 					$data['course_finish_time'] = $row_course_detail->finish_time ;
+					$data['course_index_course'] = $row_course_detail->index_course ;
 					
 				}
 

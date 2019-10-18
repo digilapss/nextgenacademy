@@ -33,8 +33,9 @@ class User extends CI_Controller {
     
 	}
 	
-	public function signin()
-	{
+	public function signin(){
+
+
 		if($this->session->userdata('account_id')){
 			redirect(base_url());
 		}
@@ -43,11 +44,26 @@ class User extends CI_Controller {
 			
 			$email = $this->input->post('email');
 			$pass = $this->input->post('password');
-			$cek_login = $this->Login->CekLogin($email, $pass, 0);
+			$index_course = $this->session->userdata('index_course');
+			$this->login($email , $pass, $index_course);
+
+		} else {
+
+			$this->load->view('side/header');
+			$this->load->view('signin');
+			$this->load->view('side/footer');
+		}
+	}
+
+
+	public function login($email, $pass, $index_course){
+
+			$cek_login = $this->Login->CekLogin($email, $pass);
 
 			if ($cek_login->num_rows()>0) {
 				# code...
 				
+
 				foreach ($cek_login->result() as $row) {
 					# code...
 					$data = array(         'account_id' => $row->account_id,
@@ -64,28 +80,35 @@ class User extends CI_Controller {
 
 				}
 
-				if( $this->session->userdata('role') === 2 ){
-					redirect(base_url().'admin/course');
+				if( $this->session->userdata('role') === '2' ){
+					
+					if(!$index_course){
+
+						redirect(base_url());
+						
+					} else {
+
+						redirect(base_url().$index_course);
+
+					}
+
 				} else {
+
+
 					redirect(base_url());
+
 				}
    
 			} else {
 
 				$this->session->set_flashdata( 'login_error', '<div class="alert alert-danger" role="alert">
 					Email / Password salah
-				</div> ');
+				</div> <script>$( document ).ready(function() {$("#exampleModal").modal("show")});</script>');
+
+				
 				redirect(base_url().'user/signin');
 
 			}
-
-
-		} else {
-
-			$this->load->view('side/header');
-			$this->load->view('signin');
-			$this->load->view('side/footer');
-		}
 	}
 
 	public function signup()
@@ -105,6 +128,7 @@ class User extends CI_Controller {
 			$phone_number = $this->input->post('phone_number') ;
 			$email = $this->input->post('email') ;
 			$pass = $this->input->post('password');
+			$index_course = $this->session->userdata('index_course');
 			# code...
 
 			if ($pass === $this->input->post('repeat_password') ){
@@ -115,20 +139,24 @@ class User extends CI_Controller {
 
 					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
 						Email anda sudah terdaftar, silahkan <a href="'.base_url().'user/signin">Signin</a>
-					</div>  ') ;
+					</div>  ');
 					redirect(base_url().'user/signup');
+
+					
 				} else {
 
 					$useraccount = array (
 						'name' => $full_name,
 						'phone_number' => $phone_number,
 						'email' => $email,
-						'password' => md5($this->input->post('password'))
+						'password' => md5($this->input->post('password')),
+						'status' => 1,
+						'role' => 2,
 					);
 
 					$this->Login->signup($useraccount);
 					if(!$this->db->affected_rows()){
-
+					
 						$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
 							Ulangi Password tidak cocok
 						</div>  ') ;
@@ -136,11 +164,20 @@ class User extends CI_Controller {
 
 					} else {
 
-						$this->session->set_flashdata('login_error', '<div class="alert alert-success" role="alert">
-							Registrasi Sukses, Silahkan login
-						  </div>') ;
-						  
-						redirect(base_url().'user/signin');
+						if(!$index_course){
+
+							$this->session->set_flashdata('login_error', '<div class="alert alert-success" role="alert">
+								Registrasi Sukses, Silahkan login
+							</div>') ;
+							
+							redirect(base_url().'user/signin');
+							
+						} else {
+							
+							$this->login($email, $pass, $index_course);
+
+						}
+
 						
 					}
 				}

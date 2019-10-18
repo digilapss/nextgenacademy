@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+class Course extends CI_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -49,9 +49,19 @@ class Admin extends CI_Controller {
 		$this->load->view('side/footer');
     }
 
-    public function sv_course(){
-        echo '';
-    }
+	public function apply_course($index_course){
 
+		if(!$this->session->userdata('account_id')){
+			
+			$this->session->set_userdata('index_course', $index_course);
+			redirect(base_url().'user/signin');
+
+		} else {
+
+			
+			
+		}
+
+	}
 
 }

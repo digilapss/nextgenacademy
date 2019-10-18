@@ -147,7 +147,10 @@
                             </li>
 
                         </ul>
-                        <a href="#" class="btn_1 d-block">Enroll the course</a>
+
+                        <a href="<?php echo base_url().'course/apply_course/'.$course_index_course ?>" class="btn_1 d-block">Apply</a>
+                        
+                        <a href="#" class="genric-btn d-block disable circle">Registered</a>
                     </div>
 
                     <h4 class="title">Reviews</h4>
