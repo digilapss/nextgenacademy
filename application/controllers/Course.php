@@ -25,6 +25,7 @@ class Course extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('Login');
+		$this->load->model('CourseModel');
 		$this->load->library('session');
     
         ini_set('display_error','off');
@@ -33,9 +34,35 @@ class Course extends CI_Controller {
     }   
     
     public function detail(){
-		$this->load->view('side/header');
-        $this->load->view('course_detail');
-		$this->load->view('side/footer');
+    	$page_index = substr($_SERVER[ "REQUEST_URI" ], strrpos($_SERVER[ "REQUEST_URI" ], '/') + 1);
+
+    	$course_detail = $this->CourseModel->one_course($page_index);
+
+		if($course_detail->num_rows() > 0){
+
+			foreach($course_detail->result() as $row_course_detail){
+
+				$data['course_title'] = $row_course_detail->title ;
+				$data['course_name_pemateri'] = $row_course_detail->name ;
+				$data['course_kategori'] = $row_course_detail->course_category_name ;
+				$data['course_objective'] = $row_course_detail->objective ;
+				$data['course_preview'] = $row_course_detail->preview ;
+				$data['course_image'] = $row_course_detail->image_course ;
+				$data['course_fee'] = $row_course_detail->fee ;
+				$data['course_quota'] = $row_course_detail->quota ;
+				$data['course_start_time'] = $row_course_detail->start_time ;
+				$data['course_finish_time'] = $row_course_detail->finish_time ;
+				$data['course_index_course'] = $row_course_detail->index_course ;
+				
+			}
+
+			$this->load->view('side/header');
+			$this->load->view('course_detail', $data);
+			$this->load->view('side/footer');
+
+		} else {
+			show_404();
+		}
     }
 
     public function course(){
