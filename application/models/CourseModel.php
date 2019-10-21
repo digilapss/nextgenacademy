@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Course extends CI_Model {
+class CourseModel extends CI_Model {
 
 
     public function one_course($data){

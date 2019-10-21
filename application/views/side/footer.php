@@ -1,21 +1,19 @@
 
-    <!--::partnership end::-->
-
     <!-- footer part start-->
     <footer class="footer-area">
         <div class="container">
             <div class="row justify-content-between">
                 <div class="col-sm-6 col-md-4 col-xl-3">
                     <div class="single-footer-widget footer_1">
-                        <a href="index.html"> <img src="<?php echo base_url() ?>asset/img/nga_logo.png" width="90" alt=""> </a>
+                        <a href="index.html"> <img src="<?php echo base_url() ?>asset/img/nga_logo.png" width="200" alt=""> </a>
                         <p>Kami percaya setip usaha akan lebih berarti ketika membuat orang lain lebih berarti. </p>
-                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="<?php echo base_url() ?>" target="_blank" style="color: #0c2e60;">Madiun NextGent</a> </p>
+                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="<?php echo base_url() ?>" target="_blank" style="color: #0c2e60;">NextGen Academyt</a> </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-xl-4">
                     <div class="single-footer-widget footer_2">
                         <h4>Berlangganan Berita</h4>
-                        <p>Tetap Update dengan segala informasi terbaru dari Madiun Next Gen</p>
+                        <p>Tetap Update dengan segala informasi terbaru dari NextGen Academy</p>
                         <form action="#">
                             <div class="form-group">
                                 <div class="input-group mb-3">
@@ -41,7 +39,7 @@
                         <div class="contact_info">
                             <p><span> Alamat :</span> Jl. Raya Saradan, Kab Madiun</p>
                             <p><span> Telephone :</span> +6285235060891</p>
-                            <p><span> Email : </span> madiun.ng@gmail.com </p>
+                            <p><span> Email : </span> cs@nextgenacademy.id </p>
                         </div>
                     </div>
                 </div>

@@ -3,27 +3,27 @@
 
 <head>
     <!-- Required meta tags -->
-    <title>Madiun NextGen | Madiun Next Generation</title>
+    <title>NextGen Academy |Next Generation Academy</title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     
     <!-- Google / Search Engine Tags -->
-    <meta itemprop="name" content="Madiun NextGen | Madiun Next Generation">
-    <meta itemprop="description" content="Madiun NextGen ( Next generation ) adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
+    <meta itemprop="name" content="NextGen Academy | Next Generation Academy">
+    <meta itemprop="description" content="NextGen Academy adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
     <meta itemprop="image" content="<?php echo base_url() ?>asset/img/nga_logo.png">
     
     <!-- Facebook Meta Tags -->
     <meta property="og:url" content="https://www.nextgenacademy.id">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Madiun NextGen | Madiun Next Generation">
-    <meta property="og:description" content="Madiun NextGen ( Next generation ) adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
+    <meta property="og:title" content="NextGen Academy | Next Generation Academy">
+    <meta property="og:description" content="NextGen Academy adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
     <meta property="og:image" content="<?php echo base_url() ?>asset/img/nga_logo.png">
     
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Madiun NextGen | Madiun Next Generation">
-    <meta name="twitter:description" content="Madiun NextGen ( Next generation ) adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
+    <meta name="twitter:title" content="NextGen Academy | Next Generation Academy">
+    <meta name="twitter:description" content="NextGen Academy adalah Platform smart city kolaboratif untuk pendidikan formal yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri di Madiun Raya">
     <meta name="twitter:image" content="<?php echo base_url() ?>asset/img/nga_logo.png">
     
 
@@ -67,7 +67,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-12">
                     <nav class="navbar navbar-expand-lg navbar-light">
-                        <a class="navbar-brand" href="<?php echo base_url() ?>"> <img src="<?php echo base_url() ?>asset/img/nga_logo.png" width="70" alt="NGA Logo"> </a>
+                        <a class="navbar-brand" href="<?php echo base_url() ?>"> <img src="<?php echo base_url() ?>asset/img/nga_logo.png" width="200" alt="NGA Logo"> </a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -77,11 +77,11 @@
                         <div class="collapse navbar-collapse main-menu-item justify-content-end"
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center">
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="<?php echo base_url('') ?>">Beranda</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url('') ?>hubungikami">Hubungi Kami</a>
+                                    <a class="nav-link" href="<?php echo base_url('') ?>contact">Hubungi Kami</a>
                                 </li>
                                 <?php  if($this->session->userdata('account_id') ){  
                                     
