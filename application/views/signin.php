@@ -1,10 +1,5 @@
 
-  <!-- ================ contact section start ================= -->
-  <section class="contact-section section_padding_sign " style="padding-top:120px">
-    <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-lg-6 sign_in" style="border:solid black 0px">
-           
+
             <p class="text-danger">
               <?php echo $this->session->flashdata('login_error') ?>
             </p>

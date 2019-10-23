@@ -3,7 +3,7 @@
 
 <head>
     <!-- Required meta tags -->
-    <title>NextGen Academy |Next Generation Academy</title>
+    <title>NextGen Academy | Next Generation Academy</title>
     <meta charset="utf-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
@@ -97,6 +97,8 @@
                                         <?php 
                                             if($this->session->userdata('role') === 2 ){
                                                 echo '<a class="dropdown-item" href="'.base_url().'admin/course">Course</a>';
+                                            } else {
+                                                echo '<a class="dropdown-item" href="'.base_url().'course/member">My Course</a>' ;
                                             }
                                         ?>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>

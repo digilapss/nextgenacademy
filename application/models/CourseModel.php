@@ -33,9 +33,15 @@ class CourseModel extends CI_Model {
         $this->db->limit($limit);
         return $this->db->get();
 
+    }
 
+    public function course_min_slot($course_id){
+        $this->db->set('slot', 'slot - 1');
+        $this->db->where('course_id', $ourse_id);
+        $this->db->update('course');
 
     }
+
     
 	
 }

@@ -49,7 +49,7 @@ class User extends CI_Controller {
 
 		} else {
 
-			$this->load->view('side/header');
+			$this->load->view('side/header_signin');
 			$this->load->view('signin');
 			$this->load->view('side/footer');
 		}
@@ -73,6 +73,7 @@ class User extends CI_Controller {
 										   'status' => $row->status,
 										   'role' => $row->role,
 										   'image' => $row->img_user,
+										   'phone_number' => $row->phone_number,
 										   'ip_address' => $row->ip_address,
 										);
 					
@@ -88,7 +89,7 @@ class User extends CI_Controller {
 						
 					} else {
 
-						redirect(base_url().$index_course);
+						redirect(base_url().'course/detail/'.$index_course);
 
 					}
 
@@ -197,10 +198,15 @@ class User extends CI_Controller {
 
 		} else {
 
-			$this->load->view('side/header');
+			$this->load->view('side/header_signin');
 			$this->load->view('signup');
 			$this->load->view('side/footer');
 		}
+	}
+
+
+	public function profile(){
+		show_404();
 	}
 
 	public function logout(){
@@ -209,6 +215,8 @@ class User extends CI_Controller {
 		$this->session->sess_destroy();
 		redirect(base_url().'user/signin');
 	}
+
+
 
 
 }

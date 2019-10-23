@@ -1,10 +1,5 @@
 
-  <!-- ================ contact section start ================= -->
-  <section class="contact-section section_padding_sign" style="padding-top:120px">
-    <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-lg-6 sign_in" style="border:solid black 0px;">
-            
+
             <form class="form-contact" action="<?php echo base_url() ?>user/signup" method="post"  novalidate="novalidate">
               <div class="row">
               

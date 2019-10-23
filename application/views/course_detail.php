@@ -28,46 +28,23 @@
                         <h4 class="title_top">Objectives</h4>
                         <div class="content">
                             <?php echo $course_objective ?>
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
+                            
+                            
                         </div>
 
                         <h4 class="title">Eligibility</h4>
                         <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
+
+                            <?php echo $course_eligibility ?>
+                           
                         </div>
 
                         <h4 class="title">Course Outline</h4>
                         <div class="content">
-                            <ul class="course_list">
+
+                            <!-- <?php echo $course_eligibility ?> -->
+
+                            <!-- <ul class="course_list">
                                 <li class="justify-content-between align-items-center d-flex">
                                     <p>Introduction Lesson</p>
                                     <a class="btn_2 text-uppercase" href="#">View Details</a>
@@ -104,7 +81,7 @@
                                     <p>Canvas in HTML 5</p>
                                     <a class="btn_2 text-uppercase" href="#">View Details</a>
                                 </li>
-                            </ul>
+                            </ul> -->
                         </div>
                     </div>
                 </div>
@@ -148,9 +125,17 @@
 
                         </ul>
 
-                        <a href="<?php echo base_url().'course/apply_course/'.$course_index_course ?>" class="btn_1 d-block">Apply</a>
-                        
-                        <a href="#" class="genric-btn d-block disable circle">Registered</a>
+                    
+                        <?php  
+                        if($member_apply > 0){
+
+                            echo '<a href="#" class="genric-btn d-block disable circle">Registered</a>';
+
+                        } else {
+                            
+                            echo '<a href="'.base_url().'course/apply_course_wa/'.$course_index_course.'" class="btn_1 d-block">Apply</a>' ;
+                        }
+                        ?>
                     </div>
 
                     <h4 class="title">Reviews</h4>
