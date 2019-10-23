@@ -90,7 +90,7 @@
                                     
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="fa fa-user"></i>    
+                                    <img src="<?php echo $this->session->userdata('image')  ?>" width="30" class="img_circle" alt="<?php echo $this->session->userdata('name')  ?>" >    
                                     <?php echo $this->session->userdata('name')  ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
