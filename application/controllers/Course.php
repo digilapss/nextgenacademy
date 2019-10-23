@@ -203,7 +203,7 @@ class Course extends CI_Controller {
 		} else {
 
 			if(!$this->session->userdata('account_id')){
-				redirect(base_url().'apply_course/'.$index_course);
+				redirect(base_url().'course/apply_course/'.$index_course);
 			}
 			
 			$data['index_course'] = $index_course ;
