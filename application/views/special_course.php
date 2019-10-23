@@ -23,7 +23,7 @@
                         <img src="<?= $row_list_course->image_course ?>" class="special_img" alt="<?= $row_list_course->title ?>">
                         <div class="special_cource_text">
                             <a href="course/detail/<?= $row_list_course->index_course ?>" class="btn_4"><?= $row_list_course->course_category_name ?></a>
-                            <h4><?= $row_list_course->fee ?></h4>
+                            <h4><?= $this->Converter->rupiah($row_list_course->fee); ?></h4>
                             <a href="course/detail/<?= $row_list_course->index_course ?>"><h3><?= $row_list_course->title ?></h3></a>
                             <p><?= $row_list_course->preview ?></p>
                             <div class="author_info">

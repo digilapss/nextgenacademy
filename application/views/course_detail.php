@@ -116,7 +116,7 @@
                                         <?php 
                                         $start_course = new DateTime($course_start_time);
                                         $finish_course = new DateTime($course_finish_time);
-                                        echo $start_course->format('h:i A').' Sampai '.$finish_course->format('h:i A');
+                                        echo $start_course->format('h:i A').' - '.$finish_course->format('h:i A');
                                         
                                         ?>
                                     </span>
@@ -138,7 +138,7 @@
                         ?>
                     </div>
 
-                    <h4 class="title">Reviews</h4>
+                    <!-- <h4 class="title">Reviews</h4>
                     <div class="content">
                         <div class="review-top row pt-40">
                             <div class="col-lg-12">
@@ -261,7 +261,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>

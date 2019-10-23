@@ -26,6 +26,7 @@ class Home extends CI_Controller {
         parent::__construct();
 
 		$this->load->model('CourseModel');
+		$this->load->model('Converter');
         ini_set('display_error','off');
         error_reporting(0);
     

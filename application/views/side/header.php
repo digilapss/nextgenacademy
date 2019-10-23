@@ -89,7 +89,7 @@
                                 
                                     
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <i class="fa fa-user"></i>    
                                     <?php echo $this->session->userdata('name')  ?>
                                     </a>
@@ -109,8 +109,8 @@
                                 <?php } else {
                                     ?>
                                     
-                                    <li class="d-none d-lg-block">
-                                        <a class="btn_1" href="<?php echo base_url() ?>user/signin">Masuk</a>
+                                    <li class="nav-item">
+                                        <a class="btn_1" style="margin:10px;" href="<?php echo base_url() ?>user/signin">Masuk</a>
                                     </li>
 
                                     <?php 

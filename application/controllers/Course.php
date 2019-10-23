@@ -26,6 +26,7 @@ class Course extends CI_Controller {
 		
 		$this->load->model('Login');
 		$this->load->model('CourseModel');
+		$this->load->model('Converter');
 		$this->load->model('ClassModel');
 		$this->load->model('ScheduleModel');
 		$this->load->model('PaymentModel');
@@ -61,7 +62,7 @@ class Course extends CI_Controller {
 				$data['course_outline'] = $row_course_detail->outline ;
 				$data['course_preview'] = $row_course_detail->preview ;
 				$data['course_image'] = $row_course_detail->image_course ;
-				$data['course_fee'] = $row_course_detail->fee ;
+				$data['course_fee'] = $this->Converter->rupiah($row_course_detail->fee) ;
 				$data['course_quota'] = $row_course_detail->quota ;
 				$data['course_start_time'] = $row_course_detail->start_time ;
 				$data['course_finish_time'] = $row_course_detail->finish_time ;
