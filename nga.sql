@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 18 Okt 2019 pada 18.06
+-- Waktu pembuatan: 23 Okt 2019 pada 16.15
 -- Versi server: 10.4.6-MariaDB
 -- Versi PHP: 7.3.8
 
@@ -281,6 +281,15 @@ CREATE TABLE `payment` (
   `ip_address` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `gateway_id`, `status`, `payment_evidence`, `create_time`, `update_time`, `create_by`, `update_by`, `ip_address`) VALUES
+(18, 0, 1, '', '2019-10-23 06:56:27', '2019-10-23 06:56:27', 2, NULL, '::1'),
+(19, 0, 1, '', '2019-10-23 06:57:25', '2019-10-23 06:57:25', 2, NULL, '::1'),
+(20, 0, 1, '', '2019-10-23 07:13:31', '2019-10-23 07:13:31', 2, NULL, '::1');
+
 -- --------------------------------------------------------
 
 --
@@ -314,7 +323,7 @@ CREATE TABLE `schedule` (
   `start_time` timestamp NULL DEFAULT NULL,
   `finish_time` timestamp NULL DEFAULT NULL,
   `place` varchar(1000) DEFAULT NULL,
-  `quota` int(11) DEFAULT NULL,
+  `quota` smallint(11) DEFAULT NULL,
   `status` smallint(6) DEFAULT NULL,
   `create_time` timestamp NULL DEFAULT current_timestamp(),
   `update_time` timestamp NULL DEFAULT NULL,
@@ -328,8 +337,8 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`schedule_id`, `course_id`, `account_id`, `type`, `fee`, `start_time`, `finish_time`, `place`, `quota`, `status`, `create_time`, `update_time`, `create_by`, `update_by`, `ip_address`) VALUES
-(1, 1, 1, 1, 100000, '2019-10-01 17:34:35', '2019-10-26 01:26:00', 'Madiun ', 77, 1, '2019-10-22 17:00:00', '2019-10-23 17:00:00', 1, 1, '129.168.1.111'),
-(2, 2, 4, 1, 140000, '2019-10-01 17:00:00', '2019-10-24 17:00:00', 'Kab. Madiun', 22, 1, '2019-10-14 17:00:00', '2019-10-15 17:00:00', 1, 1, '129.168.1.111');
+(1, 1, 1, 1, 0, '2019-10-01 17:34:35', '2019-10-26 01:26:00', 'Madiun ', 77, 1, '2019-10-22 17:00:00', '2019-10-23 17:00:00', 1, 1, '129.168.1.111'),
+(2, 2, 4, 1, 140000, '2019-10-01 17:00:00', '2019-10-24 17:00:00', 'Kab. Madiun', 18, 1, '2019-10-14 17:00:00', '2019-10-15 17:00:00', 1, 1, '129.168.1.111');
 
 -- --------------------------------------------------------
 
@@ -481,7 +490,7 @@ ALTER TABLE `blog_comment`
 -- AUTO_INCREMENT untuk tabel `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `course`
@@ -517,7 +526,7 @@ ALTER TABLE `mentor_rating`
 -- AUTO_INCREMENT untuk tabel `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `rating_category`

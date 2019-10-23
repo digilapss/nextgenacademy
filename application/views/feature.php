@@ -38,6 +38,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 </section>
 <!-- feature_part end-->
