@@ -97,6 +97,8 @@
                                         <?php 
                                             if($this->session->userdata('role') === 2 ){
                                                 echo '<a class="dropdown-item" href="'.base_url().'admin/course">Course</a>';
+                                            } else {
+                                                echo '<a class="dropdown-item" href="'.base_url().'course/member">My Course</a>' ;
                                             }
                                         ?>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>

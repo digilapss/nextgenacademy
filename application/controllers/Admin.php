@@ -50,7 +50,8 @@ class Admin extends CI_Controller {
     }
 
     public function sv_course(){
-        echo '';
+		echo '';
+		
     }
 
 

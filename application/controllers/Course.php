@@ -26,14 +26,23 @@ class Course extends CI_Controller {
 		
 		$this->load->model('Login');
 		$this->load->model('CourseModel');
+		$this->load->model('ClassModel');
+		$this->load->model('ScheduleModel');
 		$this->load->model('PaymentModel');
-		
 		$this->load->library('session');
     
         ini_set('display_error','off');
         error_reporting(0);
     
-    }   
+	}   
+	
+	public function member(){
+
+		$this->load->view('side/header');
+		$this->load->view('course_member', $data);
+		$this->load->view('side/footer');
+		
+	}
     
     public function detail(){
     	$page_index = substr($_SERVER[ "REQUEST_URI" ], strrpos($_SERVER[ "REQUEST_URI" ], '/') + 1);
@@ -57,7 +66,29 @@ class Course extends CI_Controller {
 				$data['course_start_time'] = $row_course_detail->start_time ;
 				$data['course_finish_time'] = $row_course_detail->finish_time ;
 				$data['course_index_course'] = $row_course_detail->index_course ;
+				$data['course_schedule_id'] = $row_course_detail->schedule_id ;
 				
+			}
+
+			$account_id = $this->session->userdata('account_id');
+			if(!$this->session->userdata('account_id')){
+
+				$data['member_apply'] = 0 ;
+
+			} else {
+
+				$ck_applycourse = $this->ClassModel->ck_apply_course($data['course_schedule_id'], $account_id );
+				
+				if($ck_applycourse->num_rows() > 0){
+				
+					$data['member_apply'] = 1 ;
+
+				} else {
+
+					$data['member_apply'] = 0 ;
+
+				}
+
 			}
 
 			$this->load->view('side/header');
@@ -95,54 +126,67 @@ class Course extends CI_Controller {
 
 				foreach($one_course->result() as $row_course_detail){
 
-					$data['course_title'] = $row_course_detail->title ;
-					$data['course_name_pemateri'] = $row_course_detail->name ;
-					$data['course_kategori'] = $row_course_detail->course_category_name ;
-					$data['course_objective'] = $row_course_detail->objective ;
-					$data['course_preview'] = $row_course_detail->preview ;
-					$data['course_fee'] = $row_course_detail->fee ;
-					$data['course_quota'] = $row_course_detail->quota ;
-					$data['course_start_time'] = $row_course_detail->start_time ;
-					$data['course_finish_time'] = $row_course_detail->finish_time ;
-					$data['course_index_course'] = $row_course_detail->index_course ;
-					$data['course_schedule_id'] = $row_course_detail->schedule_id ;
+					$data_course = array(
+						'course_id' => $row_course_detail->course_id ,
+						'course_name_pemateri' => $row_course_detail->name ,
+						'course_fee;' => $row_course_detail->fee ,
+						'course_quota' => $row_course_detail->quota ,
+						'course_index_course' => $row_course_detail->index_course ,
+						'course_schedule_id' => $row_course_detail->schedule_id ,
+
+					) ;
+				
 					
 				}
 
-				$apply_course_data = array(
+				$payment_data = array(
 
-					'class_id' => '',
-					'schedule_id' => $course_schedule_id,
-					'account_id' => $this->session->userdata('account_id'),
-					'payment_id' => 1,
-					'create_time' => date('Y-m-d H:i:s'),
-					'update_time' => date('Y-m-d H:i:s'),
-					'update_by' => $course_nama_pemateri,
-					'status' => 1, 
-					'ip_address' => $_SERVER["REMOTE_ADDR"],
-				);
-
-				$data = array(
-					
 					'payment_id' => '',
-					'gateway_id' => '',
+					'gateway_id' => 0,
 					'status' => 1,
 					'payment_evidence' => '',
 					'create_time' => date('Y-m-d H:i:s'),
 					'update_time' => date('Y-m-d H:i:s'),
-					'create_by' => $course_nama_pemateri,
+					'create_by' => $data_course['course_id'],
 					'ip_address' => $_SERVER["REMOTE_ADDR"],
 
 				);
 
-				$payment = $this->PaymentModel->add_payment($data);
-				echo $payment ;
+				$payment_id = $this->PaymentModel->add_payment($payment_data);
 
-				// $this->CourseModel->apply_course($apply_course_data);
-			
-				// if(!$this->db->affected_rows()){
+				$apply_course_data = array(
+
+					'class_id' => '',
+					'schedule_id' => $data_course['course_schedule_id'],
+					'account_id' => $this->session->userdata('account_id'),
+					'payment_id' => $payment_id,
+					'create_time' => date('Y-m-d H:i:s'),
+					'update_time' => date('Y-m-d H:i:s'),
+					'update_by' => $data_course['course_name_pemateri'],
+					'status' => $data_course['course_fee'] === 0 ? 1 : 2 , 
+					'ip_address' => $_SERVER["REMOTE_ADDR"],
+				);
+
+				$this->ClassModel->add_class($apply_course_data);
+				
+				if(!$this->db->affected_rows()){ 
 					
-				// }
+					redirect(base_url().'course/detail/'.$index_course);
+
+				} else {
+
+					$this->ScheduleModel->course_min_slot($data_course['course_id']);
+
+					if(!$this->db->affected_rows()){ 
+
+						redirect(base_url().'course/detail/'.$index_course);
+
+					} else {
+
+						redirect(base_url().'course/member');
+					}
+
+				}
 
 				
 			}
@@ -158,7 +202,7 @@ class Course extends CI_Controller {
 		} else {
 
 			if(!$this->session->userdata('account_id')){
-				show_404();
+				redirect(base_url().'apply_course/'.$index_course);
 			}
 			
 			$data['index_course'] = $index_course ;

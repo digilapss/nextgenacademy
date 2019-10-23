@@ -125,21 +125,17 @@
 
                         </ul>
 
-                        
-
-                            <a href="<?php 
-                            if(!$this->session->userdata('account_id')){
-                                echo base_url().'course/apply_course/'.$course_index_course ;
-                            } else {
-                                echo base_url().'course/apply_course_wa/'.$course_index_course ;
-
-                            }
-                            
-                            ?>" class="btn_1 d-block">Apply</a>
-
-                        
                     
-                        <a href="#" class="genric-btn d-block disable circle">Registered</a>
+                        <?php  
+                        if($member_apply > 0){
+
+                            echo '<a href="#" class="genric-btn d-block disable circle">Registered</a>';
+
+                        } else {
+                            
+                            echo '<a href="'.base_url().'course/apply_course_wa/'.$course_index_course.'" class="btn_1 d-block">Apply</a>' ;
+                        }
+                        ?>
                     </div>
 
                     <h4 class="title">Reviews</h4>

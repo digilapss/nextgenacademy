@@ -4,7 +4,8 @@ class PaymentModel extends CI_Model {
 
     public function add_payment($data){
 
-        return $this->db->insert('payment',$data);
+        $this->db->insert('payment',$data);
+        return $this->db->insert_id();
 
     }
 
