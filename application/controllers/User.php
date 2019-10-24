@@ -71,8 +71,10 @@ class User extends CI_Controller {
 										   'email' => $row->email,
 										   'password' => $row->password,
 										   'status' => $row->status,
+										   'address' => $row->address,
+										   'gender' => $row->gender,
 										   'role' => $row->role,
-										   'image' => $row->img_user,
+										   'image' => $row->image,
 										   'phone_number' => $row->phone_number,
 										   'ip_address' => $row->ip_address,
 										);
@@ -206,7 +208,11 @@ class User extends CI_Controller {
 
 
 	public function profile(){
-		show_404();
+
+		$this->load->view('side/header');
+		$this->load->view('member_profile');
+		$this->load->view('side/footer');
+
 	}
 
 	public function logout(){

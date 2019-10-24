@@ -2,7 +2,6 @@
 
 class CourseModel extends CI_Model {
 
-
     public function one_course($data){
         
         $this->db->select('*');
@@ -35,12 +34,12 @@ class CourseModel extends CI_Model {
 
     }
 
-    public function course_min_slot($course_id){
-        $this->db->set('slot', 'slot - 1');
-        $this->db->where('course_id', $ourse_id);
-        $this->db->update('course');
+
+    public function course_member($account_id){
+
 
     }
+
 
     
 	

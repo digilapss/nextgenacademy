@@ -39,6 +39,14 @@ class Course extends CI_Controller {
 	
 	public function member(){
 
+		if(!$this->session->userdata('account_id')){
+			redirect(base_url().'user/signin');
+		}
+
+		// $account_id = $this->session->userdata('account_id');
+		
+		// $data['list_course_member'] = $this->CourseModel->course_member($account_id);
+
 		$this->load->view('side/header');
 		$this->load->view('course_member', $data);
 		$this->load->view('side/footer');
@@ -195,6 +203,8 @@ class Course extends CI_Controller {
 		}
 
 	}
+
+	
 
 	public function apply_course_wa($index_course){
 
