@@ -20,6 +20,8 @@ $(document).ready(function(){
 
 })
 
+
+
 $("#load_course").hide();
 function cek_form(form){
     
@@ -48,16 +50,42 @@ function cek_form(form){
 }	
 
 
+
+$("#load_profile").hide();
+function cek_form_profile(form){
+    
+    if (form.gender.value == "0"){
+
+		$(".gender_text").remove();
+		$(".gender_alert").append("<p class='gender_text text-danger' >Pilih Gender</p>");
+		form.gender.focus();
+	
+		return (false);
+		
+    } else {
+
+		$("#sv_course").hide();
+		$("#load_course").show()
+		return (true);
+	} 
+
+}	
+
+$('#gender').on('change', function() {
+	$(".gender_text").remove();
+	
+});
+
+
+
 $('#pemateri').on('change', function() {
 	$(".pemateri_text").remove();
 	
 });
 
 
-
-
-function course_img(img,idpreview){
-    var gb = img.files;
+function course_img(gambar,idpreview){
+    var gb = gambar.files;
             
     for (var i = 0; i < gb.length; i++){
          var gbPreview = gb[i];

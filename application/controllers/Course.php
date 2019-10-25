@@ -24,7 +24,7 @@ class Course extends CI_Controller {
 
 		parent::__construct();
 		
-		$this->load->model('Login');
+		$this->load->model('AccountModel');
 		$this->load->model('CourseModel');
 		$this->load->model('Converter');
 		$this->load->model('ClassModel');
@@ -38,6 +38,14 @@ class Course extends CI_Controller {
 	}   
 	
 	public function member(){
+
+		if(!$this->session->userdata('account_id')){
+			redirect(base_url().'user/signin');
+		}
+
+		// $account_id = $this->session->userdata('account_id');
+		
+		// $data['list_course_member'] = $this->CourseModel->course_member($account_id);
 
 		$this->load->view('side/header');
 		$this->load->view('course_member', $data);
@@ -196,6 +204,8 @@ class Course extends CI_Controller {
 
 	}
 
+	
+
 	public function apply_course_wa($index_course){
 
 		if(!$index_course){
@@ -203,7 +213,7 @@ class Course extends CI_Controller {
 		} else {
 
 			if(!$this->session->userdata('account_id')){
-				redirect(base_url().'apply_course/'.$index_course);
+				redirect(base_url().'course/apply_course/'.$index_course);
 			}
 			
 			$data['index_course'] = $index_course ;
