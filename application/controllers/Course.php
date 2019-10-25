@@ -24,7 +24,7 @@ class Course extends CI_Controller {
 
 		parent::__construct();
 		
-		$this->load->model('Login');
+		$this->load->model('AccountModel');
 		$this->load->model('CourseModel');
 		$this->load->model('Converter');
 		$this->load->model('ClassModel');

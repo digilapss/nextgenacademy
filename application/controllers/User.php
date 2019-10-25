@@ -25,7 +25,7 @@ class User extends CI_Controller {
 
 		parent::__construct();
 		
-		$this->load->model('Login');
+		$this->load->model('AccountModel');
 		$this->load->library('session');
     
         ini_set('display_error','off');
@@ -58,7 +58,7 @@ class User extends CI_Controller {
 
 	public function login($email, $pass, $index_course){
 
-			$cek_login = $this->Login->CekLogin($email, $pass);
+			$cek_login = $this->AccountModel->CekLogin($email, $pass);
 
 			if ($cek_login->num_rows()>0) {
 				# code...
@@ -87,7 +87,7 @@ class User extends CI_Controller {
 					
 					if(!$index_course){
 
-						redirect(base_url());
+						redirect(base_url().'user/profile');
 						
 					} else {
 
@@ -97,8 +97,7 @@ class User extends CI_Controller {
 
 				} else {
 
-
-					redirect(base_url());
+					redirect(base_url().'user/profile');
 
 				}
    
@@ -215,8 +214,55 @@ class User extends CI_Controller {
 
 	}
 
-	public function logout(){
+	public function profile_update(){
+		
+		if(!$this->input->post()){
 
+			show_404();
+
+		} else {
+
+			$data['name'] = $this->input->post('name');
+			$data['email'] = $this->input->post('email');
+			$data['instagram_id'] = $this->input->post('instagram_id');
+			$data['born_date'] = $this->input->post('birthday');
+			$data['phone_number'] = $this->input->post('phone_number');
+			$data['gender'] = $this->input->post('gender');
+			$data['address'] = $this->input->post('address');
+			$account_id = $this->session->userdata('account_id');
+
+			if(!$this->input->post('filefoto')){
+				
+				$this->AccountModel->update_profile($account_id, $data);
+
+				if(!$this->db->affected_rows()){
+
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+							<i class="fa fa-check"></i> Update Profile Berhasil
+						</div>  ') ;
+					redirect(base_url().'user/profile');
+
+				} else {
+
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+							Update Profile Berhasil
+						</div>') ;
+					redirect(base_url().'user/profile');
+
+				}
+
+			} else {
+
+				echo 'with foto upload ';
+
+			}
+
+
+		}
+
+	}
+
+	public function logout(){
 
 		$this->session->sess_destroy();
 		redirect(base_url().'user/signin');

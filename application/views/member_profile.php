@@ -65,7 +65,10 @@
           </div>
         </div>
         <div class="col-lg-8">
-          <form class="form-contact contact_form" action="#" method="post" id="contactForm" novalidate="novalidate">
+
+        <?= $this->session->flashdata('signup_alert') ?>
+
+          <form class="form-contact"  action="<?= base_url().'user/profile_update' ?>" method="post"  enctype="multipart/form-data" onsubmit="return cek_form_profile(this)">
             <div class="row">
               <!-- <div class="col-12">
                 <div class="form-group">
@@ -75,28 +78,28 @@
               </div> -->
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="name" value="<?= $this->session->userdata('name') ?>" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nama Lengkap'" placeholder = 'Masukkan Nama Lengkap'>
+                  <input class="form-control" name="name" value="<?= $this->session->userdata('name') ?>" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nama Lengkap'" placeholder = 'Masukkan Nama Lengkap' required>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="email" value="<?= $this->session->userdata('email') ?>" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Alamat Email'" placeholder = 'Masukkan Alamat Email'>
+                  <input class="form-control" name="email" value="<?= $this->session->userdata('email') ?>" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Alamat Email'" placeholder = 'Masukkan Alamat Email' required>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="email" value="<?= $this->session->userdata('instagram_id') ?>" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID Instagram'" placeholder = 'ID Instagram'>
+                  <input class="form-control" name="instagram_id" value="<?= $this->session->userdata('instagram_id') ?>" id="email" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID Instagram'" placeholder = 'ID Instagram' required>
                 </div>
               </div>
               <div class="col-sm-6">
                 <div class="form-group">
-                  <input class="form-control" name="subject" value="<?= $this->session->userdata('phone_number') ?>" id="subject" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nomor Telephone'" placeholder = 'Masukkan Nomor Telephone'>
+                  <input class="form-control" name="phone_number" value="<?= $this->session->userdata('phone_number') ?>" id="subject" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nomor Telephone'" placeholder = 'Masukkan Nomor Telephone' required>
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="" class="text-primary">Tanggal Lahir</label>
                 <div class="form-group">
-                  <input class="form-control" name="email" id="email" type="date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tanggal Lahir'" placeholder = 'Tanggal Lahir'>
+                  <input class="form-control" name="birthday" id="birthday" type="date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tanggal Lahir'" placeholder = 'Tanggal Lahir' required>
                 </div>
               </div>
 
@@ -105,18 +108,24 @@
                 <div class="input-group-icon mt-10">
                     <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
                     <div class="form-select" id="default-select" >
-                        <select name="pemateri" id="pemateri">
+                        <div clas="gender_alert"></div>
+                        <select name="gender" id="gender">
                             <?php 
 
-                                if($this->session->userdata('gender') == 0){
+                                if($this->session->userdata('gender') == 1){
                                     echo ' 
-                                    <option value="0" selected > Perempuan </option> 
-                                    <option value="1" > Laki - laki </option>';
+                                    <option value="1" selected> Laki - laki </option>
+                                    <option value="2"  > Perempuan </option>    ';
+                                } else if ($this->session->userdata('gender') == 2){ 
+                                    echo ' 
+                                    <option value="1" > Laki - laki </option>
+                                    <option value="2"  selected > Perempuan </option> ';
+
                                 } else {
                                     echo ' 
-                                    <option value="0"  > Perempuan </option> 
-                                    <option value="1" selected> Laki - laki </option>';
-
+                                    <option value="0" > - Pilih Gender - </option> 
+                                    <option value="1" > Laki - laki </option> 
+                                    <option value="2" > Perempuan </option>' ;
                                 }
                             ?>
                         </select>
@@ -138,10 +147,20 @@
                     <textarea class="form-control w-100" name="address"  id="address" cols="20" rows="4" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Alamat'" placeholder = 'Alamat'><?= $this->session->userdata('address') ?></textarea>
                 </div>
               </div>
+              <div class="col-sm-6">
+                <label for="" class="text-primary">Foto</label>
+                <div class="form-group">
+                    <input type="file" name="filefoto" class="info-border circle small" value="<?= $this->session->userdata('image') ?>" style="width: 250px;" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
+               </div>
+              </div>
+              <div class="col-sm-6">
+                  <img id="preview" src="<?= $this->session->userdata('image') ?>" class="rounded" alt="" width="200px"/>
+              </div>
 
             </div>
             <div class="form-group mt-3 pull-right">
-              <button type="submit" class="genric-btn info circle">Simpan Profile</button>
+              <button type="submit" class="genric-btn info circle" id="sv_profile">Simpan Profile</button>
+              <!-- <button type="button" class="genric-btn warning circle" id="load_profile"><i class="fa fa-spinner fa-spin"></i> Loading...</button> -->
             </div>
             <div class="form-group mt-3 pull-left">
                 <a href="#" class="genric-btn danger circle"> <i class="fa fa-lock"></i> Update Password</a>
@@ -152,3 +171,4 @@
     </div>
   </section>
   <!-- ================ contact section end ================= -->
+

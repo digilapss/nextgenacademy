@@ -1,6 +1,6 @@
 <?php if (!defined('BASEPATH')) exit('No direct script access allowed');
 
-class Login extends CI_Model {
+class AccountModel extends CI_Model {
 	
 	public function CekLogin($email, $pass){
 
@@ -9,13 +9,18 @@ class Login extends CI_Model {
         
         return $this->db->get('account');
     
-		
     }
 
     public function signup($data){
         
         return $this->db->insert('account', $data);
 
+    }
+
+    public function update_profile($account_id ,$data_profile){
+        $this->db->set($data_profile);
+        $this->db->where('account_id', $account_id);
+        $this->db->update('account');
     }
     
     // public function user_id($user) {

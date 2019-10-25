@@ -24,7 +24,7 @@ class Admin extends CI_Controller {
 
 		parent::__construct();
 		
-		$this->load->model('Login');
+		$this->load->model('AccountModel');
 		$this->load->library('session');
     
         ini_set('display_error','off');
@@ -40,7 +40,7 @@ class Admin extends CI_Controller {
 
     public function course(){
 
-        if($this->session->userdata('role') !== 'mentor'){
+        if($this->session->userdata('role') == 2){
             redirect(base_url());
         }
 
