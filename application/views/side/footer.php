@@ -47,7 +47,6 @@
 
         </div>
     </footer>
-
     
     <!-- footer part end-->
     
@@ -73,7 +72,8 @@
     <script src="<?php echo base_url() ?>asset/js/waypoints.min.js"></script>
     <!-- custom js -->
     <script src="<?php echo base_url() ?>asset/js/custom.js"></script>
-    <script src="<?php echo base_url() ?>asset/js/course.js"></script>  
+    <script src="<?php echo base_url() ?>asset/js/course.js"></script>
+    <script src="<?php echo base_url() ?>asset/js/member.js"></script>   
 
 
 

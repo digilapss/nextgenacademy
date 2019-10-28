@@ -68,7 +68,7 @@
 
         <?= $this->session->flashdata('signup_alert') ?>
 
-          <form class="form-contact"  action="<?= base_url().'user/profile_update' ?>" method="post"  enctype="multipart/form-data" onsubmit="return cek_form_profile(this)">
+          <form class="form-contact"  action="<?= base_url().'user/profile_update' ?>" method="post"  enctype="multipart/form-data" onsubmit="return cek_form_profile(this)" >
             <div class="row">
               <!-- <div class="col-12">
                 <div class="form-group">
@@ -99,7 +99,7 @@
               <div class="col-sm-6">
                 <label for="" class="text-primary">Tanggal Lahir</label>
                 <div class="form-group">
-                  <input class="form-control" name="birthday" id="birthday" type="date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tanggal Lahir'" placeholder = 'Tanggal Lahir' required>
+                  <input class="form-control" value="<?= $this->session->userdata('born_date'); ?>" name="birthday" id="birthday" type="date" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tanggal Lahir'" placeholder = 'Tanggal Lahir' required>
                 </div>
               </div>
 
@@ -150,7 +150,7 @@
               <div class="col-sm-6">
                 <label for="" class="text-primary">Foto</label>
                 <div class="form-group">
-                    <input type="file" name="filefoto" class="info-border circle small" value="<?= $this->session->userdata('image') ?>" style="width: 250px;" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
+                    <input type="file" name="filefoto" class="info-border circle small" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
                </div>
               </div>
               <div class="col-sm-6">
@@ -160,10 +160,11 @@
             </div>
             <div class="form-group mt-3 pull-right">
               <button type="submit" class="genric-btn info circle" id="sv_profile">Simpan Profile</button>
-              <!-- <button type="button" class="genric-btn warning circle" id="load_profile"><i class="fa fa-spinner fa-spin"></i> Loading...</button> -->
+              <button type="button" class="genric-btn warning circle" id="load_profile"><i class="fa fa-spinner fa-spin"></i> Loading...</button>
             </div>
             <div class="form-group mt-3 pull-left">
-                <a href="#" class="genric-btn danger circle"> <i class="fa fa-lock"></i> Update Password</a>
+            
+                <a href="#" class="genric-btn danger circle"  data-toggle="modal" data-target="#exampleModalCenter"> <i class="fa fa-lock"></i> Update Password</a>
             </div>
           </form>
         </div>
@@ -172,3 +173,39 @@
   </section>
   <!-- ================ contact section end ================= -->
 
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Reset Password</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form action="" class="form-contact" >
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="" class="text-primary">Password Baru</label>
+                <input class="form-control" name="new_password" id="password_confirm_member" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Konfirmasi Password'" placeholder = 'Konfirmasi Password' required>
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="" class="text-primary">Konfirmasi Password Baru</label>
+                <input class="form-control" name="new_password_confirm" id="password_confirm_member_baru" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Konfirmasi Password Baru'" placeholder = 'Konfirmasi Password Baru' required>
+                <small class='password_alert_new'></small>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+          <button type="submit" class="genric-btn info circle disable" id="sv_news_password">Simpan Password</button>
+      </div>
+    </div>
+  </div>
+</div>

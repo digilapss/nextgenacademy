@@ -27,6 +27,9 @@ class User extends CI_Controller {
 		
 		$this->load->model('AccountModel');
 		$this->load->library('session');
+		$this->load->helper('file');
+		$this->load->helper('url');
+		$this->load->library('upload');
     
         ini_set('display_error','off');
         error_reporting(0);
@@ -72,9 +75,11 @@ class User extends CI_Controller {
 										   'password' => $row->password,
 										   'status' => $row->status,
 										   'address' => $row->address,
+										   'born_date' => $row->born_date,
 										   'gender' => $row->gender,
 										   'role' => $row->role,
 										   'image' => $row->image,
+										   'instagram_id' => $row->instagram_id,
 										   'phone_number' => $row->phone_number,
 										   'ip_address' => $row->ip_address,
 										);
@@ -215,12 +220,7 @@ class User extends CI_Controller {
 	}
 
 	public function profile_update(){
-		
-		if(!$this->input->post()){
-
-			show_404();
-
-		} else {
+	
 
 			$data['name'] = $this->input->post('name');
 			$data['email'] = $this->input->post('email');
@@ -230,15 +230,66 @@ class User extends CI_Controller {
 			$data['gender'] = $this->input->post('gender');
 			$data['address'] = $this->input->post('address');
 			$account_id = $this->session->userdata('account_id');
+			 
 
-			if(!$this->input->post('filefoto')){
+			if($this->input->post('filefoto')){
+
+				echo $this->input->post('filefoto');
 				
+
+				// $nmfile = time().preg_replace("/[^A-Za-z0-9-]/", "-", $this->input->post('name'));
+				// $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/img_user/';
+				// $config['allowed_types'] = 'jpg|png|jpeg';
+				// $config['max_size'] = 10000000;
+				// $config['file_name'] = $nmfile;
+
+				// $this->upload->initialize($config);
+				
+				// if ($this->upload->do_upload('filefoto') ){
+
+				// 	$gbr = $this->upload->data();
+
+				// 	$data['image'] = base_url().'img_user/'.$gbr['file_name'] ;
+					
+				// 	$this->AccountModel->update_profile($account_id, $data);
+
+				// 	if ($this->db->affected_rows()) {
+
+
+				// 		$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+				// 			Update profile berhasil upload
+				// 			</div>') ;
+				// 		redirect(base_url().'user/profile');
+
+				// 	} else {
+
+
+				// 		$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+				// 				Update Profile Gagal upload save data
+				// 			</div>') ;
+				// 		redirect(base_url().'user/profile');
+
+				// 	}
+
+				// } else {
+
+				// 	$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+				// 			Update Profile Gagal Upload Foto
+				// 		</div>') ;
+				// 	redirect(base_url().'user/profile');
+
+
+				// }
+
+			} else {
+
+
 				$this->AccountModel->update_profile($account_id, $data);
 
 				if(!$this->db->affected_rows()){
 
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-							<i class="fa fa-check"></i> Update Profile Berhasil
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
+							<i class="fa fa-check"></i> Tidak ada upload profile
 						</div>  ') ;
 					redirect(base_url().'user/profile');
 
@@ -251,14 +302,12 @@ class User extends CI_Controller {
 
 				}
 
-			} else {
 
-				echo 'with foto upload ';
 
 			}
 
 
-		}
+		
 
 	}
 
