@@ -28,7 +28,6 @@ class User extends CI_Controller {
 		$this->load->model('AccountModel');
 		$this->load->library('session');
 		$this->load->helper('file');
-		$this->load->helper('url');
 		$this->load->library('upload');
     
         ini_set('display_error','off');
@@ -61,61 +60,9 @@ class User extends CI_Controller {
 
 	public function login($email, $pass, $index_course){
 
-			$cek_login = $this->AccountModel->CekLogin($email, $pass);
+			$login = $this->AccountModel->CekLogin($email, $pass);
 
-			if ($cek_login->num_rows()>0) {
-				# code...
-				
-
-				foreach ($cek_login->result() as $row) {
-					# code...
-					$data = array(         'account_id' => $row->account_id,
-										   'name' => $row->name,
-										   'email' => $row->email,
-										   'password' => $row->password,
-										   'status' => $row->status,
-										   'address' => $row->address,
-										   'born_date' => $row->born_date,
-										   'gender' => $row->gender,
-										   'role' => $row->role,
-										   'image' => $row->image,
-										   'instagram_id' => $row->instagram_id,
-										   'phone_number' => $row->phone_number,
-										   'ip_address' => $row->ip_address,
-										);
-					
-					$this->session->set_userdata($data);
-
-				}
-
-				if( $this->session->userdata('role') === '2' ){
-					
-					if(!$index_course){
-
-						redirect(base_url().'user/profile');
-						
-					} else {
-
-						redirect(base_url().'course/detail/'.$index_course);
-
-					}
-
-				} else {
-
-					redirect(base_url().'user/profile');
-
-				}
-   
-			} else {
-
-				$this->session->set_flashdata( 'login_error', '<div class="alert alert-danger" role="alert">
-					Email / Password salah
-				</div> <script>$( document ).ready(function() {$("#exampleModal").modal("show")});</script>');
-
-				
-				redirect(base_url().'user/signin');
-
-			}
+			$this->session_member_byId($login, $index_course);
 	}
 
 	public function signup()
@@ -220,7 +167,6 @@ class User extends CI_Controller {
 	}
 
 	public function profile_update(){
-	
 
 			$data['name'] = $this->input->post('name');
 			$data['email'] = $this->input->post('email');
@@ -283,7 +229,6 @@ class User extends CI_Controller {
 
 			} else {
 
-
 				$this->AccountModel->update_profile($account_id, $data);
 
 				if(!$this->db->affected_rows()){
@@ -295,21 +240,120 @@ class User extends CI_Controller {
 
 				} else {
 
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
-							Update Profile Berhasil
-						</div>') ;
-					redirect(base_url().'user/profile');
+					$index_course = MEMBER_UPDATE;
+
+					$login = $this->AccountModel->account_byId($account_id);
+					$this->session_member_byId($login, $index_course );
+
 
 				}
 
 
 
 			}
-
-
-		
-
 	}
+
+	public function session_member_byId($login, $index_course){
+
+		if ($login->num_rows()>0) {
+
+			foreach ($login->result() as $row) {
+				# code...
+				$data = array(         'account_id' => $row->account_id,
+									   'name' => $row->name,
+									   'email' => $row->email,
+									   'password' => $row->password,
+									   'status' => $row->status,
+									   'address' => $row->address,
+									   'born_date' => $row->born_date,
+									   'gender' => $row->gender,
+									   'role' => $row->role,
+									   'image' => $row->image,
+									   'instagram_id' => $row->instagram_id,
+									   'phone_number' => $row->phone_number,
+									   'ip_address' => $row->ip_address,
+				);
+				
+				$this->session->set_userdata($data);
+
+			}
+
+			if( $this->session->userdata('role') === '2' ){
+				
+				if(!$index_course){
+
+					redirect(base_url().'user/profile');
+					
+				} else if ($index_course === MEMBER_UPDATE){
+					
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+							Update Profile Berhasil
+						</div>') ;
+					redirect(base_url().'user/profile');
+				} else {
+
+					redirect(base_url().'course/detail/'.$index_course);
+
+				}
+
+			} else {
+
+				redirect(base_url().'user/profile');
+
+			}
+
+		} else {
+
+			$this->session->set_flashdata( 'login_error', '<div class="alert alert-danger" role="alert">
+				Email / Password salah
+			</div> <script>$( document ).ready(function() {$("#exampleModal").modal("show")});</script>');
+
+			
+			redirect(base_url().'user/signin');
+
+		}
+	}
+
+	public function update_password(){
+
+
+		$new_password = $this->input->post('new_password') ;
+		$new_password_confirm = $this->input->post('new_password_confirm');
+
+		if($new_password === $this->input->post('new_password_confirm')){
+			
+
+			$this->AccountModel->update_password($new_password_confirm);
+
+			if(!$this->db->affected_rows()){
+				
+				$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+						Update Password Berhasil
+					</div>') ;
+				redirect(base_url().'user/profile');
+				
+			} else {
+
+				$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+						Update Password Gagal
+					</div>') ;
+				redirect(base_url().'user/profile');
+
+			}
+
+
+		} else {	
+
+			$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
+					Konfirmasi Password Gagal
+				</div>') ;
+			redirect(base_url().'user/profile');
+
+
+
+		}
+	}
+	
 
 	public function logout(){
 

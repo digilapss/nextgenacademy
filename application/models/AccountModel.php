@@ -23,6 +23,20 @@ class AccountModel extends CI_Model {
         $this->db->update('account');
     }
     
+    public function account_byId($account_id){
+        return $this->db->get_where('account', array('account_id' => $account_id));
+    }
+
+    public function update_password($new_password){
+
+        $account_id = $this->session->userdata('account_id');
+        $pwd = md5($new_password) ;
+        $this->db->set('password', $pwd);
+        $this->db->where('account_id', $account_id);
+        return $this->db->update('account');
+
+    }
+
     // public function user_id($user) {
 
     //     return $this->db->get_where('user', array('id_user' => $user));

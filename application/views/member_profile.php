@@ -185,7 +185,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="" class="form-contact" >
+        <form action="<?= base_url().'user/update_password' ?>" method="post" class="form-contact" >
           <div class="row">
             <div class="col-sm-12">
               <div class="form-group">
@@ -201,11 +201,11 @@
               </div>
             </div>
           </div>
-        </form>
       </div>
       <div class="modal-footer">
           <button type="submit" class="genric-btn info circle disable" id="sv_news_password">Simpan Password</button>
       </div>
+        </form>
     </div>
   </div>
 </div>
