@@ -7,7 +7,7 @@
                     <div class="single-footer-widget footer_1">
                         <a href="index.html"> <img src="<?php echo base_url() ?>asset/img/nga_logo.png" width="200" alt=""> </a>
                         <p>Kami percaya setip usaha akan lebih berarti ketika membuat orang lain lebih berarti. </p>
-                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="<?php echo base_url() ?>" target="_blank" style="color: #0c2e60;">NextGen Academyt</a> </p>
+                        <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved by <a href="<?php echo base_url() ?>" target="_blank" style="color: #0c2e60;">NextGen Academy</a> </p>
                     </div>
                 </div>
                 <div class="col-sm-6 col-md-4 col-xl-4">
