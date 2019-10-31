@@ -20,7 +20,6 @@ class User extends CI_Controller {
 	 */
 
 
-
     public function __construct(){
 
 		parent::__construct();
@@ -38,6 +37,7 @@ class User extends CI_Controller {
 	public function signin(){
 
 
+
 		if($this->session->userdata('account_id')){
 			redirect(base_url());
 		}
@@ -51,8 +51,10 @@ class User extends CI_Controller {
 
 		} else {
 
+			$data['glogin'] = $this->googleplus->loginURL();
+
 			$this->load->view('side/header_signin');
-			$this->load->view('signin');
+			$this->load->view('signin', $data);
 			$this->load->view('side/footer');
 		}
 	}
@@ -168,8 +170,12 @@ class User extends CI_Controller {
 
 	public function profile_update(){
 
+		if(!$this->session->userdata('account_id')){
+			show_404();
+		}
+
 			$data['name'] = $this->input->post('name');
-			$data['email'] = $this->input->post('email');
+			$data['email'] = $this->session->userdata('email');
 			$data['instagram_id'] = $this->input->post('instagram_id');
 			$data['born_date'] = $this->input->post('birthday');
 			$data['phone_number'] = $this->input->post('phone_number');
@@ -177,55 +183,55 @@ class User extends CI_Controller {
 			$data['address'] = $this->input->post('address');
 			$account_id = $this->session->userdata('account_id');
 			 
+			if($_FILES["filefoto"]["name"]){
 
-			if($this->input->post('filefoto')){
-
-				echo $this->input->post('filefoto');
-				
-
-				// $nmfile = time().preg_replace("/[^A-Za-z0-9-]/", "-", $this->input->post('name'));
-				// $config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/img_user/';
-				// $config['allowed_types'] = 'jpg|png|jpeg';
-				// $config['max_size'] = 10000000;
-				// $config['file_name'] = $nmfile;
-
-				// $this->upload->initialize($config);
-				
-				// if ($this->upload->do_upload('filefoto') ){
-
-				// 	$gbr = $this->upload->data();
-
-				// 	$data['image'] = base_url().'img_user/'.$gbr['file_name'] ;
 					
-				// 	$this->AccountModel->update_profile($account_id, $data);
+				$nmfile = time().preg_replace("/[^A-Za-z0-9-]/", "-", $this->input->post('name'));
+				$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/img_user/';
+				$config['allowed_types'] = 'jpg|png|jpeg';
+				$config['max_size'] = 10000000;
+				$config['file_name'] = $nmfile;
 
-				// 	if ($this->db->affected_rows()) {
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('filefoto') ){
+
+					$gbr = $this->upload->data();
+
+					$data['image'] = base_url().'img_user/'.$gbr['file_name'] ;
+					
+					$this->AccountModel->update_profile($account_id, $data);
+
+					if ($this->db->affected_rows()) {
+
+						$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+							Update profile berhasil upload
+							</div>') ;
+
+						$index_course = MEMBER_UPDATE;
+
+						$login = $this->AccountModel->account_byId($account_id);
+						$this->session_member_byId($login, $index_course );
 
 
-				// 		$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
-				// 			Update profile berhasil upload
-				// 			</div>') ;
-				// 		redirect(base_url().'user/profile');
-
-				// 	} else {
+					} else {
 
 
-				// 		$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-				// 				Update Profile Gagal upload save data
-				// 			</div>') ;
-				// 		redirect(base_url().'user/profile');
+						$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+								Update Profile Gagal upload save data
+							</div>') ;
+						redirect(base_url().'user/profile');
 
-				// 	}
+					}
 
-				// } else {
+				} else {
 
-				// 	$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-				// 			Update Profile Gagal Upload Foto
-				// 		</div>') ;
-				// 	redirect(base_url().'user/profile');
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+							Update Profile Gagal Upload Foto
+						</div>') ;
+					redirect(base_url().'user/profile');
 
 
-				// }
+				}
 
 			} else {
 
@@ -351,6 +357,18 @@ class User extends CI_Controller {
 
 
 
+		}
+	}
+
+	public function google_oauth(){
+		if (isset($_GET['code'])) {
+            
+			$this->googleplus->getAuthenticate();
+			$this->session->set_userdata('login_google',true);
+			$this->session->set_userdata('user_google',$this->googleplus->getUserInfo());
+
+			redirect('/login_google');
+			
 		}
 	}
 	

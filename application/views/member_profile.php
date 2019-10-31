@@ -77,21 +77,25 @@
                 </div>
               </div> -->
               <div class="col-sm-6">
+                <label for="" class="text-primary">Nama Lengkap</label>
                 <div class="form-group">
                   <input class="form-control" name="name" value="<?= $this->session->userdata('name') ?>" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nama Lengkap'" placeholder = 'Masukkan Nama Lengkap' required>
                 </div>
               </div>
               <div class="col-sm-6">
+                <label for="" class="text-primary">Email</label>
                 <div class="form-group">
-                  <input class="form-control" name="email" value="<?= $this->session->userdata('email') ?>" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Alamat Email'" placeholder = 'Masukkan Alamat Email' required>
+                  <input class="form-control" disabled name="email" value="<?= $this->session->userdata('email') ?>" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Alamat Email'" placeholder = 'Masukkan Alamat Email' required>
                 </div>
               </div>
               <div class="col-sm-6">
+                <label for="" class="text-primary">Instagram ID</label>
                 <div class="form-group">
                   <input class="form-control" name="instagram_id" value="<?= $this->session->userdata('instagram_id') ?>" id="email" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'ID Instagram'" placeholder = 'ID Instagram' required>
                 </div>
               </div>
               <div class="col-sm-6">
+                <label for="" class="text-primary">Telephone</label>
                 <div class="form-group">
                   <input class="form-control" name="phone_number" value="<?= $this->session->userdata('phone_number') ?>" id="subject" type="number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nomor Telephone'" placeholder = 'Masukkan Nomor Telephone' required>
                 </div>
