@@ -53,7 +53,7 @@
               <hr>
               <div class="col-12">
                 <div class="form-group text-center">
-                  <a href="#" class="genric-btn info-border circle col-12">
+                  <a href="<?= $glogin ?>" class="genric-btn info-border circle col-12">
                     <i class="fa fa-google"></i>
                     Sign Up with Google 
                   </a>
