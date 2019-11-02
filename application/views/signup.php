@@ -1,5 +1,16 @@
-
-
+<body>
+  <!-- ================ contact section start ================= -->
+  <section class="contact-section section_padding_sign">
+    <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-6 sign_in">
+            <div class="section_tittle text-center">
+                <p></p>
+                <a href="<?php echo base_url() ?>">
+                  <img src="<?php echo base_url() ?>asset/img/nga_logo.png" alt="Madiun NextGen" style="margin-left: auto; margin-right: auto;" width="240">
+                </a>
+                <h2></h2>
+            </div>
             <form class="form-contact" action="<?php echo base_url() ?>user/signup" method="post"  novalidate="novalidate">
               <div class="row">
               
@@ -59,8 +70,8 @@
                   </a>
                 </div>
               </div>
-              <div style="padding-top: 5%; margin-bottom: 10px; float: right; position: relative; color: #b30ec2">
-                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #860791"> Login Sekarang! </a>
+              <div style="padding-top: 15px; margin-bottom: 10px; float: right; position: relative; color: black">
+                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #FF8100"> Masuk Sekarang! </a>
               </div>
             </form>
           </div>
@@ -68,3 +79,12 @@
     </div>
   </section>
   <!-- ================ contact section end ================= -->
+
+  <!-- footer part end-->
+    
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="<?php echo base_url() ?>asset/js/jquery-1.12.1.min.js"></script>
+</body>
+
+</html>

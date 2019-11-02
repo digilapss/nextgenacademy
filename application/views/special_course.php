@@ -5,8 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-xl-5">
             <div class="section_tittle text-center">
-                <p>popular courses</p>
-                <h2>Special Courses</h2>
+                <p>Pelatihan Populer</p>
+                <h2>Spesial Buat Kamu</h2>
             </div>
         </div>
     </div>
@@ -30,8 +30,8 @@
                                 <div class="author_img">
                                     <img src="<?= base_url() ?>asset/img/author/author_1.png" alt="">
                                     <div class="author_info_text">
-                                        <p>Conduct by:</p>
-                                        <h5><a href="#"><?= $row_list_course->name?></a></h5>
+                                        <p>Pemateri oleh :</p>
+                                        <h5><?= $row_list_course->name?></h5>
                                     </div>
                                 </div>
                                 <!-- <div class="author_rating">

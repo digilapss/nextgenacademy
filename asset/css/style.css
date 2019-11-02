@@ -1,9 +1,13 @@
 /**************** extend css start ****************/
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:800|Poppins:300,400,500,600,700,800|Roboto:300,400,500");
 /* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
-.btn_1, .btn_2:hover, .main_menu .navbar-toggler:after, .banner_part .banner_text .btn_1, .feature_part .single_feature:hover span {
+.main_menu .navbar-toggler:after, .banner_part .banner_text .btn_1, .feature_part .single_feature:hover span {
   background-image: linear-gradient(to left, #FF8100 0%, #FF8100 100%, #FF8100 0%);
 }
+
+.btn_1:hover, .btn_2:hover {
+  background-image: linear-gradient(to left, #FFC000 0%, #FF8100 51%, #FFC000 100%);
+ }
 
 /* line 6, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
 .member_counter {
@@ -30,7 +34,7 @@ body {
 .sign_in {
   border-style: solid;
   border-width: thin;
-  border-color: #FFC000;
+  border-color: #FF8100;
 }
 
 .input-group-addon {
@@ -612,7 +616,7 @@ ul {
   padding: 13px 39px;
   border-radius: 50px;
   background-color: transparent;
-  border: 1px solid #0c2e60;
+  border: 1px solid #FF8100;
   color: #0c2e60;
   font-size: 14px;
   -o-transition: all .4s ease-in-out;
@@ -670,7 +674,7 @@ ul {
 
 /* line 106, E:/172 Etrain Education/172_Etrain_Education_html/sass/_button.scss */
 .btn_4:hover {
-  background: #ce26de;
+  /*background: #ce26de;*/
   color: #fff;
 }
 
@@ -682,11 +686,8 @@ ul {
   font-size: 15px;
   font-weight: 500;
   padding: 12px 54px;
-  border-radius: 4px;
   color: #fff;
-  border: 1px solid #d7a9db;
   text-transform: uppercase;
-  background-color: #FFC000;
   cursor: pointer;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -2185,6 +2186,11 @@ ul {
   top: 0;
   width: 100%;
   z-index: 999;
+  background-color: white;
+}
+
+.transparent_background {
+  background-color: transparent;
 }
 
 /* line 8, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
@@ -2230,7 +2236,7 @@ ul {
 
 /* line 38, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .main_menu .main-menu-item ul li .nav-link {
-  color: #0c2e60;
+  color: #000;
   font-size: 15px;
   padding: 0px 24px;
   font-family: "Roboto", sans-serif;
@@ -2245,7 +2251,7 @@ ul {
 
 /* line 46, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .main_menu .main-menu-item ul li .nav-link:hover {
-  color: #FFC000;
+  color: #FF8100;
 }
 
 /* line 51, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
@@ -6814,7 +6820,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 51, E:/172 Etrain Education/172_Etrain_Education_html/sass/_contact.scss */
 .form-contact .form-group {
-  margin-bottom: 30px;
+  margin-bottom: 40px;
 }
 
 /* line 53, E:/172 Etrain Education/172_Etrain_Education_html/sass/_contact.scss */
@@ -6930,17 +6936,19 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 1, E:/172 Etrain Education/172_Etrain_Education_html/sass/_breadcrumb.scss */
 .breadcrumb_bg {
-  background-image: url("../img/breadcrumb.png");
+  background-image: url("../img/19462.png");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  background-position-y: -210px;
 }
 
 /* line 5, E:/172 Etrain Education/172_Etrain_Education_html/sass/_breadcrumb.scss */
 .breadcrumb {
   position: relative;
-  z-index: 1;
+  /*z-index: 1;*/
   text-align: center;
+  opacity: 0.8;
 }
 
 /* line 10, E:/172 Etrain Education/172_Etrain_Education_html/sass/_breadcrumb.scss */
