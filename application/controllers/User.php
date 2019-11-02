@@ -55,7 +55,6 @@ class User extends CI_Controller {
 
 			$this->load->view('side/header_signin');
 			$this->load->view('signin', $data);
-			$this->load->view('side/footer');
 		}
 	}
 
@@ -155,7 +154,6 @@ class User extends CI_Controller {
 
 			$this->load->view('side/header_signin');
 			$this->load->view('signup');
-			$this->load->view('side/footer');
 		}
 	}
 

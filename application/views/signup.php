@@ -1,5 +1,5 @@
 <body>
-  <!-- ================ contact section start ================= -->
+  <!-- ================ signup section start ================= -->
   <section class="contact-section section_padding_sign">
     <div class="container">
       <div class="row justify-content-center">
@@ -55,30 +55,30 @@
               </div>
               <div class="col-12">
                 <div class="form-group text-center">
-                  <button type="submit" class="genric-btn primary circle col-12">
+                  <button type="submit" class="button-contactForm btn_1 primary circle col-12">
                     <i class="fa fa-lock"></i>
                     Daftar Sekarang
                   </button>
                 </div>
               </div>
               <hr>
+              <div style="padding-top: 5px; margin-bottom: 10px; text-align: center; position: relative; color: black">
+                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #FF8100"> Login Sekarang! </a>
+              </div>
               <div class="col-12">
                 <div class="form-group text-center">
                   <a href="<?= $glogin ?>" class="genric-btn info-border circle col-12">
                     <i class="fa fa-google"></i>
-                    Sign Up with Google 
+                    Login dengan Google 
                   </a>
                 </div>
-              </div>
-              <div style="padding-top: 15px; margin-bottom: 10px; float: right; position: relative; color: black">
-                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #FF8100"> Masuk Sekarang! </a>
               </div>
             </form>
           </div>
       </div>
     </div>
   </section>
-  <!-- ================ contact section end ================= -->
+  <!-- ================ signup section end ================= -->
 
   <!-- footer part end-->
     

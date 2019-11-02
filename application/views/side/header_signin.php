@@ -48,17 +48,3 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 </head>
-
-<body>
-  <!-- ================ contact section start ================= -->
-  <section class="contact-section section_padding_sign">
-    <div class="container">
-      <div class="row justify-content-center">
-          <div class="col-lg-6 sign_in">
-            <div class="section_tittle text-center">
-                <p></p>
-                <a href="<?php echo base_url() ?>">
-                  <img src="<?php echo base_url() ?>asset/img/nga_logo.png" alt="Madiun NextGen" style="margin-left: auto; margin-right: auto;" width="240">
-                </a>
-                <h2></h2>
-            </div>
