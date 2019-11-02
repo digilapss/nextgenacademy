@@ -46,8 +46,8 @@
     <!-- style CSS -->
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/style.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-    
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150069179-1"></script>
+
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-150069179-1"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){ 
@@ -56,7 +56,7 @@
         gtag('js', new Date());
 
         gtag('config', 'UA-150069179-1');
-    </script>
+    </script> -->
 
 </head>
 

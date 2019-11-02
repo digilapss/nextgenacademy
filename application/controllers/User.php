@@ -20,13 +20,14 @@ class User extends CI_Controller {
 	 */
 
 
-
     public function __construct(){
 
 		parent::__construct();
 		
 		$this->load->model('AccountModel');
 		$this->load->library('session');
+		$this->load->helper('file');
+		$this->load->library('upload');
     
         ini_set('display_error','off');
         error_reporting(0);
@@ -34,6 +35,7 @@ class User extends CI_Controller {
 	}
 	
 	public function signin(){
+
 
 
 		if($this->session->userdata('account_id')){
@@ -49,8 +51,10 @@ class User extends CI_Controller {
 
 		} else {
 
+			$data['glogin'] = $this->googleplus->loginURL();
+
 			$this->load->view('side/header_signin');
-			$this->load->view('signin');
+			$this->load->view('signin', $data);
 			$this->load->view('side/footer');
 		}
 	}
@@ -58,59 +62,9 @@ class User extends CI_Controller {
 
 	public function login($email, $pass, $index_course){
 
-			$cek_login = $this->AccountModel->CekLogin($email, $pass);
+			$login = $this->AccountModel->CekLogin($email, $pass);
 
-			if ($cek_login->num_rows()>0) {
-				# code...
-				
-
-				foreach ($cek_login->result() as $row) {
-					# code...
-					$data = array(         'account_id' => $row->account_id,
-										   'name' => $row->name,
-										   'email' => $row->email,
-										   'password' => $row->password,
-										   'status' => $row->status,
-										   'address' => $row->address,
-										   'gender' => $row->gender,
-										   'role' => $row->role,
-										   'image' => $row->image,
-										   'phone_number' => $row->phone_number,
-										   'ip_address' => $row->ip_address,
-										);
-					
-					$this->session->set_userdata($data);
-
-				}
-
-				if( $this->session->userdata('role') === '2' ){
-					
-					if(!$index_course){
-
-						redirect(base_url().'user/profile');
-						
-					} else {
-
-						redirect(base_url().'course/detail/'.$index_course);
-
-					}
-
-				} else {
-
-					redirect(base_url().'user/profile');
-
-				}
-   
-			} else {
-
-				$this->session->set_flashdata( 'login_error', '<div class="alert alert-danger" role="alert">
-					Email / Password salah
-				</div> <script>$( document ).ready(function() {$("#exampleModal").modal("show")});</script>');
-
-				
-				redirect(base_url().'user/signin');
-
-			}
+			$this->session_member_byId($login, $index_course);
 	}
 
 	public function signup()
@@ -215,52 +169,209 @@ class User extends CI_Controller {
 	}
 
 	public function profile_update(){
-		
-		if(!$this->input->post()){
 
+		if(!$this->session->userdata('account_id')){
 			show_404();
-
-		} else {
+		}
 
 			$data['name'] = $this->input->post('name');
-			$data['email'] = $this->input->post('email');
+			$data['email'] = $this->session->userdata('email');
 			$data['instagram_id'] = $this->input->post('instagram_id');
 			$data['born_date'] = $this->input->post('birthday');
 			$data['phone_number'] = $this->input->post('phone_number');
 			$data['gender'] = $this->input->post('gender');
 			$data['address'] = $this->input->post('address');
 			$account_id = $this->session->userdata('account_id');
+			 
+			if($_FILES["filefoto"]["name"]){
 
-			if(!$this->input->post('filefoto')){
-				
-				$this->AccountModel->update_profile($account_id, $data);
+					
+				$nmfile = time().preg_replace("/[^A-Za-z0-9-]/", "-", $this->input->post('name'));
+				$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/img_user/';
+				$config['allowed_types'] = 'jpg|png|jpeg';
+				$config['max_size'] = 10000000;
+				$config['file_name'] = $nmfile;
 
-				if(!$this->db->affected_rows()){
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('filefoto') ){
 
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-							<i class="fa fa-check"></i> Update Profile Berhasil
-						</div>  ') ;
-					redirect(base_url().'user/profile');
+					$gbr = $this->upload->data();
+
+					$data['image'] = base_url().'img_user/'.$gbr['file_name'] ;
+					
+					$this->AccountModel->update_profile($account_id, $data);
+
+					if ($this->db->affected_rows()) {
+
+						$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+							Update profile berhasil upload
+							</div>') ;
+
+						$index_course = MEMBER_UPDATE;
+
+						$login = $this->AccountModel->account_byId($account_id);
+						$this->session_member_byId($login, $index_course );
+
+
+					} else {
+
+
+						$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+								Update Profile Gagal upload save data
+							</div>') ;
+						redirect(base_url().'user/profile');
+
+					}
 
 				} else {
 
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
-							Update Profile Berhasil
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+							Update Profile Gagal Upload Foto
 						</div>') ;
 					redirect(base_url().'user/profile');
+
 
 				}
 
 			} else {
 
-				echo 'with foto upload ';
+				$this->AccountModel->update_profile($account_id, $data);
+
+				if(!$this->db->affected_rows()){
+
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
+							<i class="fa fa-check"></i> Tidak ada upload profile
+						</div>  ') ;
+					redirect(base_url().'user/profile');
+
+				} else {
+
+					$index_course = MEMBER_UPDATE;
+
+					$login = $this->AccountModel->account_byId($account_id);
+					$this->session_member_byId($login, $index_course );
+
+
+				}
+
+
+
+			}
+	}
+
+	public function session_member_byId($login, $index_course){
+
+		if ($login->num_rows()>0) {
+
+			foreach ($login->result() as $row) {
+				# code...
+				$data = array(         'account_id' => $row->account_id,
+									   'name' => $row->name,
+									   'email' => $row->email,
+									   'password' => $row->password,
+									   'status' => $row->status,
+									   'address' => $row->address,
+									   'born_date' => $row->born_date,
+									   'gender' => $row->gender,
+									   'role' => $row->role,
+									   'image' => $row->image,
+									   'instagram_id' => $row->instagram_id,
+									   'phone_number' => $row->phone_number,
+									   'ip_address' => $row->ip_address,
+				);
+				
+				$this->session->set_userdata($data);
+
+			}
+
+			if( $this->session->userdata('role') === '2' ){
+				
+				if(!$index_course){
+
+					redirect(base_url().'user/profile');
+					
+				} else if ($index_course === MEMBER_UPDATE){
+					
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+							Update Profile Berhasil
+						</div>') ;
+					redirect(base_url().'user/profile');
+				} else {
+
+					redirect(base_url().'course/detail/'.$index_course);
+
+				}
+
+			} else {
+
+				redirect(base_url().'user/profile');
+
+			}
+
+		} else {
+
+			$this->session->set_flashdata( 'login_error', '<div class="alert alert-danger" role="alert">
+				Email / Password salah
+			</div> <script>$( document ).ready(function() {$("#exampleModal").modal("show")});</script>');
+
+			
+			redirect(base_url().'user/signin');
+
+		}
+	}
+
+	public function update_password(){
+
+
+		$new_password = $this->input->post('new_password') ;
+		$new_password_confirm = $this->input->post('new_password_confirm');
+
+		if($new_password === $this->input->post('new_password_confirm')){
+			
+
+			$this->AccountModel->update_password($new_password_confirm);
+
+			if(!$this->db->affected_rows()){
+				
+				$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+						Update Password Berhasil
+					</div>') ;
+				redirect(base_url().'user/profile');
+				
+			} else {
+
+				$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+						Update Password Gagal
+					</div>') ;
+				redirect(base_url().'user/profile');
 
 			}
 
 
-		}
+		} else {	
 
+			$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
+					Konfirmasi Password Gagal
+				</div>') ;
+			redirect(base_url().'user/profile');
+
+
+
+		}
 	}
+
+	public function google_oauth(){
+		if (isset($_GET['code'])) {
+            
+			$this->googleplus->getAuthenticate();
+			$this->session->set_userdata('login_google',true);
+			$this->session->set_userdata('user_google',$this->googleplus->getUserInfo());
+
+			redirect('/login_google');
+			
+		}
+	}
+	
 
 	public function logout(){
 

@@ -42,8 +42,22 @@
                   </div>
                 </div>
               </div>
-              <div class="form-group">
-                <button type="submit" class="button btn_1" style="float: right;">Register</button>
+              <div class="col-12">
+                <div class="form-group text-center">
+                  <button type="submit" class="genric-btn primary circle col-12">
+                    <i class="fa fa-lock"></i>
+                    Daftar Sekarang
+                  </button>
+                </div>
+              </div>
+              <hr>
+              <div class="col-12">
+                <div class="form-group text-center">
+                  <a href="<?= $glogin ?>" class="genric-btn info-border circle col-12">
+                    <i class="fa fa-google"></i>
+                    Sign Up with Google 
+                  </a>
+                </div>
               </div>
               <div style="padding-top: 5%; margin-bottom: 10px; float: right; position: relative; color: #b30ec2">
                 Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #860791"> Login Sekarang! </a>

@@ -16,7 +16,8 @@ $(document).ready(function(){
         		$(course_id).attr('src','img/icon/star.svg');
         	}
         }
-	});
+    });
+    
 
 })
 
@@ -47,34 +48,10 @@ function cek_form(form){
 		return (true);
 	} 
 
-}	
+}
 
 
 
-$("#load_profile").hide();
-function cek_form_profile(form){
-    
-    if (form.gender.value == "0"){
-
-		$(".gender_text").remove();
-		$(".gender_alert").append("<p class='gender_text text-danger' >Pilih Gender</p>");
-		form.gender.focus();
-	
-		return (false);
-		
-    } else {
-
-		$("#sv_course").hide();
-		$("#load_course").show()
-		return (true);
-	} 
-
-}	
-
-$('#gender').on('change', function() {
-	$(".gender_text").remove();
-	
-});
 
 
 
