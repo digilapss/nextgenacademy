@@ -35,6 +35,7 @@ class Home extends CI_Controller {
     public function index() {
 			$data['list_course'] = $this->CourseModel->list_course(3) ;
 			$data['is_homepage'] = true;
+			$data['header_class'] = 'transparent_background';
 
 			$this->load->view('side/header', $data);
 			$this->load->view('home');

@@ -62,7 +62,7 @@
 
 <body>
     <!--::header part start::-->
-    <header class="main_menu home_menu">
+    <header class="main_menu home_menu <?= $header_class ?>">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">

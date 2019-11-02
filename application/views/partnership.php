@@ -9,7 +9,7 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <a href="#" class="btn_1">Ajukan Penawaran Sekarang</a>
+        <a href="contact" class="btn_1">Ajukan Penawaran Sekarang</a>
     </div>
     <div class="row" style="margin-bottom: 100px"></div>
 </div>

@@ -1,5 +1,16 @@
-
-
+<body>
+  <!-- ================ signup section start ================= -->
+  <section class="contact-section section_padding_sign">
+    <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-lg-6 sign_in">
+            <div class="section_tittle text-center">
+                <p></p>
+                <a href="<?php echo base_url() ?>">
+                  <img src="<?php echo base_url() ?>asset/img/nga_logo.png" alt="Madiun NextGen" style="margin-left: auto; margin-right: auto;" width="240">
+                </a>
+                <h2></h2>
+            </div>
             <form class="form-contact" action="<?php echo base_url() ?>user/signup" method="post"  novalidate="novalidate">
               <div class="row">
               
@@ -44,27 +55,36 @@
               </div>
               <div class="col-12">
                 <div class="form-group text-center">
-                  <button type="submit" class="genric-btn primary circle col-12">
+                  <button type="submit" class="button-contactForm btn_1 primary circle col-12">
                     <i class="fa fa-lock"></i>
                     Daftar Sekarang
                   </button>
                 </div>
               </div>
               <hr>
+              <div style="padding-top: 5px; margin-bottom: 10px; text-align: center; position: relative; color: black">
+                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #FF8100"> Login Sekarang! </a>
+              </div>
               <div class="col-12">
                 <div class="form-group text-center">
                   <a href="<?= $glogin ?>" class="genric-btn info-border circle col-12">
                     <i class="fa fa-google"></i>
-                    Sign Up with Google 
+                    Login dengan Google 
                   </a>
                 </div>
-              </div>
-              <div style="padding-top: 5%; margin-bottom: 10px; float: right; position: relative; color: #b30ec2">
-                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #860791"> Login Sekarang! </a>
               </div>
             </form>
           </div>
       </div>
     </div>
   </section>
-  <!-- ================ contact section end ================= -->
+  <!-- ================ signup section end ================= -->
+
+  <!-- footer part end-->
+    
+    <!-- jquery plugins here-->
+    <!-- jquery -->
+    <script src="<?php echo base_url() ?>asset/js/jquery-1.12.1.min.js"></script>
+</body>
+
+</html>
