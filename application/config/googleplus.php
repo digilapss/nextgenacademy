@@ -2,10 +2,10 @@
 
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-$config['googleplus']['application_name'] = '';
-$config['googleplus']['client_id']        = '';
-$config['googleplus']['client_secret']    = '';
-$config['googleplus']['redirect_uri']     = '';
+$config['googleplus']['application_name'] = 'NextGenAcademy';
+$config['googleplus']['client_id']        = '155152934881-q0c8vs44j0etefqbtu2c5577bo3r1r5u.apps.googleusercontent.com';
+$config['googleplus']['client_secret']    = 'N04F77MhhMSRs0WrpAQbXai3';
+$config['googleplus']['redirect_uri']     = 'http://localhost/nextgenacademy/user/google_oauth';
 $config['googleplus']['api_key']          = '';
 $config['googleplus']['scopes']           = array();
 
