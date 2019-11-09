@@ -11,6 +11,14 @@ class AccountModel extends CI_Model {
     
     }
 
+    public function cekLoginGoogle($email){
+
+        $this->db->where('email', $email);
+        
+        return $this->db->get('account');
+
+    }
+
     public function signup($data){
         
         return $this->db->insert('account', $data);
@@ -36,6 +44,7 @@ class AccountModel extends CI_Model {
         return $this->db->update('account');
 
     }
+
 
     // public function user_id($user) {
 

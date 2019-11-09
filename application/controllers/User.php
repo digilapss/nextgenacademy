@@ -37,7 +37,6 @@ class User extends CI_Controller {
 	public function signin(){
 
 
-
 		if($this->session->userdata('account_id')){
 			redirect(base_url());
 		}
@@ -64,6 +63,7 @@ class User extends CI_Controller {
 			$login = $this->AccountModel->CekLogin($email, $pass);
 
 			$this->session_member_byId($login, $index_course);
+
 	}
 
 	public function signup()
@@ -88,7 +88,7 @@ class User extends CI_Controller {
 
 			if ($pass === $this->input->post('repeat_password') ){
 				
-				$cek_login = $this->Login->CekLogin($email, $pass, 1);
+				$cek_login = $this->AccountModel->CekLogin($email, $pass, 1);
 
 				if ($cek_login->num_rows()>0) {
 
@@ -109,7 +109,7 @@ class User extends CI_Controller {
 						'role' => 2,
 					);
 
-					$this->Login->signup($useraccount);
+					$this->AccountModel->signup($useraccount);
 					if(!$this->db->affected_rows()){
 					
 						$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
@@ -353,8 +353,6 @@ class User extends CI_Controller {
 				</div>') ;
 			redirect(base_url().'user/profile');
 
-
-
 		}
 	}
 
@@ -362,13 +360,76 @@ class User extends CI_Controller {
 		if (isset($_GET['code'])) {
             
 			$this->googleplus->getAuthenticate();
-			$this->session->set_userdata('login_google',true);
-			$this->session->set_userdata('user_google',$this->googleplus->getUserInfo());
 
-			redirect('/login_google');
+			// $this->session->set_userdata('login_google',true);
+			// $this->session->set_userdata('user_google', $this->googleplus->getUserInfo());
+
+			$google_account = $this->googleplus->getUserInfo();
+			$index_course = $this->session->userdata('index_course');
+
+			$this->login_google($google_account, $index_course);
 			
+		} else {
+
+			show_404();
 		}
 	}
+
+	public function login_google($google_account, $index_course){
+
+		$login = $this->AccountModel->cekLoginGoogle($google_account['email']);
+
+		if($login->num_rows() > 0){
+
+			$this->session_member_byId($login, $index_course);
+
+		} else {
+			
+			$this->create_member_google($google_account);
+
+		}
+	
+	}
+
+	public function create_member_google($google_account){
+
+		$data_member_google = array(
+
+			'account_id' => $google_account['id'],
+			'name' => $google_account['name'],
+			'email' => $google_account['email'],
+			'gender' => $google_account['gender'],
+			'image' => $google_account['picture'],
+			'password' => md5($google_account['id']),
+			'status' => 1,
+			'role' => 2,
+			'create_time' =>  date('Y-m-d H:i:s'),
+			'update_time' =>  date('Y-m-d H:i:s'),
+			'ip_address' => $_SERVER["REMOTE_ADDR"]
+			
+		);
+
+		$this->AccountModel->signup($data_member_google);
+		
+		if(!$this->db->affected_rows()){ 
+
+			$this->session->set_flashdata( 'login_error', '<div class="alert alert-warning" role="alert">
+				Gagal Connect Server 
+			</div> <script>$( document ).ready(function() {$("#exampleModal").modal("show")});</script>');
+
+			
+			redirect(base_url().'user/signin');
+
+		} else {
+			
+			$login = $this->AccountModel->account_byId($google_account['id']);
+			$this->session_member_byId($login, $index_course);
+
+
+
+		}
+	}
+
 	
 
 	public function logout(){
