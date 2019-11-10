@@ -1,5 +1,5 @@
 /**************** extend css start ****************/
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:800|Poppins:300,400,500,600,700,800|Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:800|Roboto:300,400,500");
 /* line 2, E:/172 Etrain Education/172_Etrain_Education_html/sass/_extends.scss */
 .main_menu .navbar-toggler:after, .banner_part .banner_text .btn_1, .feature_part .single_feature:hover span {
   background-image: linear-gradient(to left, #FF8100 0%, #FF8100 100%, #FF8100 0%);
@@ -199,7 +199,7 @@ a:hover {
 /* line 72, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 h1, h2, h3, h4, h5, h6 {
   color: #0c2e60;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* line 76, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
@@ -687,7 +687,6 @@ ul {
   font-weight: 500;
   padding: 12px 54px;
   color: #fff;
-  text-transform: uppercase;
   cursor: pointer;
   -webkit-transition: 0.5s;
   transition: 0.5s;
@@ -2933,7 +2932,7 @@ ul {
   color: #ce26de;
   font-size: 22px;
   font-style: italic;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 300;
 }
 
@@ -3898,7 +3897,7 @@ ul {
   font-size: 60px;
   font-weight: 700;
   color: #fff;
-  font-style: "Poppins", sans-serif;
+  font-style: "Roboto", sans-serif;
 }
 
 @media (max-width: 576px) {
@@ -6815,7 +6814,7 @@ h1, h2, h3, h4, h5, h6 {
 .form-contact label {
   font-size: 12px;
   color: #cf1325;
-  font-family: "Poppins", sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 
 /* line 51, E:/172 Etrain Education/172_Etrain_Education_html/sass/_contact.scss */
@@ -7366,4 +7365,4 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 0px;
 }
 
-/*# sourceMappingURL=style.css.map */
+sourceMappingURL=style.css.map 
