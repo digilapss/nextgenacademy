@@ -53,7 +53,12 @@
  *
  * NOTE: If you change these, also change the error_reporting() code below
  */
-	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
+	if ($_SERVER['SERVER_NAME']=='nextgenacademy.id')
+	   define('ENVIRONMENT', 'production');
+	else if ($_SERVER['SERVER_NAME']=='staging.nextgenacademy.id')
+	   define('ENVIRONMENT', 'testing');
+	else
+	   define('ENVIRONMENT', 'development');
 
 /*
  *---------------------------------------------------------------
@@ -304,6 +309,19 @@ switch (ENVIRONMENT)
 	}
 
 	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+
+	/*
+	 * --------------------------------------------------------------------
+	 * LOAD PHP DOT ENV FILE
+	 * --------------------------------------------------------------------
+	 *
+	 * And away we go...
+	 *
+	 */
+	require_once BASEPATH . 'dotenv/autoloader.php';
+	
+	$dotenv = new Dotenv\Dotenv(__DIR__);
+	$dotenv->load();
 
 /*
  * --------------------------------------------------------------------
