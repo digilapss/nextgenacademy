@@ -11,45 +11,44 @@
                 </a>
                 <h2></h2>
             </div>
-            <form class="form-contact" action="<?php echo base_url() ?>user/signup" method="post"  novalidate="novalidate">
-              <div class="row">
+
+            <p class="text-danger">
+              <?php echo $this->session->flashdata('signup_alert') ?>
+            </p>
               
-                <div class="col-sm-12">
-                  <p><?php echo $this->session->flashdata('signup_alert') ?></p>
-                </div>
-                <div class="col-sm-12">
-                  <div class="form-group">
-                    <h6>Full Name</h6>
-                    <input class="form-control" value="<?php echo $this->session->flashdata('full_name') ?>" name="full_name" id="full_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your full name'" placeholder = 'Enter your full name' required="true">
-                  </div>
-                </div>
+            <form class="form-contact" action="<?php echo base_url() ?>user/signup" method="post">
+              <div class="row">
                 <div class="col-sm-12">
                   <div class="form-group">
-                    <h6>Phone Number</h6>
-                    <input class="form-control" value="<?php echo $this->session->flashdata('phone_number') ?>" name="phone_number" id="phone_number" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your mobile phone number'" placeholder = 'Enter your mobile phone number' required="true">
+                    <h6>Nama Lengkap</h6>
+                    <input class="form-control" value="<?php echo $this->session->flashdata('full_name') ?>" name="full_name" id="full_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan nama lengkap kamu'" placeholder = 'Masukkan nama lengkap kamu' required="true">
                   </div>
                 </div>
+                <!-- <div class="col-sm-12">
+                  <div class="form-group">
+                    <h6>Posisi</h6>
+                    <select class="input-group-icon mt-10">
+                      <option>Siswa</option>
+                      <option>Mahasiswa</option>
+                    </select>
+                  </div>
+                </div> -->
                 <div class="col-sm-12">
                   <div class="form-group">
                     <h6>Email</h6>
-                    <input class="form-control" value="<?php echo $this->session->flashdata('email') ?>" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your email'" placeholder = 'Enter your email' required="true">
+                    <input class="form-control" value="<?php echo $this->session->flashdata('email') ?>" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan alamat email'" placeholder = 'Masukkan alamat email' required="true">
                   </div>
                 </div>
-
-                <div class="col-sm-12">
-                  <p class="text-danger"><?php echo $this->session->flashdata('repeat_pass') ?></p>
-                </div>
-                
                 <div class="col-12">
                   <div class="form-group">
                     <h6>Password</h6>
-                    <input class="form-control" value="<?php echo $this->session->flashdata('password') ?>" name="password" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your password'" placeholder = 'Enter your password' required="true">
+                    <input class="form-control" value="<?php echo $this->session->flashdata('password') ?>" name="password" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan password'" placeholder = 'Masukkan password' required="true">
                   </div>
                 </div>
                 <div class="col-12">    
                   <div class="form-group">
-                    <h6>Repeat Password</h6>
-                    <input class="form-control" value="<?php echo $this->session->flashdata('repeat_password') ?>" name="repeat_password" id="repeat_password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Repeat your password'" placeholder = 'Repeat your password' required="true">
+                    <h6>Ulangi Password</h6>
+                    <input class="form-control" value="<?php echo $this->session->flashdata('repeat_password') ?>" name="repeat_password" id="repeat_password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan ulang password'" placeholder = 'Masukkan ulang password' required="true">
                   </div>
                 </div>
               </div>
@@ -62,16 +61,16 @@
                 </div>
               </div>
               <hr>
-              <div style="padding-top: 5px; margin-bottom: 10px; text-align: center; position: relative; color: black">
-                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #FF8100"> Login Sekarang! </a>
-              </div>
-              <div class="col-12">
+              <!-- <div class="col-12">
                 <div class="form-group text-center">
                   <a href="<?= $glogin ?>" class="genric-btn info-border circle col-12">
                     <i class="fa fa-google"></i>
-                    Login dengan Google 
+                    Daftar dengan Google 
                   </a>
                 </div>
+              </div> -->
+              <div style="padding-top: 5px; margin-bottom: 10px; text-align: center; position: relative; color: black">
+                Sudah punya akun? <a href="<?php echo base_url() ?>user/signin" style="color: #FF8100"> Login Sekarang! </a>
               </div>
             </form>
           </div>

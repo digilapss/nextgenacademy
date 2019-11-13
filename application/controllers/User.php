@@ -25,6 +25,7 @@ class User extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('AccountModel');
+		$this->load->model('Constant');
 		$this->load->library('session');
 		$this->load->helper('file');
 		$this->load->library('upload');
@@ -32,6 +33,15 @@ class User extends CI_Controller {
         ini_set('display_error','off');
         error_reporting(0);
     
+	}
+
+	function isLoggedIn()
+	{
+		if($this->session->userdata('account_id')){
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public function signin(){
@@ -71,8 +81,7 @@ class User extends CI_Controller {
 
 		if (
 
-			$this->input->post('full_name') && 
-			$this->input->post('phone_number') && 
+			$this->input->post('full_name') &&
 			$this->input->post('email') && 
 			$this->input->post('password') && 
 			$this->input->post('repeat_password')
@@ -80,7 +89,6 @@ class User extends CI_Controller {
 		) {
 
 			$full_name = $this->input->post('full_name') ;
-			$phone_number = $this->input->post('phone_number') ;
 			$email = $this->input->post('email') ;
 			$pass = $this->input->post('password');
 			$index_course = $this->session->userdata('index_course');
@@ -102,7 +110,6 @@ class User extends CI_Controller {
 
 					$useraccount = array (
 						'name' => $full_name,
-						'phone_number' => $phone_number,
 						'email' => $email,
 						'password' => md5($this->input->post('password')),
 						'status' => 1,
@@ -131,25 +138,19 @@ class User extends CI_Controller {
 							
 							$this->login($email, $pass, $index_course);
 
-						}
-
-						
+						}						
 					}
-				}
-				
+				}				
 
 			} else {
-
-				$this->session->set_flashdata('repeat_pass', 'Ulangi Password tidak cocok') ;
+				$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">Ulangi Password tidak cocok</div> ') ;
 				$this->session->set_flashdata('full_name', $full_name ) ;
-				$this->session->set_flashdata('phone_number', $phone_number) ;
 				$this->session->set_flashdata('email', $email );
 				$this->session->set_flashdata('password', $this->input->post('password') );
-				$this->session->set_flashdata('repeat_password', $this->input->post('repeat_password')); 
+				$this->session->set_flashdata('repeat_password', $this->input->post('repeat_password'));
+				$this->load->view('side/header_signin');
 				$this->load->view('signup');
-
 			}
-
 		} else {
 
 			$this->load->view('side/header_signin');
@@ -159,9 +160,16 @@ class User extends CI_Controller {
 
 
 	public function profile(){
+		if (!$this->isLoggedIn()) {
+			redirect(base_url().'user/signin');
+			return;
+		}
+
+		$data = array();
+		$data['gender'] = $this->Constant->gender();
 
 		$this->load->view('side/header');
-		$this->load->view('member_profile');
+		$this->load->view('member_profile', $data);
 		$this->load->view('side/footer');
 
 	}
@@ -172,77 +180,38 @@ class User extends CI_Controller {
 			show_404();
 		}
 
-			$data['name'] = $this->input->post('name');
-			$data['email'] = $this->session->userdata('email');
-			$data['instagram_id'] = $this->input->post('instagram_id');
-			$data['born_date'] = $this->input->post('birthday');
-			$data['phone_number'] = $this->input->post('phone_number');
-			$data['gender'] = $this->input->post('gender');
-			$data['address'] = $this->input->post('address');
-			$account_id = $this->session->userdata('account_id');
-			 
-			if($_FILES["filefoto"]["name"]){
+		$data['name'] = $this->input->post('name');
+		$data['email'] = $this->session->userdata('email');
+		$data['instagram_id'] = $this->input->post('instagram_id');
+		$data['born_date'] = $this->input->post('birthday');
+		$data['phone_number'] = $this->input->post('phone_number');
+		$data['gender'] = $this->input->post('gender');
+		$data['address'] = $this->input->post('address');
+		$account_id = $this->session->userdata('account_id');
+		 
+		if($_FILES["filefoto"]["name"]){
 
-					
-				$nmfile = time().preg_replace("/[^A-Za-z0-9-]/", "-", $this->input->post('name'));
-				$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/img_user/';
-				$config['allowed_types'] = 'jpg|png|jpeg';
-				$config['max_size'] = 10000000;
-				$config['file_name'] = $nmfile;
+				
+			$nmfile = time().preg_replace("/[^A-Za-z0-9-]/", "-", $this->input->post('name'));
+			$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/img_user/';
+			$config['allowed_types'] = 'jpg|png|jpeg';
+			$config['max_size'] = 10000000;
+			$config['file_name'] = $nmfile;
 
-				$this->upload->initialize($config);
-				if ($this->upload->do_upload('filefoto') ){
+			$this->upload->initialize($config);
+			if ($this->upload->do_upload('filefoto') ){
 
-					$gbr = $this->upload->data();
+				$gbr = $this->upload->data();
 
-					$data['image'] = base_url().'img_user/'.$gbr['file_name'] ;
-					
-					$this->AccountModel->update_profile($account_id, $data);
-
-					if ($this->db->affected_rows()) {
-
-						$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
-							Update profile berhasil upload
-							</div>') ;
-
-						$index_course = MEMBER_UPDATE;
-
-						$login = $this->AccountModel->account_byId($account_id);
-						$this->session_member_byId($login, $index_course );
-
-
-					} else {
-
-
-						$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-								Update Profile Gagal upload save data
-							</div>') ;
-						redirect(base_url().'user/profile');
-
-					}
-
-				} else {
-
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-							Update Profile Gagal Upload Foto
-						</div>') ;
-					redirect(base_url().'user/profile');
-
-
-				}
-
-			} else {
-
+				$data['image'] = base_url().'img_user/'.$gbr['file_name'] ;
+				
 				$this->AccountModel->update_profile($account_id, $data);
 
-				if(!$this->db->affected_rows()){
+				if ($this->db->affected_rows()) {
 
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
-							<i class="fa fa-check"></i> Tidak ada upload profile
-						</div>  ') ;
-					redirect(base_url().'user/profile');
-
-				} else {
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
+						Update profile berhasil upload
+						</div>') ;
 
 					$index_course = MEMBER_UPDATE;
 
@@ -250,11 +219,48 @@ class User extends CI_Controller {
 					$this->session_member_byId($login, $index_course );
 
 
+				} else {
+
+
+					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+							Update Profile Gagal upload save data
+						</div>') ;
+					redirect(base_url().'user/profile');
+
 				}
 
+			} else {
+
+				$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
+						Update Profile Gagal Upload Foto
+					</div>') ;
+				redirect(base_url().'user/profile');
 
 
 			}
+
+		} else {
+
+			$this->AccountModel->update_profile($account_id, $data);
+
+			if(!$this->db->affected_rows()){
+
+				$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
+						<i class="fa fa-check"></i> Tidak ada upload profile
+					</div>  ') ;
+				redirect(base_url().'user/profile');
+
+			} else {
+
+				$index_course = MEMBER_UPDATE;
+
+				$login = $this->AccountModel->account_byId($account_id);
+				$this->session_member_byId($login, $index_course );
+
+
+			}
+
+		}
 	}
 
 	public function session_member_byId($login, $index_course){
