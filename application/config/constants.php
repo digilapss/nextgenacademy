@@ -83,3 +83,24 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+/* 
+	Define constant for business level
+	Put comment in each functionality
+*/
+// Default Status
+define('StatusActive', 1);
+define('StatusInactive', 2);
+define('StatusDeleted', 3);
+
+// User status
+// Blocked means ianctived by admin
+define('UserStatusActive', 1);
+define('UserStatusInactive', 2);
+define('UserStatusDeleted', 3);
+define('UserStatusBlocked', 4);
+
+// Gender
+define('GenderMale', 1);
+define('GenderFemale', 2);
+

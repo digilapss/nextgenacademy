@@ -34,7 +34,7 @@ body {
 .sign_in {
   border-style: solid;
   border-width: thin;
-  border-color: #FF8100;
+  border-color: rgba(0,0,0,.1);
 }
 
 .input-group-addon {
@@ -107,7 +107,7 @@ input:hover, input:focus {
 
 /* line 18, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 .section_padding_sign {
-  padding: 100px 0px;
+  padding: 70px 0px;
 }
 
 @media (max-width: 576px) {
@@ -6286,13 +6286,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 1022, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .default-select .nice-select .list .option.selected {
-  color: #FFC000;
+  color: #FF8100;
   background: transparent;
 }
 
 /* line 1026, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .default-select .nice-select .list .option:hover {
-  color: #FFC000;
+  color: #FF8100;
   background: transparent;
 }
 
@@ -6349,13 +6349,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 1067, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .form-select .nice-select .list .option.selected {
-  color: #FFC000;
+  color: #FF8100;
   background: transparent;
 }
 
 /* line 1071, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .form-select .nice-select .list .option:hover {
-  color: #FFC000;
+  color: #FF8100;
   background: transparent;
 }
 

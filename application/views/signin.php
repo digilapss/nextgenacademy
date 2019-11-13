@@ -11,9 +11,11 @@
                 </a>
                 <h2></h2>
             </div>
+
             <p class="text-danger">
               <?php echo $this->session->flashdata('login_error') ?>
             </p>
+            
             <form class="form-contact" action="<?php echo base_url() ?>user/signin" method="post" >
               <div class="row">
                 <div class="col-sm-12">
@@ -40,7 +42,7 @@
 
               </div>
               <div class="col-12">
-                <div class="form-group text-center">
+                <div class="text-center">
                   <button type="submit" class="button-contactForm btn_1 primary circle col-12">
                     <i class="fa fa-lock"></i>
                     Login
@@ -48,19 +50,18 @@
                 </div>
               </div>
               <hr>
-              
-              <div style="padding-top: 5px; margin-bottom: 10px; text-align: center; position: relative; color: black">
-                Belum punya akun?  <a href="<?php echo base_url() ?>user/signup" style="color: #FF8100"> Daftar Sekarang! </a>
-              </div>
               <div class="col-12">
                 <div class="form-group text-center">
                   <a href="<?= $glogin ?>" class="genric-btn info-border circle col-12">
                     <i class="fa fa-google"></i>
-                    Daftar dengan Google
+                    Login dengan Google
                   </a>
                 </div>
               </div>
-
+              
+              <div style="padding-top: 5px; margin-bottom: 10px; text-align: center; position: relative; color: black">
+                Belum punya akun?  <a href="<?php echo base_url() ?>user/signup" style="color: #FF8100"> Daftar Sekarang! </a>
+              </div>
             </form>
           </div>
       </div>

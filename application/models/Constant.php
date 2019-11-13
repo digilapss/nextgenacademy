@@ -2,4 +2,8 @@
 
 class Constant extends CI_Model {
 
+	function gender() {
+		return array(GenderMale => "Laki-laki", GenderFemale => "Perempuan");
+	}
+
 }

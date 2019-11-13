@@ -73,10 +73,8 @@
     <!-- custom js -->
     <script src="<?php echo base_url() ?>asset/js/custom.js"></script>
     <script src="<?php echo base_url() ?>asset/js/course.js"></script>
-    <script src="<?php echo base_url() ?>asset/js/member.js"></script>   
-
-
-
+    <script src="<?php echo base_url() ?>asset/js/member.js"></script>
+    <script src="<?php echo base_url() ?>asset/js/lib.js"></script>
 </body>
 
 </html>
