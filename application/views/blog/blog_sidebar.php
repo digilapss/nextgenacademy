@@ -24,82 +24,38 @@
                   <aside class="single_sidebar_widget post_category_widget">
                      <h4 class="widget_title">Category</h4>
                      <ul class="list cat-list">
+                        <? 
+                           foreach($category_blog->result() as $row_category ){
+                        ?>
+
                         <li>
                            <a href="#" class="d-flex">
-                              <p>Resaurant food</p>
-                              <p>(37)</p>
+                              <p><?= $row_category->category_name ?></p>
+                              <p>( <?= $row_category->total_content ?> )</p>
                            </a>
                         </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Travel news</p>
-                              <p>(10)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Modern technology</p>
-                              <p>(03)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Product</p>
-                              <p>(11)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Inspiration</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
-                        <li>
-                           <a href="#" class="d-flex">
-                              <p>Health Care</p>
-                              <p>(21)</p>
-                           </a>
-                        </li>
+
+                        <? } ?>
+                       
                      </ul>
                   </aside>
+
                   <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Recent Post</h3>
+                           
+                     <? foreach($recent_post->result() as $row_recent_post ){ ?>
+
                      <div class="media post_item">
-                        <img src="img/post/post_1.png" alt="post">
+                        <img src="<?= $row_recent_post->image ?>" alt="post">
                         <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>From life was you fish...</h3>
+                           <a href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_recent_post->create_time).'/'.$row_recent_post->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_recent_post->title) ;  ?>">
+                              <h3><?= $row_recent_post->title ?></h3>
                            </a>
-                           <p>January 12, 2019</p>
+                           <p><?= $row_recent_post->create_time ?></p>
                         </div>
                      </div>
-                     <div class="media post_item">
-                        <img src="img/post/post_2.png" alt="post">
-                        <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>The Amazing Hubble</h3>
-                           </a>
-                           <p>02 Hours ago</p>
-                        </div>
-                     </div>
-                     <div class="media post_item">
-                        <img src="img/post/post_3.png" alt="post">
-                        <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>Astronomy Or Astrology</h3>
-                           </a>
-                           <p>03 Hours ago</p>
-                        </div>
-                     </div>
-                     <div class="media post_item">
-                        <img src="img/post/post_4.png" alt="post">
-                        <div class="media-body">
-                           <a href="single-blog.html">
-                              <h3>Asteroids telescope</h3>
-                           </a>
-                           <p>01 Hours ago</p>
-                        </div>
-                     </div>
+                    
+                     <? } ?>
                   </aside>
                   <aside class="single_sidebar_widget tag_cloud_widget">
                      <h4 class="widget_title">Tag Clouds</h4>

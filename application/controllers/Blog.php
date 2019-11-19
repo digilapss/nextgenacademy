@@ -37,13 +37,14 @@ class Blog extends CI_Controller {
         $url1 = $this->uri->segment(3);
         $url2 = $this->uri->segment(4);
         $url3 = $this->uri->segment(5);
+
         $tahun = substr($url1,4);
         $bulan = substr($url1,2,-4);
         $tgl = substr($url1,0,-6);
 
         $blog_title = preg_replace("/[^a-zA-Z0-9]/", " ", $url3);
         $blog_tgl = $tahun.'-'.$bulan.'-'.$tgl ;
-        
+
         $blog_data = $this->BlogModel->one_blog($url2, $blog_tgl, $blog_title);
         
         foreach($blog_data->result() as $row_data){
@@ -64,6 +65,10 @@ class Blog extends CI_Controller {
             $data['category_name'] = $row_data->category_name;
             $data['category_name'] = $row_data->category_name;
         }
+        
+        $data['comment_blog'] = $this->list_blog_comment($data['blog_id']); 
+        $data['category_blog'] = $this->all_category(); 
+        $data['recent_post'] = $this->recent_post(); 
 
         // var_dump($data['blog_id']);
         
@@ -72,6 +77,18 @@ class Blog extends CI_Controller {
         $this->load->view('blog/content', $data);
         $this->load->view('side/footer');
 
+    }
+
+    public function list_blog_comment($blog_id){
+        return  $this->BlogModel->list_blog_comment($blog_id);
+    }
+
+    public function all_category(){
+        return  $this->BlogModel->all_category(); 
+    }
+
+    public function recent_post(){
+        return  $this->BlogModel->recent_post(); 
     }
 
 }
