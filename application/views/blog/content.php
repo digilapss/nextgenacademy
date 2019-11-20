@@ -22,7 +22,7 @@
             <div class="col-lg-8 posts-list">
                <div class="single-post">
                   <div class="feature-img">
-                     <img class="img-fluid" src="<?= $image ?>" alt="<?= $image ?>">
+                     <img class="img-fluid" src="<?= $image_blog ?>" alt="<?= $title ?>">
                   </div>
                   <div class="blog_details">
                      <h2><?= $title ?>
@@ -105,7 +105,7 @@
                </div>
                <div class="blog-author">
                   <div class="media align-items-center">
-                     <img src="<?= $image ?>" alt="">
+                     <img src="<?= $image_user ?>" alt="">
                      <div class="media-body">
                         <a href="#">
                            <h4><?= $name ?></h4>
@@ -121,8 +121,6 @@
 
                   <? 
                      foreach($comment_blog->result() as $row_comment_blog ){
-
-                     
                   ?>
 
                   <div class="comment-list">
