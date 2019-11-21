@@ -32,11 +32,25 @@ class Blog extends CI_Controller {
     
     }
 
-
     public function index(){
 
+        $config['base_url'] = base_url()."blog/index/" ;
+        $config['total_rows'] = $this->BlogModel->all_blog()->num_rows();
+        $data['total_blog'] = $config['total_rows'] ;
+        $config['per_page'] = 2;
 
-        $data['all_blog'] = $this->BlogModel->all_blog();
+        $this->pagination->initialize($config);
+
+        $data = array(
+        //   'role' =>  ,
+          'limit' => $config['per_page'],
+          'start' => $this->uri->segment(3)
+        );
+
+        $data['all_blog'] = $this->BlogModel->all_blog_start($data);
+        $data['links'] = $this->pagination->create_links();
+
+        // $data['all_blog'] = $this->BlogModel->all_blog();
         $data['category_blog'] = $this->all_category(); 
         $data['recent_post'] = $this->recent_post(); 
 
