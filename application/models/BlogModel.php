@@ -27,4 +27,21 @@ class BlogModel extends CI_Model {
         // $this->db->where('blog_id', 'DESC');
         return $this->db->get('blog');
     }
+
+    public function all_blog(){
+
+        $this->db->join('blog_category', 'blog.blog_category_id = blog_category.blog_category_id');
+        $this->db->join('account', 'blog.create_by = account.account_id', DESC);
+        return $this->db->get('blog');
+    }
+
+    public function all_blog_start($get_blog){
+
+        $this->db->join('blog_category', 'blog.blog_category_id = blog_category.blog_category_id');
+        $this->db->join('account', 'blog.create_by = account.account_id');
+        $this->db->limit($get_blog['limit'], $get_blog['start']);
+        $this->db->order_by('blog_id', 'DESC');
+        return $this->db->get('blog');
+        
+    }
 }

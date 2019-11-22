@@ -32,6 +32,35 @@ class Blog extends CI_Controller {
     
     }
 
+    public function index(){
+
+        $config['base_url'] = base_url()."blog/index/" ;
+        $config['total_rows'] = $this->BlogModel->all_blog()->num_rows();
+        $data['total_blog'] = $config['total_rows'] ;
+        $config['per_page'] = 2;
+
+        $this->pagination->initialize($config);
+
+        $data = array(
+        //   'role' =>  ,
+          'limit' => $config['per_page'],
+          'start' => $this->uri->segment(3)
+        );
+
+        $data['all_blog'] = $this->BlogModel->all_blog_start($data);
+        $data['links'] = $this->pagination->create_links();
+
+        // $data['all_blog'] = $this->BlogModel->all_blog();
+        $data['category_blog'] = $this->all_category(); 
+        $data['recent_post'] = $this->recent_post(); 
+
+        $this->load->view('side/header');
+        $this->load->view('blog/blog_list', $data);
+        $this->load->view('side/footer');
+
+
+    }
+
     public function page(){
 
         $url1 = $this->uri->segment(3);
@@ -51,7 +80,8 @@ class Blog extends CI_Controller {
 
             $data['blog_id'] = $row_data->blog_id;
             $data['blog_category_id'] = $row_data->blog_category_id;
-            $data['image'] = $row_data->image;
+            $data['image_blog'] = $row_data->image_blog;
+            $data['image_user'] = $row_data->image;
             $data['title'] = $row_data->title;
             $data['tag'] = $row_data->tag;
             $data['description'] = $row_data->description;

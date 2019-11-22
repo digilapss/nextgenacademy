@@ -46,7 +46,7 @@
                      <? foreach($recent_post->result() as $row_recent_post ){ ?>
 
                      <div class="media post_item">
-                        <img src="<?= $row_recent_post->image ?>" alt="post">
+                        <img src="<?= $row_recent_post->image_blog ?>" alt="post" width="70px">
                         <div class="media-body">
                            <a href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_recent_post->create_time).'/'.$row_recent_post->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_recent_post->title) ;  ?>">
                               <h3><?= $row_recent_post->title ?></h3>
