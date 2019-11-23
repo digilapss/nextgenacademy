@@ -57,6 +57,16 @@ body {
 .course-rating{
   cursor: pointer;
 }
+
+.row_form {
+  display: -ms-flexbox;
+  display: inline-flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
 /* line 9, E:/172 Etrain Education/172_Etrain_Education_html/sass/_common.scss */
 .message_submit_form:focus {
   outline: none;
@@ -2186,6 +2196,7 @@ ul {
   width: 100%;
   z-index: 999;
   background-color: white;
+  max-height: 85px;
 }
 
 .transparent_background {
@@ -2485,6 +2496,7 @@ ul {
   background-color: #fff;
   box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.05);
   top: 0;
+  max-height: 85px;
 }
 
 /* line 291, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
@@ -5284,9 +5296,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 221, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .genric-btn.primary:hover {
-  color: #FFC000;
+  /*color: #FFC000;
   border: 1px solid #FFC000;
-  background: #fff;
+  background: #fff;*/
 }
 
 /* line 227, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
@@ -6315,11 +6327,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* line 1045, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
 .form-select .nice-select {
-  border: none;
-  border-radius: 0px;
-  height: 40px;
-  background: #f9f9ff;
-  padding-left: 45px;
+  border: 1px solid #f0e9ff;
+  border-radius: 5px;
+  height: 48px;
   padding-right: 40px;
   width: 100%;
 }
@@ -6344,7 +6354,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 28px;
   min-height: 28px;
   font-size: 12px;
-  padding-left: 45px;
+  /*padding-left: 45px;*/
 }
 
 /* line 1067, E:/172 Etrain Education/172_Etrain_Education_html/sass/_elements.scss */
@@ -7363,6 +7373,14 @@ h1, h2, h3, h4, h5, h6 {
 /* line 244, E:/172 Etrain Education/172_Etrain_Education_html/sass/_footer.scss */
 .footer-area .btn_1 {
   margin-top: 0px;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
 }
 
 sourceMappingURL=style.css.map 

@@ -167,6 +167,8 @@ class User extends CI_Controller {
 
 		$data = array();
 		$data['gender'] = $this->Constant->gender();
+		$data['educational_level'] = $this->Constant->educational_level();
+
 
 		$this->load->view('side/header');
 		$this->load->view('member_profile', $data);
