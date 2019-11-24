@@ -19,12 +19,10 @@
                      </form>
                   </aside>
 
-
-
                   <aside class="single_sidebar_widget post_category_widget">
                      <h4 class="widget_title">Category</h4>
                      <ul class="list cat-list">
-                        <? 
+                        <?php 
                            foreach($category_blog->result() as $row_category ){
                         ?>
 
@@ -35,7 +33,7 @@
                            </a>
                         </li>
 
-                        <? } ?>
+                        <?php } ?>
                        
                      </ul>
                   </aside>
@@ -43,7 +41,7 @@
                   <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Recent Post</h3>
                            
-                     <? foreach($recent_post->result() as $row_recent_post ){ ?>
+                     <?php foreach($recent_post->result() as $row_recent_post ){ ?>
 
                      <div class="media post_item">
                         <img src="<?= $row_recent_post->image_blog ?>" alt="post" width="70px">
@@ -55,7 +53,7 @@
                         </div>
                      </div>
                     
-                     <? } ?>
+                     <?php } ?>
                   </aside>
                   <aside class="single_sidebar_widget tag_cloud_widget">
                      <h4 class="widget_title">Tag Clouds</h4>

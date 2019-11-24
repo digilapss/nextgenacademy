@@ -45,6 +45,24 @@ class AccountModel extends CI_Model {
 
     }
 
+    // education insert data
+    public function insert_education($data) {
+        return $this->db->insert('educational', $data);
+    }
+
+    // education soft delete data
+    public function soft_delete_education($data) {
+        $this->db->set('status', StatusDeleted);
+        $this->db->set('update_time', 'NOW()', false);
+        $this->db->where('account_id', $data['account_id']);
+        $this->db->where('status', StatusActive);
+        return $this->db->update('educational');
+    }
+
+    public function educational($account_id){
+        return $this->db->get_where('educational', array('account_id' => $account_id, 'status' => StatusActive))->result();
+    }
+
 
     // public function user_id($user) {
 

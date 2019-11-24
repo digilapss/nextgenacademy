@@ -104,3 +104,25 @@ define('UserStatusBlocked', 4);
 define('GenderMale', 1);
 define('GenderFemale', 2);
 
+// User role
+define('RoleAdmin', 99);
+define('RoleSeniorHighSchool', 1);
+define('RoleCollegeStudent', 2);
+define('RoleEmployee', 3);
+
+// User educational level
+define('EducatioalLevelElementarySchool', 1);
+define('EducatioalLevelJuniorHighSchool', 2);
+define('EducatioalLevelSeniorHighSchool', 3);
+define('EducatioalLevelDiploma1', 4);
+define('EducatioalLevelDiploma2', 5);
+define('EducatioalLevelDiploma3', 6);
+define('EducatioalLevelBachelor1', 7);
+define('EducatioalLevelBachelor2', 8);
+define('EducatioalLevelBachelor3', 9);
+
+// Achievement level
+define('InstitutionLevel', 1);
+define('RegionalLevel', 2);
+define('NasionalLevel', 3);
+define('GlobalLevel', 4);

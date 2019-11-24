@@ -165,8 +165,13 @@ class User extends CI_Controller {
 			return;
 		}
 
+		$account_id = $this->session->userdata('account_id');
+
 		$data = array();
 		$data['gender'] = $this->Constant->gender();
+		$data['educational_level'] = $this->Constant->educational_level();
+		$data['achievement_level'] = $this->Constant->achievement_level();
+		$data['educational'] = $this->AccountModel->educational($account_id);
 
 		$this->load->view('side/header');
 		$this->load->view('member_profile', $data);
@@ -175,7 +180,6 @@ class User extends CI_Controller {
 	}
 
 	public function profile_update(){
-
 		if(!$this->session->userdata('account_id')){
 			show_404();
 		}
@@ -188,6 +192,20 @@ class User extends CI_Controller {
 		$data['gender'] = $this->input->post('gender');
 		$data['address'] = $this->input->post('address');
 		$account_id = $this->session->userdata('account_id');
+
+		for ($i= 0; $i < count($this->input->post('educational_level')); $i++) { 
+			$data_educational['level'] = $this->input->post('educational_level')[$i];
+			$data_educational['year_in'] = $this->input->post('year_in')[$i];
+			$data_educational['year_out'] = $this->input->post('year_out')[$i];
+			$data_educational['institution_name'] = $this->input->post('institution_name')[$i];
+			$data_educational['major'] = $this->input->post('major')[$i];
+			$data_educational['city'] = $this->input->post('city')[$i];
+			$data_educational['status'] = StatusActive;
+			$data_educational['account_id'] = $account_id;
+
+			$this->AccountModel->soft_delete_education($data_educational);
+			$this->AccountModel->insert_education($data_educational);
+		}
 		 
 		if($_FILES["filefoto"]["name"]){
 
