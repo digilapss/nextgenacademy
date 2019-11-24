@@ -2210,7 +2210,7 @@ ul {
 
 /* line 12, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
 .main_menu .navbar {
-  padding: 20px 0px;
+  padding: 15px 0px;
 }
 
 /* line 15, E:/172 Etrain Education/172_Etrain_Education_html/sass/_menu.scss */
@@ -7373,6 +7373,18 @@ h1, h2, h3, h4, h5, h6 {
 /* line 244, E:/172 Etrain Education/172_Etrain_Education_html/sass/_footer.scss */
 .footer-area .btn_1 {
   margin-top: 0px;
+}
+
+.extra-button-small {
+  margin-top: 5px;
+  margin-left: 5px;
+  background-color: #FFC000;
+  color: #fff;
+  border: 1px solid transparent;
+}
+
+.extra-button-small.danger{
+  background-color: #f44a40;
 }
 
 .hide {

@@ -22,5 +22,14 @@ class Constant extends CI_Model {
 			EducatioalLevelBachelor3 => " Sarjana 3",
 		);
 	}
+
+	function achievement_level($value='') {
+		return array(
+			InstitutionLevel => "Sekolah/Institusi",
+			RegionalLevel => "Regional",
+			NasionalLevel => "Nasional",
+			GlobalLevel => "Internasional",
+		);
+	}
 	
 }

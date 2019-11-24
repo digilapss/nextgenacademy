@@ -121,5 +121,8 @@ define('EducatioalLevelBachelor1', 7);
 define('EducatioalLevelBachelor2', 8);
 define('EducatioalLevelBachelor3', 9);
 
-
-
+// Achievement level
+define('InstitutionLevel', 1);
+define('RegionalLevel', 2);
+define('NasionalLevel', 3);
+define('GlobalLevel', 4);

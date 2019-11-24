@@ -34,8 +34,8 @@ biodata
 -create_time
 -update_time
 
-educational_background
--educational_background_id
+educational
+-educational_id
 -account_id
 -level(sd,smp,sma,d1,d2,d3,s1,s2,s3)
 -year_in

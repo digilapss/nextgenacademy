@@ -96,51 +96,101 @@
               </div>
             </div>
             <!-- <div class="row_form"></div> -->
-            <div class="row tabcontent hide" id="educational">
-              <div class="col-sm-2">
-                <h6>Tingkat</h6>
-                  <!-- <select name="educational_level" id="educational_level">
-                      <?php foreach ($educational_level as $key => $value) { ?>
-                            <option value="<?= $key ?>" > <?= $value ?> </option>
-                      <?php } ?>
-                  </select> -->
-                  <div class="form-select" id="default-select" >
-                      <select name="educational_level" id="educational_level">
-                          <?php foreach ($educational_level as $key => $value) { ?>
-                                <option value="<?= $key ?>" > <?= $value ?> </option>
-                          <?php } ?>
-                      </select>
+
+            <div class="row tabcontent hide" id="educational"> 
+            <?php for ($i=0; $i < max (count($educational), 1) ; $i++) { ?>
+              <div id="educational-part" style="display: contents;">
+                <div class="col-sm-2">
+                  <h6>Tingkat</h6>
+                    <div class="form-select" id="default-select" >
+                        <select name="educational_level[]" id="educational_level">
+                            <?php foreach ($educational_level as $key => $value) { ?>
+                                  <option value="<?= $key ?>" > <?= $value ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                  <h6>Masuk</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="year_in[]" value="<?=$educational[$i]->year_in?>" id="year_in" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Masuk'" oninput="numberOnly('year_in')" placeholder = 'Tahun Masuk' required>
                   </div>
-              </div>
-              <div class="col-sm-1">
-                <h6>Mulai</h6>
-                <div class="form-group">
-                  <input class="form-control" name="year_in" value="" id="year_in" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Masuk'" oninput="numberOnly('year_in')" placeholder = 'Tahun Masuk' required>
+                </div>
+                <div class="col-sm-1">
+                  <h6>Lulus</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="year_out[]" oninput="numberOnly('year_out')" value="<?=$educational[$i]->year_out?>" id="year_out" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Lulus'" placeholder = 'Tahun Lulus' required>
+                  </div>
+                </div>  
+                <div class="col-sm-3">
+                  <h6>Nama Institusi</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="institution_name[]" value="<?=$educational[$i]->institution_name?>" id="institution_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama Sekolah/Universitas'" placeholder = 'Nama Sekolah/Universitas' required>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <h6>Jurusan</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="major[]" value="<?=$educational[$i]->major?>" id="major" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jurusan/Bidang'" placeholder = 'Jurusan/Bidang' required>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <h6>Kota/Kab.</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="city[]" value="<?=$educational[$i]->city?>" id="city" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kota/Kabupaten'" placeholder = 'Kota/Kabupaten' required>
+                  </div>
                 </div>
               </div>
-              <div class="col-sm-1">
-                <h6>Lulus</h6>
-                <div class="form-group">
-                  <input class="form-control" name="year_out" oninput="numberOnly('year_out')" value="" id="year_out" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Lulus'" placeholder = 'Tahun Lulus' required>
+            <?php } ?>
+
+              <div class="col-sm-12" style="margin-top: -40px;">
+                <button id="add-educational" class="extra-button-small pull-right" onclick="append_component(event, 'educational-part');">+</button>
+                <button id="remove-educational" class="extra-button-small danger pull-right" onclick="remove_component(event, 'educational-part');">x</button>
+              </div>
+            </div>
+
+            <div class="row tabcontent hide" id="achievement">
+              
+              <div id="achievement-part" style="display: contents;">
+                <div class="col-sm-2">
+                  <h6>Tingkat</h6>
+                    <div class="form-select" id="default-select" >
+                        <select name="achievement_level[]" id="achievement_level">
+                            <?php foreach ($achievement_level as $key => $value) { ?>
+                                  <option value="<?= $key ?>" > <?= $value ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
                 </div>
-              </div>  
-              <div class="col-sm-3">
-                <h6>Nama Institusi</h6>
-                <div class="form-group">
-                  <input class="form-control" name="institution_name" value="" id="institution_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama Universitas'" placeholder = 'Nama Universitas' required>
+                <div class="col-sm-2">
+                  <h6>Tahun</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="year[]" value="" id="year" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Perolehan'" oninput="numberOnly('year')" placeholder = 'Tahun Perolehan' required>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <h6>Nama Penghargaan</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="achievement_name[]" value="" id="achievement_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama Penghargaan'" placeholder = 'Nama Penghargaan' required>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <h6>Deskripsi</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="description[]" value="" id="description" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jelaskan secara singkat'" placeholder = 'Jelaskan secara singkat' required>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <h6>File</h6>
+                  <div class="form-group">
+                     <input type="file" name="achievement_image[]" class="info-border circle small" id="achievement_image" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview-achievement')">
+                  </div>
                 </div>
               </div>
-              <div class="col-sm-3">
-                <h6>Jurusan</h6>
-                <div class="form-group">
-                  <input class="form-control" name="major" value="" id="major" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jurusan'" placeholder = 'Jurusan' required>
-                </div>
-              </div>
-              <div class="col-sm-2">
-                <h6>Kota/Kab.</h6>
-                <div class="form-group">
-                  <input class="form-control" name="city" value="" id="city" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kota/Kabupaten'" placeholder = 'Kota/Kabupaten' required>
-                </div>
+
+              <div class="col-sm-12" style="margin-top: -40px;">
+                <button id="add-achievement" class="extra-button-small pull-right" onclick="append_component(event, 'achievement-part');">+</button>
+                <button id="remove-achievement" class="extra-button-small danger pull-right" onclick="remove_component(event, 'achievement-part');">x</button>
               </div>
             </div>
             

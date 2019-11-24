@@ -16,3 +16,18 @@ function openTab(id) {
   $(tablinksId).addClass("primary");
   $(tablinksId).removeClass("primary-border");
 }
+
+function append_component(event, id) {
+  var id = "#" + id;
+  var last_part = "div" + id + ":last"
+  $(id).clone().insertAfter(last_part);
+  event.preventDefault();
+}
+
+function remove_component(event, id) {
+  var id = "#" + id;
+  if ($('div' + id).length > 1) {
+    $(id + ':last').remove();
+  }
+  event.preventDefault();
+}
