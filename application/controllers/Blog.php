@@ -37,7 +37,7 @@ class Blog extends CI_Controller {
         $config['base_url'] = base_url()."blog/index/" ;
         $config['total_rows'] = $this->BlogModel->all_blog()->num_rows();
         $data['total_blog'] = $config['total_rows'] ;
-        $config['per_page'] = 2;
+        $config['per_page'] = 5;
 
         $this->pagination->initialize($config);
 
@@ -120,5 +120,40 @@ class Blog extends CI_Controller {
     public function recent_post(){
         return  $this->BlogModel->recent_post(); 
     }
+
+    public function category(){
+        $get_category = $this->uri->segment(3);
+        if(!$get_category || empty($get_category)){
+            show_404();
+        }
+
+        $config['base_url'] = base_url()."blog/category/".$get_category."/" ;
+        $config['total_rows'] = $this->BlogModel->category_list_all($get_category)->num_rows();
+        $data['total_blog'] = $config['total_rows'] ;
+        $config['per_page'] = 5;
+
+        $this->pagination->initialize($config);
+
+        $data = array(
+          'category' => $get_category ,
+          'limit' => $config['per_page'],
+          'start' => $this->uri->segment(4)
+        );
+
+        $data['list_cateory'] = $this->BlogModel->category_list_start($data);
+        $data['links'] = $this->pagination->create_links();
+
+        // $data['all_blog'] = $this->BlogModel->all_blog();
+        $data['category_blog'] = $this->all_category(); 
+        $data['recent_post'] = $this->recent_post(); 
+        
+        
+        $this->load->view('side/header');
+        $this->load->view('blog/category_list', $data);
+        $this->load->view('side/footer');
+
+    }
+
+
 
 }
