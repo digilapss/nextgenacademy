@@ -10,7 +10,7 @@ account
 -email
 -password
 -status (active,inactive)
--role (mentor,student)
+-role (senior highschool, collage, employee)
 -create_time
 -update_time
 -ip_address
@@ -24,6 +24,51 @@ account_activation
 -create_time
 -update_time
 -ip_address
+
+biodata
+-biodata_id
+-account_id
+-about_me
+-hobby
+-competence
+-create_time
+-update_time
+
+educational
+-educational_id
+-account_id
+-level(sd,smp,sma,d1,d2,d3,s1,s2,s3)
+-year_in
+-year_out
+-institution_name
+-major
+-city
+-create_time
+
+employment_history
+-employment_history_id
+-account_id
+-year_in
+-year_out
+-company_name
+-position
+-description
+-city
+-create_time
+-update_time
+
+achievement
+-achievement_id
+-account_id
+-year
+-achievement_name
+-description
+-level (institusi,regional,nasional,global)
+-image
+-create_time
+-update_time
+
+
 
 shcedule
 -schedule_id

@@ -119,7 +119,7 @@
                   <h4>05 Comments</h4>
 
 
-                  <? 
+                  <?php 
                      foreach($comment_blog->result() as $row_comment_blog ){
                   ?>
 
@@ -149,7 +149,7 @@
                      </div>
                   </div>
 
-                  <? } ?>
+                  <?php } ?>
 
                </div>
                <div class="comment-form">
@@ -185,7 +185,7 @@
                </div>
             </div>
 
-            <? 
+            <?php 
                 $this->load->view('blog/blog_sidebar');
             ?>
 

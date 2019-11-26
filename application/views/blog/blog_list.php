@@ -23,7 +23,7 @@
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
 
-                        <? foreach($all_blog->result() as $row_blog ) {  ?>
+                        <?php foreach($all_blog->result() as $row_blog ) {  ?>
 
                         <article class="blog_item">
                             <div class="blog_item_img">
@@ -46,7 +46,7 @@
                             </div>
                         </article>
 
-                        <? } ?>
+                        <?php } ?>
 
 
                         <nav class="blog-pagination justify-content-center d-flex">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
 
-                <? 
+                <?php 
                     $this->load->view('blog/blog_sidebar');
                 ?>
 
