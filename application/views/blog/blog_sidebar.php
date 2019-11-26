@@ -4,7 +4,7 @@
             
                <div class="blog_right_sidebar">
 
-                  <aside class="single_sidebar_widget search_widget">
+                  <!-- <aside class="single_sidebar_widget search_widget">
                      <form action="#">
                         <div class="form-group">
                            <div class="input-group mb-3">
@@ -17,7 +17,7 @@
                         </div>
                         <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Search</button>
                      </form>
-                  </aside>
+                  </aside> -->
 
                   <aside class="single_sidebar_widget post_category_widget">
                      <h4 class="widget_title">Category</h4>
@@ -27,9 +27,9 @@
                         ?>
 
                         <li>
-                           <a href="#" class="d-flex">
+                           <a href="<?= base_url() ?>blog/category/<?= $row_category->category_name ?>" class="d-flex">
                               <p><?= $row_category->category_name ?></p>
-                              <p>( <?= $row_category->total_content ?> )</p>
+                              <!-- <p>( <?= $row_category->total_content ?> )</p> -->
                            </a>
                         </li>
 
@@ -55,7 +55,7 @@
                     
                      <?php } ?>
                   </aside>
-                  <aside class="single_sidebar_widget tag_cloud_widget">
+                  <!-- <aside class="single_sidebar_widget tag_cloud_widget">
                      <h4 class="widget_title">Tag Clouds</h4>
                      <ul class="list">
                         <li>
@@ -83,8 +83,8 @@
                            <a href="#">illustration</a>
                         </li>
                      </ul>
-                  </aside>
-                  <aside class="single_sidebar_widget instagram_feeds">
+                  </aside> -->
+                  <!-- <aside class="single_sidebar_widget instagram_feeds">
                      <h4 class="widget_title">Instagram Feeds</h4>
                      <ul class="instagram_row flex-wrap">
                         <li>
@@ -118,8 +118,8 @@
                            </a>
                         </li>
                      </ul>
-                  </aside>
-                  <aside class="single_sidebar_widget newsletter_widget">
+                  </aside> -->
+                  <!-- <aside class="single_sidebar_widget newsletter_widget">
                      <h4 class="widget_title">Newsletter</h4>
                      <form action="#">
                         <div class="form-group">
@@ -128,6 +128,6 @@
                         </div>
                         <button class="button rounded-0 primary-bg text-white w-100 btn_1" type="submit">Subscribe</button>
                      </form>
-                  </aside>
+                  </aside> -->
                </div>
             </div>

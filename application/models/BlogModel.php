@@ -44,4 +44,25 @@ class BlogModel extends CI_Model {
         return $this->db->get('blog');
         
     }
+
+
+
+    public function category_list_all($get_category){
+
+        $this->db->join('blog', 'blog_category.blog_category_id = blog.blog_category_id');
+        $this->db->where('category_name', $get_category);
+        return $this->db->get('blog_category');
+    }
+
+    public function category_list_start($get_category){
+
+        $this->db->join('blog', 'blog_category.blog_category_id = blog.blog_category_id');
+        $this->db->limit($get_category['limit'], $get_category['start']);
+        $this->db->order_by('blog_id', 'DESC');
+        $this->db->where('category_name', $get_category['category']);
+        return $this->db->get('blog_category');
+        
+    }
+
+    // category_list
 }
