@@ -19,7 +19,7 @@ class Constant extends CI_Model {
 			EducatioalLevelDiploma3 => "Diploma 3",
 			EducatioalLevelBachelor1 => "Sarjana 1",
 			EducatioalLevelBachelor2 => "Sarjana 2",
-			EducatioalLevelBachelor3 => " Sarjana 3",
+			EducatioalLevelBachelor3 => "Sarjana 3",
 		);
 	}
 
@@ -28,7 +28,7 @@ class Constant extends CI_Model {
 			InstitutionLevel => "Sekolah/Institusi",
 			RegionalLevel => "Regional",
 			NasionalLevel => "Nasional",
-			GlobalLevel => "Internasional",
+			InternationalLevel => "Internasional",
 		);
 	}
 	

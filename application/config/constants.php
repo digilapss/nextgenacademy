@@ -125,4 +125,4 @@ define('EducatioalLevelBachelor3', 9);
 define('InstitutionLevel', 1);
 define('RegionalLevel', 2);
 define('NasionalLevel', 3);
-define('GlobalLevel', 4);
+define('InternationalLevel', 4);
