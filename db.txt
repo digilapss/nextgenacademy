@@ -65,6 +65,7 @@ achievement
 -description
 -level (institusi,regional,nasional,global)
 -image
+-status
 -create_time
 -update_time
 

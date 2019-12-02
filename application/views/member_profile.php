@@ -88,7 +88,7 @@
               <div class="col-sm-6">
                 <h6>Foto</h6>
                 <div class="form-group">
-                    <input type="file" name="filefoto" class="info-border circle small" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
+                    <input type="file" name="user_image" class="info-border circle small" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
                </div>
               </div>
               <div class="col-sm-6">
@@ -98,14 +98,14 @@
             <!-- <div class="row_form"></div> -->
 
             <div class="row tabcontent hide" id="educational"> 
-            <?php for ($i=0; $i < max (count($educational), 1) ; $i++) { ?>
+              <?php for ($i=0; $i < max (count($educational), 1) ; $i++) { ?>
               <div id="educational-part" style="display: contents;">
                 <div class="col-sm-2">
                   <h6>Tingkat</h6>
                     <div class="form-select" id="default-select" >
                         <select name="educational_level[]" id="educational_level">
                             <?php foreach ($educational_level as $key => $value) { ?>
-                                  <option value="<?= $key ?>" > <?= $value ?> </option>
+                                  <option value="<?= $key ?>" <?= $educational[$i]->level == $key ? 'selected' : '' ?> > <?= $value ?> </option>
                             <?php } ?>
                         </select>
                     </div>
@@ -141,23 +141,23 @@
                   </div>
                 </div>
               </div>
-            <?php } ?>
+              <?php } ?>
 
               <div class="col-sm-12" style="margin-top: -40px;">
                 <button id="add-educational" class="extra-button-small pull-right" onclick="append_component(event, 'educational-part');">+</button>
-                <button id="remove-educational" class="extra-button-small danger pull-right" onclick="remove_component(event, 'educational-part');">x</button>
+                <button id="remove-educational" class="extra-button-small danger pull-right" onclick="remove_component(event, 'educational-part', '');">x</button>
               </div>
             </div>
 
             <div class="row tabcontent hide" id="achievement">
-              
+              <?php for ($i=0; $i < max (count($achievement), 1) ; $i++) { ?>
               <div id="achievement-part" style="display: contents;">
                 <div class="col-sm-2">
                   <h6>Tingkat</h6>
                     <div class="form-select" id="default-select" >
                         <select name="achievement_level[]" id="achievement_level">
                             <?php foreach ($achievement_level as $key => $value) { ?>
-                                  <option value="<?= $key ?>" > <?= $value ?> </option>
+                                  <option value="<?= $key ?>" <?= $achievement[$i]->level == $key ? 'selected' : '' ?> > <?= $value ?> </option>
                             <?php } ?>
                         </select>
                     </div>
@@ -165,32 +165,34 @@
                 <div class="col-sm-2">
                   <h6>Tahun</h6>
                   <div class="form-group">
-                    <input class="form-control" name="year[]" value="" id="year" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Perolehan'" oninput="numberOnly('year')" placeholder = 'Tahun Perolehan' required>
+                    <input class="form-control" name="year[]" value="<?=$achievement[$i]->year?>" id="year" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Perolehan'" oninput="numberOnly('year')" placeholder = 'Tahun Perolehan' required>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <h6>Nama Penghargaan</h6>
                   <div class="form-group">
-                    <input class="form-control" name="achievement_name[]" value="" id="achievement_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama Penghargaan'" placeholder = 'Nama Penghargaan' required>
+                    <input class="form-control" name="achievement_name[]" value="<?=$achievement[$i]->achievement_name?>" id="achievement_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama Penghargaan'" placeholder = 'Nama Penghargaan' required>
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <h6>Deskripsi</h6>
                   <div class="form-group">
-                    <input class="form-control" name="description[]" value="" id="description" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jelaskan secara singkat'" placeholder = 'Jelaskan secara singkat' required>
+                    <input class="form-control" name="description[]" value="<?=$achievement[$i]->description?>" id="description" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jelaskan secara singkat'" placeholder = 'Jelaskan secara singkat' required>
                   </div>
                 </div>
                 <div class="col-sm-2">
                   <h6>File</h6>
                   <div class="form-group">
-                     <input type="file" name="achievement_image[]" class="info-border circle small" id="achievement_image" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview-achievement')">
+                     <img id="preview-achievement-<?=$achievement[$i]->achievement_id?>" src="<?= $image_path . $achievement[$i]->image ?>" class="rounded image-preview" alt="Foto Penghargaan" width="200px"/>
+                     <input type="file" name="achievement_image[]" multiple class="info-border circle small" id="achievement_image" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview-achievement-<?=$achievement[$i]->achievement_id?>')">
                   </div>
                 </div>
               </div>
+              <?php } ?>
 
               <div class="col-sm-12" style="margin-top: -40px;">
                 <button id="add-achievement" class="extra-button-small pull-right" onclick="append_component(event, 'achievement-part');">+</button>
-                <button id="remove-achievement" class="extra-button-small danger pull-right" onclick="remove_component(event, 'achievement-part');">x</button>
+                <button id="remove-achievement" class="extra-button-small danger pull-right" onclick="remove_component(event, 'achievement-part', 'preview-achievement');">x</button>
               </div>
             </div>
             

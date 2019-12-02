@@ -17,17 +17,33 @@ function openTab(id) {
   $(tablinksId).removeClass("primary-border");
 }
 
-function append_component(event, id) {
+function append_component(event, id, preview_id) {
   var id = "#" + id;
-  var last_part = "div" + id + ":last"
-  $(id).clone().insertAfter(last_part);
+  var last_part = "div" + id + ":last";
+
+  var old_id, new_id;
+  if (preview_id != '') {
+    var $div = $('img[id^="' + preview_id + '"]:last');
+    var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
+    old_id = preview_id + '-' + (num - 1);
+    new_id = preview_id + '-' + num;
+  }
   event.preventDefault();
+
+  // $(last_part).html().replace(old_id, new_id).clone().insertAfter(last_part);
+  var new_component = replaceAll($(last_part)[0].outerHTML, old_id, new_id);
+  $($.parseHTML(new_component)).clone().insertAfter(last_part);
 }
 
 function remove_component(event, id) {
   var id = "#" + id;
+  var last_part = "div" + id + ":last"
   if ($('div' + id).length > 1) {
-    $(id + ':last').remove();
+    $(last_part).remove();
   }
   event.preventDefault();
+}
+
+function replaceAll(str, find, replace) {
+    return str.replace(new RegExp(find, 'g'), replace);
 }

@@ -51,16 +51,35 @@ class AccountModel extends CI_Model {
     }
 
     // education soft delete data
-    public function soft_delete_education($data) {
+    public function soft_delete_education($account_id) {
         $this->db->set('status', StatusDeleted);
         $this->db->set('update_time', 'NOW()', false);
-        $this->db->where('account_id', $data['account_id']);
+        $this->db->where('account_id', $account_id);
         $this->db->where('status', StatusActive);
         return $this->db->update('educational');
     }
 
-    public function educational($account_id){
+    public function educational_list($account_id){
         return $this->db->get_where('educational', array('account_id' => $account_id, 'status' => StatusActive))->result();
+    }
+
+    // achievement insert data
+    public function insert_achievement($data) {
+        return $this->db->insert('achievement', $data);
+    }
+
+    // achievement soft delete data
+    public function soft_delete_achievement($account_id) {
+        $this->db->set('status', StatusDeleted);
+        $this->db->set('update_time', 'NOW()', false);
+        $this->db->where('account_id', $account_id);
+        $this->db->where('status', StatusActive);
+        return $this->db->update('achievement');
+    }
+
+    // achievement get all data
+    public function achievement_list($account_id){
+        return $this->db->get_where('achievement', array('account_id' => $account_id, 'status' => StatusActive))->result();
     }
 
 
