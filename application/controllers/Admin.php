@@ -25,10 +25,15 @@ class Admin extends CI_Controller {
 		parent::__construct();
 		
 		$this->load->model('AccountModel');
+		$this->load->model('BlogModel');
 		$this->load->library('session');
     
         ini_set('display_error','off');
-        error_reporting(0);
+		error_reporting(0);
+
+		if($this->session->userdata('role') == 2){
+            redirect(base_url());
+        } 
     
     }   
     
@@ -40,10 +45,7 @@ class Admin extends CI_Controller {
 
     public function course(){
 
-        if($this->session->userdata('role') == 2){
-            redirect(base_url());
-        }
-
+       
 		$this->load->view('side/header');
         $this->load->view('admin/course');
 		$this->load->view('side/footer');
@@ -52,7 +54,15 @@ class Admin extends CI_Controller {
     public function sv_course(){
 		echo '';
 		
-    }
+	}
 
+	public function blog_category(){
+
+		$data['all_category'] = $this->BlogModel->all_category();
+
+		$this->load->view('side/header');
+		$this->load->view('blog/admin/category', $data);
+		$this->load->view('side/footer');
+	}
 
 }

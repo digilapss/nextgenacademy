@@ -63,6 +63,16 @@ class BlogModel extends CI_Model {
         return $this->db->get('blog_category');
         
     }
+    public function add_category($data){
+
+        return $this->db->insert('blog_category', $data);
+    }
+    public function update_category($data, $get_id){
+
+        $this->db->set($data);
+        $this->db->where('blog_category_id', $get_id);
+        return $this->db->update('blog_category');
+    }
 
     // category_list
 }
