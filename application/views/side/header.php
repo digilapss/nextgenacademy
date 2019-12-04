@@ -103,7 +103,7 @@
                                             } else {
                                                 ?>
                                                     <a class="dropdown-item" href="<?= base_url() ?>admin/blog">Blog</a> 
-                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/category">Blog Category</a> 
+                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/blog_category">Blog Category</a> 
                                                     <a class="dropdown-item" href="<?= base_url() ?>course/member">My Course</a>
                                                 <?
                                             }

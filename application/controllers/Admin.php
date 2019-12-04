@@ -31,7 +31,7 @@ class Admin extends CI_Controller {
         ini_set('display_error','off');
 		error_reporting(0);
 
-		if($this->session->userdata('role') == 2){
+		if($this->session->userdata('role') == 1){
             redirect(base_url());
         } 
     
