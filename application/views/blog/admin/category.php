@@ -40,9 +40,7 @@
             </thead>
             <tbody>
               <? $i = 1;
-                foreach($all_category->result() as $row_category ){
-
-                
+                foreach($all_category->result() as $row_category ){                
               ?>
               <tr>
                 <th scope="row"><?= $i++ ?></th>

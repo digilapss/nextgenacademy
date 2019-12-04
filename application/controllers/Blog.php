@@ -26,6 +26,7 @@ class Blog extends CI_Controller {
 		
 		$this->load->model('BlogModel');
 		$this->load->library('session');
+		$this->load->library('upload');
     
         ini_set('display_error','off');
         error_reporting(0);
@@ -122,6 +123,7 @@ class Blog extends CI_Controller {
     }
 
     public function category(){
+
         $get_category = $this->uri->segment(3);
         if(!$get_category || empty($get_category)){
             show_404();
@@ -159,6 +161,10 @@ class Blog extends CI_Controller {
 		if($this->session->userdata('role') == 2){
             redirect(base_url());
         } 
+		if(!$this->session->userdata('account_id')){
+            redirect(base_url());
+        } 
+
 
         $data['category_name'] = $this->input->post('category');
         $data['status'] = $this->input->post('status');

@@ -58,11 +58,74 @@ class Admin extends CI_Controller {
 
 	public function blog_category(){
 
+		if(!$this->session->userdata('account_id')){
+            redirect(base_url());
+		} 
+		
 		$data['all_category'] = $this->BlogModel->all_category();
 
 		$this->load->view('side/header');
 		$this->load->view('blog/admin/category', $data);
 		$this->load->view('side/footer');
+	}
+
+	public function blog(){
+
+		if(!$this->session->userdata('account_id')){
+            redirect(base_url());
+		} 
+
+
+		$data['category'] = $this->BlogModel->all_category();
+		
+		$this->load->view('side/header');
+		$this->load->view('blog/admin/add_blog', $data);
+		$this->load->view('side/footer');
+
+	}
+
+	public function add_blog(){
+
+		$data['title'] = $this->input->post('title');
+		$data['description'] = $this->input->post('deskripsi');
+		$data['blog_category_id'] = $this->input->post('category');
+		$data['create_by'] = $this->session->userdata('account_id');
+		$data['ip_address'] = $_SERVER["REMOTE_ADDR"];
+		
+		$config['upload_path']          = './blog_image/';
+		$config['allowed_types']        = 'jpeg|jpg|png';
+		$config['max_size']             = 2000;
+
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+
+		if ( ! $this->upload->do_upload('blogfile')) {
+
+			$this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert"><small>Gagal Upload Blog</small></div>');
+
+			redirect(base_url().'admin/blog');
+
+		} else {
+
+			$do_upload = $this->upload->data();
+			$data['image_blog'] = $do_upload['file_name'];
+			
+			$this->BlogModel->add_blog($data);
+			if(!$this->db->affected_rows()){ 
+				# code...
+				$this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert"><small>Gagal Tambah Blog</small></div>');
+
+				redirect(base_url().'admin/blog');
+
+			} else {
+
+				$this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert"><small>Berhasil Tambah Blog</small></div>');
+
+				redirect(base_url().'admin/blog');
+			}
+
+		}
+		
 	}
 
 }

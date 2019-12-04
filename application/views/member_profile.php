@@ -9,6 +9,9 @@
                         <div class="breadcrumb_iner_item">
                             <h2>Profile</h2>
                             <!-- <p> </p> -->
+                            <div class="">
+                              <a href="#" class="btn_1" data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 12px; padding: 10px 12px;"> <i class="fa fa-lock"></i> Update Password</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -22,56 +25,16 @@
     <div class="container">
     
       <div class="row">
-        <div class="col-12">
-          <h2 class="contact-title">Profile</h2>
-        </div>
-        <div class="col-lg-4">
-          <div class="media contact-info">
-            <span class="contact-info__icon">
-                <img src="<?= $this->session->userdata('image') ?>" width="70px" class="rounded" alt="">
-            </span>
-            <div class="media-body">
-              <h3><?= $this->session->userdata('name') ?></h3>
-              <p><?php if($this->session->userdata('role') == 2){ echo 'Member'; } else { echo 'Admin'; } ?></p>
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-email"></i></span>
-            <div class="media-body">
-              <h3><?= $this->session->userdata('email') ?></h3>
-              <!-- <p>Send us your query anytime!</p> -->
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-tablet"></i></span>
-            <div class="media-body">
-              <h3><?= $this->session->userdata('phone_number') ?></h3>
-              <!-- <p></p> -->
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-home"></i></span>
-            <div class="media-body">
-              <h3>Alamat </h3>
-              <p><?= $this->session->userdata('address') ?></p>
-            </div>
-          </div>
-          <div class="media contact-info">
-            <span class="contact-info__icon"><i class="ti-user"></i></span>
-            <div class="media-body">
-              <h3> <?= $gender[$this->session->userdata('gender')] ?></h3>
-              <!-- <p></p> -->
-            </div>
-          </div>
-          <div class="form-group mt-3 pull-left">
-                <a href="#" class="btn_2" data-toggle="modal" data-target="#exampleModalCenter" style="font-size: 12px; padding: 10px 12px;"> <i class="fa fa-lock"></i> Update Password</a>
-            </div>
-        </div>
 
-        <div class="col-lg-8">
+        <div class="col-lg-12">
+          <div class="genric-btn col-sm-2 primary tablinks" id="tab-general" onclick="openTab('general')">General</div>
+          <div class="genric-btn col-sm-2 primary-border tablinks" id="tab-educational" onclick="openTab('educational')">Pendidikan</div>
+          <div class="genric-btn col-sm-2 primary-border tablinks" id="tab-achievement" onclick="openTab('achievement')" style="margin-bottom: 10px;">Prestasi</div>
+
           <?= $this->session->flashdata('signup_alert') ?>
-          <form class="form-contact"  action="<?= base_url().'user/profile_update' ?>" method="post"  enctype="multipart/form-data" onsubmit="return cek_form_profile(this)" >
-            <div class="row">
+          <form class="form-contact mt-10"  action="<?= base_url().'user/profile_update' ?>" method="post"  enctype="multipart/form-data" onsubmit="return cek_form_profile(this)" >
+            
+            <div class="row tabcontent" id="general">
               <div class="col-sm-6">
                 <h6>Nama Lengkap</h6>
                 <div class="form-group">
@@ -93,7 +56,7 @@
               <div class="col-sm-6">
                 <h6>Telephone</h6>
                 <div class="form-group">
-                  <input class="form-control number-only" name="phone_number" value="<?= $this->session->userdata('phone_number') ?>" id="telephone" type="text" oninput="isNumber()" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nomor Telephone'" placeholder = 'Masukkan Nomor Telephone' required>
+                  <input class="form-control" name="phone_number" value="<?= $this->session->userdata('phone_number') ?>" id="telephone" type="text" oninput="numberOnly('telephone')" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Nomor Telephone'" placeholder = 'Masukkan Nomor Telephone' required>
                 </div>
               </div>
               <div class="col-sm-6">
@@ -106,8 +69,7 @@
               <div class="col-sm-6">
                 <h6>Jenis Kelamin</h6>
                 <div class="input-group-icon mt-10">
-                    <div class="icon"><i class="fa fa-user" aria-hidden="true"></i></div>
-                    <div class="form-select" id="default-select" >
+                    <div class="form-select with-padding" id="default-select" >
                         <div clas="gender_alert"></div>
                         <select name="gender" id="gender">
                             <?php foreach ($gender as $key => $value) { ?>
@@ -126,13 +88,114 @@
               <div class="col-sm-6">
                 <h6>Foto</h6>
                 <div class="form-group">
-                    <input type="file" name="filefoto" class="info-border circle small" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
+                    <input type="file" name="user_image" class="info-border circle small" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
                </div>
               </div>
               <div class="col-sm-6">
                   <img id="preview" src="<?= $this->session->userdata('image') ?>" class="rounded" alt="" width="200px"/>
               </div>
             </div>
+            <!-- <div class="row_form"></div> -->
+
+            <div class="row tabcontent hide" id="educational"> 
+              <?php for ($i=0; $i < max (count($educational), 1) ; $i++) { ?>
+              <div id="educational-part" style="display: contents;">
+                <div class="col-sm-2">
+                  <h6>Tingkat</h6>
+                    <div class="form-select" id="default-select" >
+                        <select name="educational_level[]" id="educational_level">
+                            <?php foreach ($educational_level as $key => $value) { ?>
+                                  <option value="<?= $key ?>" <?= $educational[$i]->level == $key ? 'selected' : '' ?> > <?= $value ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-1">
+                  <h6>Masuk</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="year_in[]" value="<?=$educational[$i]->year_in?>" id="year_in" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Masuk'" oninput="numberOnly('year_in')" placeholder = 'Tahun Masuk' required>
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <h6>Lulus</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="year_out[]" oninput="numberOnly('year_out')" value="<?=$educational[$i]->year_out?>" id="year_out" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Lulus'" placeholder = 'Tahun Lulus' required>
+                  </div>
+                </div>  
+                <div class="col-sm-3">
+                  <h6>Nama Institusi</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="institution_name[]" value="<?=$educational[$i]->institution_name?>" id="institution_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama Sekolah/Universitas'" placeholder = 'Nama Sekolah/Universitas' required>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <h6>Jurusan</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="major[]" value="<?=$educational[$i]->major?>" id="major" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jurusan/Bidang'" placeholder = 'Jurusan/Bidang' required>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <h6>Kota/Kab.</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="city[]" value="<?=$educational[$i]->city?>" id="city" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Kota/Kabupaten'" placeholder = 'Kota/Kabupaten' required>
+                  </div>
+                </div>
+              </div>
+              <?php } ?>
+
+              <div class="col-sm-12" style="margin-top: -40px;">
+                <button id="add-educational" class="extra-button-small pull-right" onclick="append_component(event, 'educational-part');">+</button>
+                <button id="remove-educational" class="extra-button-small danger pull-right" onclick="remove_component(event, 'educational-part', '');">x</button>
+              </div>
+            </div>
+
+            <div class="row tabcontent hide" id="achievement">
+              <?php for ($i=0; $i < max (count($achievement), 1) ; $i++) { ?>
+              <div id="achievement-part" style="display: contents;">
+                <div class="col-sm-2">
+                  <h6>Tingkat</h6>
+                    <div class="form-select" id="default-select" >
+                        <select name="achievement_level[]" id="achievement_level">
+                            <?php foreach ($achievement_level as $key => $value) { ?>
+                                  <option value="<?= $key ?>" <?= $achievement[$i]->level == $key ? 'selected' : '' ?> > <?= $value ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                  <h6>Tahun</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="year[]" value="<?=$achievement[$i]->year?>" id="year" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Tahun Perolehan'" oninput="numberOnly('year')" placeholder = 'Tahun Perolehan' required>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <h6>Nama Penghargaan</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="achievement_name[]" value="<?=$achievement[$i]->achievement_name?>" id="achievement_name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Nama Penghargaan'" placeholder = 'Nama Penghargaan' required>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <h6>Deskripsi</h6>
+                  <div class="form-group">
+                    <input class="form-control" name="description[]" value="<?=$achievement[$i]->description?>" id="description" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Jelaskan secara singkat'" placeholder = 'Jelaskan secara singkat' required>
+                  </div>
+                </div>
+                <div class="col-sm-2">
+                  <h6>File</h6>
+                  <div class="form-group">
+                     <img id="preview-achievement-<?=$achievement[$i]->achievement_id?>" src="<?= $image_path . $achievement[$i]->image ?>" class="rounded image-preview" alt="Foto Penghargaan" width="200px"/>
+                     <input type="file" name="achievement_image[]" multiple class="info-border circle small" id="achievement_image" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview-achievement-<?=$achievement[$i]->achievement_id?>')">
+                  </div>
+                </div>
+              </div>
+              <?php } ?>
+
+              <div class="col-sm-12" style="margin-top: -40px;">
+                <button id="add-achievement" class="extra-button-small pull-right" onclick="append_component(event, 'achievement-part');">+</button>
+                <button id="remove-achievement" class="extra-button-small danger pull-right" onclick="remove_component(event, 'achievement-part', 'preview-achievement');">x</button>
+              </div>
+            </div>
+            
             <div class="form-group mt-3 pull-right">
               <button type="submit" class="button button-contactForm btn_1" id="sv_profile">Simpan Profile</button>
               <button type="button" class="button button-contactForm btn_1" id="load_profile"><i class="fa fa-spinner fa-spin"></i> Loading...</button>

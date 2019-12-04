@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class User extends CI_Controller {
+require_once APPPATH.'/controllers/MyController.php';
+
+class User extends My_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -24,6 +26,8 @@ class User extends CI_Controller {
 
 		parent::__construct();
 		
+		// $this->load->controller('Uploader');
+
 		$this->load->model('AccountModel');
 		$this->load->model('Constant');
 		$this->load->library('session');
@@ -76,9 +80,7 @@ class User extends CI_Controller {
 
 	}
 
-	public function signup()
-	{
-
+	public function signup() {
 		if (
 
 			$this->input->post('full_name') &&
@@ -165,8 +167,17 @@ class User extends CI_Controller {
 			return;
 		}
 
+		$account_id = $this->session->userdata('account_id');
+
 		$data = array();
 		$data['gender'] = $this->Constant->gender();
+		$data['educational_level'] = $this->Constant->educational_level();
+		$data['achievement_level'] = $this->Constant->achievement_level();
+
+		$data['educational'] = $this->AccountModel->educational_list($account_id);
+		$data['achievement'] = $this->AccountModel->achievement_list($account_id);
+
+		$data['image_path'] = base_url() . 'asset/img/user/';
 
 		$this->load->view('side/header');
 		$this->load->view('member_profile', $data);
@@ -175,7 +186,6 @@ class User extends CI_Controller {
 	}
 
 	public function profile_update(){
-
 		if(!$this->session->userdata('account_id')){
 			show_404();
 		}
@@ -188,79 +198,74 @@ class User extends CI_Controller {
 		$data['gender'] = $this->input->post('gender');
 		$data['address'] = $this->input->post('address');
 		$account_id = $this->session->userdata('account_id');
-		 
-		if($_FILES["filefoto"]["name"]){
 
-				
-			$nmfile = time().preg_replace("/[^A-Za-z0-9-]/", "-", $this->input->post('name'));
-			$config['upload_path'] = $_SERVER['DOCUMENT_ROOT'].'/img_user/';
-			$config['allowed_types'] = 'jpg|png|jpeg';
-			$config['max_size'] = 10000000;
-			$config['file_name'] = $nmfile;
+		// Update main info
+		$image_name = $this->upload_image('user_image', 'user', 'u_' . $account_id . '_' . $this->input->post('name'));
+		if ($image_name != "") {
+			$data['image'] = $image_name;
+		}
+		$this->AccountModel->update_profile($account_id, $data);
 
-			$this->upload->initialize($config);
-			if ($this->upload->do_upload('filefoto') ){
+		// Update educational background
+		if (count($this->input->post('educational_level')) > 0) {
+			$this->AccountModel->soft_delete_education($account_id);
+			for ($i= 0; $i < count($this->input->post('educational_level')); $i++) { 
+				$data_educational['level'] = $this->input->post('educational_level')[$i];
+				$data_educational['year_in'] = $this->input->post('year_in')[$i];
+				$data_educational['year_out'] = $this->input->post('year_out')[$i];
+				$data_educational['institution_name'] = $this->input->post('institution_name')[$i];
+				$data_educational['major'] = $this->input->post('major')[$i];
+				$data_educational['city'] = $this->input->post('city')[$i];
+				$data_educational['status'] = StatusActive;
+				$data_educational['account_id'] = $account_id;
 
-				$gbr = $this->upload->data();
+				$this->AccountModel->insert_education($data_educational);
+			}
+		}
 
-				$data['image'] = base_url().'img_user/'.$gbr['file_name'] ;
-				
-				$this->AccountModel->update_profile($account_id, $data);
+		// Update achievement
+		if (count($this->input->post('achievement_level')) > 0) {
+			$this->AccountModel->soft_delete_achievement($account_id);
+			for ($i= 0; $i < count($this->input->post('achievement_level')); $i++) { 
+				$data_achievement['level'] = $this->input->post('achievement_level')[$i];
+				$data_achievement['year'] = $this->input->post('year')[$i];
+				$data_achievement['achievement_name'] = $this->input->post('achievement_name')[$i];
+				$data_achievement['description'] = $this->input->post('description')[$i];
+				$data_achievement['status'] = StatusActive;
+				$data_achievement['account_id'] = $account_id;
 
-				if ($this->db->affected_rows()) {
+				$_FILES['file']['name']     = $_FILES['achievement_image']['name'][$i];
+                $_FILES['file']['type']     = $_FILES['achievement_image']['type'][$i];
+                $_FILES['file']['tmp_name'] = $_FILES['achievement_image']['tmp_name'][$i];
+                $_FILES['file']['error']    = $_FILES['achievement_image']['error'][$i];
+                $_FILES['file']['size']     = $_FILES['achievement_image']['size'][$i];
 
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-success" role="alert">
-						Update profile berhasil upload
-						</div>') ;
-
-					$index_course = MEMBER_UPDATE;
-
-					$login = $this->AccountModel->account_byId($account_id);
-					$this->session_member_byId($login, $index_course );
-
-
-				} else {
-
-
-					$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-							Update Profile Gagal upload save data
-						</div>') ;
-					redirect(base_url().'user/profile');
-
+				$image_name = $this->upload_image('file', 'user', 'acv_' . $account_id . '_' . $this->input->post('achievement_name')[$i]);
+				if ($image_name != "") {
+					$data_achievement['image'] = $image_name;
 				}
 
-			} else {
-
-				$this->session->set_flashdata('signup_alert', '<div class="alert alert-danger" role="alert">
-						Update Profile Gagal Upload Foto
-					</div>') ;
-				redirect(base_url().'user/profile');
-
-
+				$this->AccountModel->insert_achievement($data_achievement);
 			}
+		}
+
+		if(!$this->db->affected_rows()){
+
+			$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
+					<i class="fa fa-check"></i> Tidak ada upload profile
+				</div>  ') ;
+			redirect(base_url().'user/profile');
 
 		} else {
 
-			$this->AccountModel->update_profile($account_id, $data);
+			$index_course = MEMBER_UPDATE;
 
-			if(!$this->db->affected_rows()){
-
-				$this->session->set_flashdata('signup_alert', '<div class="alert alert-warning" role="alert">
-						<i class="fa fa-check"></i> Tidak ada upload profile
-					</div>  ') ;
-				redirect(base_url().'user/profile');
-
-			} else {
-
-				$index_course = MEMBER_UPDATE;
-
-				$login = $this->AccountModel->account_byId($account_id);
-				$this->session_member_byId($login, $index_course );
-
-
-			}
+			$login = $this->AccountModel->account_byId($account_id);
+			$this->session_member_byId($login, $index_course );
 
 		}
+
+		
 	}
 
 	public function session_member_byId($login, $index_course){
@@ -278,7 +283,7 @@ class User extends CI_Controller {
 									   'born_date' => $row->born_date,
 									   'gender' => $row->gender,
 									   'role' => $row->role,
-									   'image' => $row->image,
+									   'image' => base_url() . 'asset/img/user/' .$row->image,
 									   'instagram_id' => $row->instagram_id,
 									   'phone_number' => $row->phone_number,
 									   'ip_address' => $row->ip_address,

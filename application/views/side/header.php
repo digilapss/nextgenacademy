@@ -97,11 +97,18 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <?php 
                                             if($this->session->userdata('role') === 2 ){
-                                                echo '<a class="dropdown-item" href="'.base_url().'admin/course">Course</a>';
+                                             ?> 
+                                                <a class="dropdown-item" href="'.base_url().'admin/course">Course</a> 
+                                             <?
                                             } else {
-                                                echo '<a class="dropdown-item" href="'.base_url().'course/member">My Course</a>' ;
+                                                ?>
+                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/blog">Blog</a> 
+                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/category">Blog Category</a> 
+                                                    <a class="dropdown-item" href="<?= base_url() ?>course/member">My Course</a>
+                                                <?
                                             }
                                         ?>
+
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/logout">Sign Out</a>
                                     </div>

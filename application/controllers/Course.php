@@ -171,7 +171,6 @@ class Course extends CI_Controller {
 					'payment_id' => $payment_id,
 					'create_time' => date('Y-m-d H:i:s'),
 					'update_time' => date('Y-m-d H:i:s'),
-					'update_by' => $data_course['course_name_pemateri'],
 					'status' => $data_course['course_fee'] === 0 ? 1 : 2 , 
 					'ip_address' => $_SERVER["REMOTE_ADDR"],
 				);
@@ -203,7 +202,6 @@ class Course extends CI_Controller {
 		}
 
 	}
-
 	
 
 	public function apply_course_wa($index_course){
@@ -220,7 +218,6 @@ class Course extends CI_Controller {
 
 			$this->load->view('side/header_signin');
 			$this->load->view('apply_course_wa', $data);
-			$this->load->view('side/footer');
 		}
 
 	}	
