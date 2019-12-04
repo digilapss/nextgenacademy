@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="<?php echo base_url() ?>asset/css/style.css">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+    <script src="<?php echo base_url() ?>asset/js/jquery-1.12.1.min.js"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=<?= getenv('GA_KEY') ?>"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -96,11 +97,18 @@
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <?php 
                                             if($this->session->userdata('role') === 2 ){
-                                                echo '<a class="dropdown-item" href="'.base_url().'admin/course">Course</a>';
+                                             ?> 
+                                                <a class="dropdown-item" href="'.base_url().'admin/course">Course</a> 
+                                             <?
                                             } else {
-                                                echo '<a class="dropdown-item" href="'.base_url().'course/member">My Course</a>' ;
+                                                ?>
+                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/blog">Blog</a> 
+                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/category">Blog Category</a> 
+                                                    <a class="dropdown-item" href="<?= base_url() ?>course/member">My Course</a>
+                                                <?
                                             }
                                         ?>
+
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/logout">Sign Out</a>
                                     </div>

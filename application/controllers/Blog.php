@@ -26,6 +26,7 @@ class Blog extends CI_Controller {
 		
 		$this->load->model('BlogModel');
 		$this->load->library('session');
+		$this->load->library('upload');
     
         ini_set('display_error','off');
         error_reporting(0);
@@ -122,6 +123,7 @@ class Blog extends CI_Controller {
     }
 
     public function category(){
+
         $get_category = $this->uri->segment(3);
         if(!$get_category || empty($get_category)){
             show_404();
@@ -154,6 +156,67 @@ class Blog extends CI_Controller {
 
     }
 
+    public function add_category(){
+        
+		if($this->session->userdata('role') == 2){
+            redirect(base_url());
+        } 
+		if(!$this->session->userdata('account_id')){
+            redirect(base_url());
+        } 
+
+
+        $data['category_name'] = $this->input->post('category');
+        $data['status'] = $this->input->post('status');
+
+        if(empty($this->input->post('category'))) {
+            
+            redirect(base_url().'admin/blog_category');
+        }
+
+        $this->BlogModel->add_category($data);
+        
+        if(!$this->db->affected_rows()){
+            
+            $this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert">
+                <p>Gagal</p>
+            </div>  ') ;
+            redirect(base_url().'admin/blog_category');
+
+        } else {
+
+            redirect(base_url().'admin/blog_category');
+            
+        }
+    }
+
+    public function update_category($get_id){
+        $data['category_name'] = $this->input->post('category');
+        $data['status'] = $this->input->post('status');
+        if(empty($data['category_name'])) {
+            
+            redirect(base_url().'admin/blog_category');
+        }
+
+
+        $this->BlogModel->update_category($data, $get_id);
+        
+        if(!$this->db->affected_rows()){
+            
+            $this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert">
+                <p>Gagal</p>
+            </div>  ') ;
+            redirect(base_url().'admin/blog_category');
+
+        } else {
+
+            $this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert">
+                <p>Update Berhasil</p>
+            </div>  ') ;
+            redirect(base_url().'admin/blog_category');
+            
+        }
+    }
 
 
 }

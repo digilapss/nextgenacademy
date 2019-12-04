@@ -15,6 +15,8 @@
             </div>
         </div>
     </section>
+
+
     <!-- breadcrumb start-->
     <!--================Blog Area =================-->
     <section class="blog_area section_padding">
@@ -29,7 +31,7 @@
                             <div class="blog_item_img">
                                 <img class="card-img rounded-0" src="<?= $row_blog->image_blog ?>" alt="">
                                 <a href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_blog->create_time).'/'.$row_blog->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_blog->title) ;  ?>" class="blog_item_date">
-                                    <h3><?= $row_blog->create_time ?></h3>
+                                    <h3><?=  date('d F Y', strtotime($row_blog->create_time)); ?></h3>
                                 </a>
                             </div>
 
