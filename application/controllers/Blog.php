@@ -94,7 +94,6 @@ class Blog extends CI_Controller {
             $data['name'] = $row_data->name;
 
             $data['category_name'] = $row_data->category_name;
-            $data['category_name'] = $row_data->category_name;
         }
         
         $data['comment_blog'] = $this->list_blog_comment($data['blog_id']); 

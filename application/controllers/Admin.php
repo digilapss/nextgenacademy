@@ -75,8 +75,25 @@ class Admin extends CI_Controller {
             redirect(base_url());
 		} 
 
+        $config['base_url'] = base_url()."admin/blog/" ;
+        $config['total_rows'] = $this->BlogModel->all_blog()->num_rows();
+        $data['total_blog'] = $config['total_rows'] ;
+        $config['per_page'] = 5;
+
+        $this->pagination->initialize($config);
+
+        $data = array(
+        //   'role' =>  ,
+          'limit' => $config['per_page'],
+          'start' => $this->uri->segment(3)
+        );
+
+        $data['all_blog'] = $this->BlogModel->all_blog_start($data);
+        $data['links'] = $this->pagination->create_links();
+
 
 		$data['category'] = $this->BlogModel->all_category();
+
 		
 		$this->load->view('side/header');
 		$this->load->view('blog/admin/add_blog', $data);
@@ -85,6 +102,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function add_blog(){
+		if(!$this->session->userdata('account_id')){
+            redirect(base_url());
+		} 
 
 		$data['title'] = $this->input->post('title');
 		$data['description'] = $this->input->post('deskripsi');
@@ -126,6 +146,50 @@ class Admin extends CI_Controller {
 
 		}
 		
+	}
+
+	public function edit_blog($blog_id){
+		if(!$this->session->userdata('account_id')){
+            redirect(base_url());
+		} 
+
+		$blog = $this->BlogModel->blogById($blog_id);
+
+		// var_dump($blog);
+		foreach ($blog->result() as $row_blog) {
+			# code...
+			$data['title'] = $row_blog->title;
+			$data['description'] = $row_blog->description;
+			$data['image_blog'] = $row_blog->image_blog;
+			$data['category_name'] = $row_blog->category_name;
+			$data['blog_category_id'] =	$row_blog->blog_category_id;
+			
+		}
+		
+		
+		$data['category'] = $this->BlogModel->all_category();
+
+		// var_dump($data);
+
+		$this->load->view('side/header');
+		$this->load->view('blog/admin/blog_edit.php', $data);
+		$this->load->view('side/footer');
+
+	}
+
+	public function delete_blog($blog_id){
+		if(!$this->session->userdata('account_id')){
+            redirect(base_url());
+		} 
+
+		$this->BlogModel->delete_blog_id($blog_id);
+
+		$this->session->set_flashdata('alert', '<div class="alert alert-info" role="alert"><p>Delete Blog Success</p></div>');
+
+		redirect(base_url().'admin/blog');
+
+
+
 	}
 
 }
