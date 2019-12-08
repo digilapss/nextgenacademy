@@ -30,7 +30,7 @@
 
     <div class="col-lg-12">
       <?= $this->session->flashdata('signup_alert') ?>
-      <form class="form-contact"  action="<?= base_url().'admin/add_blog' ?>" method="post" enctype="multipart/form-data" >
+      <form class="form-contact"  action="<?= base_url().'blog/update_blog/'.$blog_id ?>" method="post" >
         <div class="row">
 
             <div class="col-sm-12">
@@ -48,7 +48,7 @@
                                 foreach ($category->result() as $row_category) {
                                     # code...
                             ?>
-                                <option value="<?= $row_category->blog_category_id ?>" <?= $row_category->blog_category_id   == $blog_category_id  ? 'selected' : ' '  ?> ><?= $row_category->category_name ?></option>
+                                <option value="<?= $row_category->blog_category_id ?>" <?= $row_category->blog_category_id == $blog_category_id  ? 'selected' : ' '  ?> ><?= $row_category->category_name ?></option>
                             <? } ?>
                         </select>
                 </div>
@@ -63,11 +63,32 @@
             </div>
 
             <div class="col-sm-12 mt-30">
-               <!-- Button trigger modal -->
+                
                <img src="<?= $image_blog ?>" alt="">
+            </div>
+
+            <div class="col-sm-12 mt-30">
+               <!-- Button trigger modal -->
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#staticBackdrop">
                     Ubah Image blog
                 </button>
+
+            </div>
+
+                    
+
+        </div>
+        <div class="form-group mt-30 pull-right">
+          <button type="submit" class="button button-contactForm btn_1" >Update Blog</button>
+        </div>
+
+        
+      </form>
+    </div>
+  </div>
+</div>
+</section>
+<!-- ================ contact section end ================= -->
 
                 <!-- Modal -->
                 <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -80,32 +101,19 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            
+                            <form action="<?= base_url() ?>blog/update_blog_image" method="post" enctype="multipart/form-data" >
+                                <div class="input-form">
+                                  <input type="file" class="form-control" required>
+                                </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary btn-sm">Update</button>
+                            <button type="button" class="btn btn-primary btn-sm">Update Image</button>
+                            </form>
                         </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-                    
-
-        </div>
-        <div class="form-group mt-30 pull-right">
-          <button type="submit" class="button button-contactForm btn_1" id="sv_profile">Simpan Category</button>
-        </div>
-
-        
-      </form>
-    </div>
-  </div>
-</div>
-</section>
-<!-- ================ contact section end ================= -->
-
 <script>
 
 var ckEditorID;

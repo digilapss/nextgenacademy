@@ -159,6 +159,7 @@ class Admin extends CI_Controller {
 		foreach ($blog->result() as $row_blog) {
 			# code...
 			$data['title'] = $row_blog->title;
+			$data['blog_id'] = $row_blog->blog_id;
 			$data['description'] = $row_blog->description;
 			$data['image_blog'] = $row_blog->image_blog;
 			$data['category_name'] = $row_blog->category_name;

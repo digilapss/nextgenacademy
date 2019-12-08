@@ -96,4 +96,10 @@ class BlogModel extends CI_Model {
         return $this->db->delete('blog', array('blog_id' => $blog_id ));
     }
 
+    public function update_blog($data, $blog_id){
+        $this->db->set($data);
+        $this->db->where('blog_id', $blog_id);
+        return $this->db->update('blog');
+    }
+
 }
