@@ -112,7 +112,7 @@ class Admin extends CI_Controller {
 		$data['create_by'] = $this->session->userdata('account_id');
 		$data['ip_address'] = $_SERVER["REMOTE_ADDR"];
 		
-		$config['upload_path']          = './img/blog_image/';
+		$config['upload_path']          = './img/blog/';
 		$config['allowed_types']        = 'jpeg|jpg|png';
 		$config['max_size']             = 2000;
 
@@ -181,7 +181,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function delete_blog($blog_id){
-		
+
 		if(!$this->session->userdata('account_id')){
             redirect(base_url());
 		} 
