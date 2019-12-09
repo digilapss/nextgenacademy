@@ -2,16 +2,24 @@
 
 class MentorModel extends CI_Model {
 
-    public function popular_mentor($limit){
-
-        
-        $this->db->select('*');
-        $this->db->from('course c');
-        $this->db->join('schedule s' , 'c.course_id = s.course_id');
-        $this->db->join('course_category b ' , 'c.course_category_id = b.course_category_id');
-        $this->db->join('account a' , 'a.account_id = s.account_id');
+    public function popular_mentor($limit) {
+        $this->db->distinct();     
+        $this->db->select('a.*');
+        $this->db->from('account a');
+        $this->db->join('educational e', 'a.account_id = e.account_id');
+        $this->db->where('e.educational_id >', 0);
         $this->db->limit($limit);
-        return $this->db->get();
-    }	
+        $data = $this->db->get()->result_array();
+        for ($i=0; $i < count($data); $i++) { 
+            $data[$i]['educational'] = $this->educational_relation($data[$i]['account_id']);
+        }
+        return $data;
+    }
+
+    public function educational_relation($account_id) {
+        $this->db->limit(1);
+        $this->db->order_by("year_in", "desc");
+        return $this->db->get_where('educational', array('account_id' => $account_id))->result()[0];
+    }
 
 }

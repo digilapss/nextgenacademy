@@ -39,7 +39,7 @@
               </tr>
             </thead>
             <tbody>
-              <? $i = 1;
+              <?php $i = 1;
                 foreach($all_category->result() as $row_category ){                
               ?>
               <tr>
@@ -66,7 +66,7 @@
                   </div>
                 </td>
               </tr>
-                <? } ?>
+                <?php } ?>
             </tbody>
           </table>
         </div>
@@ -89,7 +89,6 @@
               <div class="col-sm-6">
                 <h6>Status</h6>
                 <div class="input-group-icon mt-10">
-                    <div class="icon"><i class="fa fa-link" aria-hidden="true"></i></div>
                     <div class="form-select" id="default-select" >
                         <div clas="gender_alert"></div>
                         <select name="status" id="status">

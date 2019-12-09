@@ -21,18 +21,19 @@ function append_component(event, id, preview_id) {
   var id = "#" + id;
   var last_part = "div" + id + ":last";
 
-  var old_id, new_id;
+  var old_id, new_id, new_component;
   if (preview_id != '') {
     var $div = $('img[id^="' + preview_id + '"]:last');
     var num = parseInt( $div.prop("id").match(/\d+/g), 10 ) +1;
     old_id = preview_id + '-' + (num - 1);
     new_id = preview_id + '-' + num;
+    new_component = replaceAll($(last_part)[0].outerHTML, old_id, new_id);
+  } else {
+    new_component = $(last_part)[0].outerHTML;
   }
-  event.preventDefault();
 
-  // $(last_part).html().replace(old_id, new_id).clone().insertAfter(last_part);
-  var new_component = replaceAll($(last_part)[0].outerHTML, old_id, new_id);
   $($.parseHTML(new_component)).clone().insertAfter(last_part);
+  event.preventDefault();
 }
 
 function remove_component(event, id) {

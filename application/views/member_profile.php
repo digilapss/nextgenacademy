@@ -28,6 +28,7 @@
 
         <div class="col-lg-12">
           <div class="genric-btn col-sm-2 primary tablinks" id="tab-general" onclick="openTab('general')">General</div>
+          <div class="genric-btn col-sm-2 primary-border tablinks" id="tab-about-me" onclick="openTab('about-me')">Tentang Saya</div>
           <div class="genric-btn col-sm-2 primary-border tablinks" id="tab-educational" onclick="openTab('educational')">Pendidikan</div>
           <div class="genric-btn col-sm-2 primary-border tablinks" id="tab-achievement" onclick="openTab('achievement')" style="margin-bottom: 10px;">Prestasi</div>
 
@@ -79,26 +80,47 @@
                     </div>
                 </div>
               </div>
-              <div class="col-12">
+              <div class="col-sm-6">
                 <h6>Alamat</h6>
                 <div class="form-group">
                     <textarea class="form-control w-100" name="address"  id="address" cols="20" rows="4" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Alamat'" placeholder = 'Alamat'><?= $this->session->userdata('address') ?></textarea>
                 </div>
               </div>
-              <div class="col-sm-6">
+              <div class="col-sm-3">
                 <h6>Foto</h6>
                 <div class="form-group">
-                    <input type="file" name="user_image" class="info-border circle small" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
+                    <img id="preview" src="<?= $this->session->userdata('image') ?>" class="rounded" alt="" width="200px"/>
+                    <input type="file" name="user_image" class="info-border circle small" value="asdasd" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview')">
                </div>
-              </div>
-              <div class="col-sm-6">
-                  <img id="preview" src="<?= $this->session->userdata('image') ?>" class="rounded" alt="" width="200px"/>
               </div>
             </div>
             <!-- <div class="row_form"></div> -->
 
+            <div class="row tabcontent hide" id="about-me">
+              <div class="col-sm-6">
+                <h6>Status</h6>
+                <div class="input-group-icon mt-10">
+                    <div class="form-select with-padding" id="default-select" >
+                        <div clas="gender_alert"></div>
+                        <select name="role" id="role">
+                            <?php foreach ($role as $key => $value) { ?>
+                                  <option value="<?= $key ?>" <?php if ($this->session->userdata('role') == $key) echo "selected" ?> > <?= $value ?> </option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+              </div>
+              <div class="col-6">
+                <h6>Tentang saya</h6>
+                <div class="form-group">
+                    <textarea class="form-control w-100" name="about_me"  id="about_me" cols="20" rows="4" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Deskripsi tentang kamu'" placeholder = 'Deskripsi tentang kamu'> <?= $this->session->userdata('about_me') ?> </textarea>
+                </div>
+              </div>
+            </div>
+
             <div class="row tabcontent hide" id="educational"> 
               <?php for ($i=0; $i < max (count($educational), 1) ; $i++) { ?>
+              <input type="hidden" name="educational_id[]" value="<?=$educational[$i]->educational_id?>">
               <div id="educational-part" style="display: contents;">
                 <div class="col-sm-2">
                   <h6>Tingkat</h6>
@@ -144,13 +166,14 @@
               <?php } ?>
 
               <div class="col-sm-12" style="margin-top: -40px;">
-                <button id="add-educational" class="extra-button-small pull-right" onclick="append_component(event, 'educational-part');">+</button>
+                <button id="add-educational" class="extra-button-small pull-right" onclick="append_component(event, 'educational-part', '');">+</button>
                 <button id="remove-educational" class="extra-button-small danger pull-right" onclick="remove_component(event, 'educational-part', '');">x</button>
               </div>
             </div>
 
             <div class="row tabcontent hide" id="achievement">
               <?php for ($i=0; $i < max (count($achievement), 1) ; $i++) { ?>
+              <input type="hidden" name="achievement_id[]" value="<?=$achievement[$i]->achievement_id?>">
               <div id="achievement-part" style="display: contents;">
                 <div class="col-sm-2">
                   <h6>Tingkat</h6>
@@ -191,8 +214,8 @@
               <?php } ?>
 
               <div class="col-sm-12" style="margin-top: -40px;">
-                <button id="add-achievement" class="extra-button-small pull-right" onclick="append_component(event, 'achievement-part');">+</button>
-                <button id="remove-achievement" class="extra-button-small danger pull-right" onclick="remove_component(event, 'achievement-part', 'preview-achievement');">x</button>
+                <button id="add-achievement" class="extra-button-small pull-right" onclick="append_component(event, 'achievement-part', 'preview-achievement');">+</button>
+                <button id="remove-achievement" class="extra-button-small danger pull-right" onclick="remove_component(event, 'achievement-part');">x</button>
               </div>
             </div>
             

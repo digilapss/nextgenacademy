@@ -23,12 +23,19 @@ class Constant extends CI_Model {
 		);
 	}
 
-	function achievement_level($value='') {
+	function achievement_level() {
 		return array(
 			InstitutionLevel => "Sekolah/Institusi",
 			RegionalLevel => "Regional",
 			NasionalLevel => "Nasional",
 			InternationalLevel => "Internasional",
+		);
+	}
+
+	public function role_level() {
+		return array(
+			RoleSeniorHighSchool => "Siswa/i",
+			RoleCollegeStudent => "Mahasiswa/i",
 		);
 	}
 	
