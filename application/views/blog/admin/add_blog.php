@@ -33,16 +33,44 @@
             <thead>
               <tr>
                 <th scope="col">#</th>
+                <th scope="col">Title</th>
                 <th scope="col">Category</th>
-                <th scope="col">Total Content</th>
-                <th scope="col">Status</th>
+                <th scope="col">Image</th>
                 <th scope="col">Tools</th>
               </tr>
             </thead>
             <tbody>
+
+            <? 
+            // $n = 0 ;
+              foreach ($all_blog->result() as $row_blog) {
+                # code...
+
+              
+            ?>
+              <tr>
+                <td><?= ++$start?></td>
+                <td><?= $row_blog->title ?></td>
+                <td><?= $row_blog->category_name ?></td>
+                <td>
+                  <img src="<?= $row_blog->image_blog ?>" alt="" width="50px">
+                </td>
+                <td>
+                  <div class="btn-group">
+                    <a href="<?= base_url() ?>admin/edit_blog/<?= $row_blog->blog_id ?>" class="btn btn-outline-info btn-sm">
+                      <i class="fa fa-pencil"></i>
+                    </a>
+                    <a href="<?= base_url() ?>admin/delete_blog/<?= $row_blog->blog_id ?>" class="btn btn-outline-danger btn-sm" onclick=" return confirm('Delete Blog')">
+                      <i class="fa fa-trash-o"></i>
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            <? } ?>
              
             </tbody>
           </table>
+              <?= $links ?>
         </div>
         <!-- Button trigger modal -->
 

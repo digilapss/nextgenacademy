@@ -94,7 +94,6 @@ class Blog extends CI_Controller {
             $data['name'] = $row_data->name;
 
             $data['category_name'] = $row_data->category_name;
-            $data['category_name'] = $row_data->category_name;
         }
         
         $data['comment_blog'] = $this->list_blog_comment($data['blog_id']); 
@@ -216,6 +215,33 @@ class Blog extends CI_Controller {
             redirect(base_url().'admin/blog_category');
             
         }
+    }
+
+    public function update_blog($blog_id){
+
+        $data['title'] = $this->input->post('title');
+        $data['description'] = $this->input->post('deskripsi');
+        $data['blog_category_id'] = $this->input->post('category');
+
+        $this->BlogModel->update_blog($data, $blog_id);
+
+        if(!$this->db->affected_rows()){
+
+            $this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert">
+                <p>Gagal update Blog</p>
+            </div>  ') ;
+
+            redirect(base_url().'admin/edit_blog/'.$blog_id);
+        } else {
+
+            $this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert">
+                <p>Berhasil update Blog</p>
+            </div>  ') ;
+
+            redirect(base_url().'admin/edit_blog/'.$blog_id);
+        }
+        
+        
     }
 
 

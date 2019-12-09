@@ -83,4 +83,23 @@ class BlogModel extends CI_Model {
 
     }
 
+    public function blogById($blog_id){
+        
+        $this->db->join('blog_category', 'blog.blog_category_id = blog_category.blog_category_id');
+        $this->db->where('blog_id',  $blog_id);
+        return $this->db->get('blog');
+
+    }
+
+    public function delete_blog_id($blog_id){
+
+        return $this->db->delete('blog', array('blog_id' => $blog_id ));
+    }
+
+    public function update_blog($data, $blog_id){
+        $this->db->set($data);
+        $this->db->where('blog_id', $blog_id);
+        return $this->db->update('blog');
+    }
+
 }
