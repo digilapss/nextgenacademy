@@ -50,6 +50,14 @@ class AccountModel extends CI_Model {
         return $this->db->insert('educational', $data);
     }
 
+    // education update data
+    public function update_education($data, $educational_id) {
+        $this->db->set($data);
+        $this->db->where('account_id', $data['account_id']);
+        $this->db->where('educational_id', $educational_id);
+        return $this->db->update('educational');
+    }
+
     // education soft delete data
     public function soft_delete_education($account_id) {
         $this->db->set('status', StatusDeleted);
@@ -66,6 +74,14 @@ class AccountModel extends CI_Model {
     // achievement insert data
     public function insert_achievement($data) {
         return $this->db->insert('achievement', $data);
+    }
+
+    // achievement update data
+    public function update_achievement($data, $achievement_id) {
+        $this->db->set($data);
+        $this->db->where('achievement_id', $achievement_id);
+        $this->db->where('account_id', $data['account_id']);
+        return $this->db->update('achievement');
     }
 
     // achievement soft delete data

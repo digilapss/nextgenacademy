@@ -91,16 +91,15 @@
                 <div class="col-sm-12">
                     <h6>Category</h6>
                     <div class="input-group-icon ">
-                        <div class="icon"><i class="fa fa-link" aria-hidden="true"></i></div>
                         <div class="form-select" id="default-select" >
                             <div clas="gender_alert"></div>
                             <select name="category" id="category">
-                                <? 
+                                <?php
                                     foreach ($category->result() as $row_category) {
                                         # code...
                                 ?>
                                     <option value="<?= $row_category->blog_category_id ?>"><?= $row_category->category_name ?></option>
-                                <? } ?>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>

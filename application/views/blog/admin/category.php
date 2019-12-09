@@ -39,7 +39,7 @@
               </tr>
             </thead>
             <tbody>
-              <? $i = 1;
+              <?php $i = 1;
                 foreach($all_category->result() as $row_category ){                
               ?>
               <tr>
@@ -66,7 +66,7 @@
                   </div>
                 </td>
               </tr>
-                <? } ?>
+                <?php } ?>
             </tbody>
           </table>
         </div>

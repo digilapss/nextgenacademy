@@ -95,34 +95,24 @@
                                     <?php echo $this->session->userdata('name')  ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <?php 
-                                            if($this->session->userdata('role') === 2 ){
-                                             ?> 
-                                                <a class="dropdown-item" href="'.base_url().'admin/course">Course</a> 
-                                             <?
-                                            } else {
-                                                ?>
-                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/blog">Blog</a> 
-                                                    <a class="dropdown-item" href="<?= base_url() ?>admin/blog_category">Blog Category</a> 
-                                                    <a class="dropdown-item" href="<?= base_url() ?>course/member">My Course</a>
-                                                <?
-                                            }
-                                        ?>
+                                        <?php if($this->session->userdata('role') != RoleAdmin ) { ?> 
+                                                <a class="dropdown-item" href="<?= base_url() ?>admin/course">Course</a> 
+                                        <?php } else { ?>
+                                                <a class="dropdown-item" href="<?= base_url() ?>admin/blog">Blog</a> 
+                                                <a class="dropdown-item" href="<?= base_url() ?>admin/blog_category">Blog Category</a> 
+                                                <a class="dropdown-item" href="<?= base_url() ?>course/member">My Course</a>
+                                        <?php } ?>
 
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/logout">Sign Out</a>
                                     </div>
                                 </li>
 
-                                <?php } else {
-                                    ?>
-                                    
+                                <?php } else { ?>
                                     <li class="nav-item">
                                         <a class="btn_1" style="margin:10px;" href="<?php echo base_url() ?>user/signin">Masuk</a>
                                     </li>
-
-                                    <?php 
-                                } ?>
+                                <?php } ?>
                                 
                             </ul>
                         </div>

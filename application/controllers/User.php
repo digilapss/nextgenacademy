@@ -115,7 +115,6 @@ class User extends My_Controller {
 						'email' => $email,
 						'password' => md5($this->input->post('password')),
 						'status' => 1,
-						'role' => 2,
 					);
 
 					$this->AccountModel->signup($useraccount);
@@ -173,6 +172,7 @@ class User extends My_Controller {
 		$data['gender'] = $this->Constant->gender();
 		$data['educational_level'] = $this->Constant->educational_level();
 		$data['achievement_level'] = $this->Constant->achievement_level();
+		$data['role'] = $this->Constant->role_level();
 
 		$data['educational'] = $this->AccountModel->educational_list($account_id);
 		$data['achievement'] = $this->AccountModel->achievement_list($account_id);
@@ -190,13 +190,15 @@ class User extends My_Controller {
 			show_404();
 		}
 
-		$data['name'] = $this->input->post('name');
+		$data['name'] = ucwords($this->input->post('name'));
 		$data['email'] = $this->session->userdata('email');
 		$data['instagram_id'] = $this->input->post('instagram_id');
 		$data['born_date'] = $this->input->post('birthday');
 		$data['phone_number'] = $this->input->post('phone_number');
 		$data['gender'] = $this->input->post('gender');
 		$data['address'] = $this->input->post('address');
+		$data['role'] = $this->input->post('role');
+		$data['about_me'] = $this->input->post('about_me');
 		$account_id = $this->session->userdata('account_id');
 
 		// Update main info
@@ -213,13 +215,17 @@ class User extends My_Controller {
 				$data_educational['level'] = $this->input->post('educational_level')[$i];
 				$data_educational['year_in'] = $this->input->post('year_in')[$i];
 				$data_educational['year_out'] = $this->input->post('year_out')[$i];
-				$data_educational['institution_name'] = $this->input->post('institution_name')[$i];
-				$data_educational['major'] = $this->input->post('major')[$i];
-				$data_educational['city'] = $this->input->post('city')[$i];
+				$data_educational['institution_name'] = ucwords($this->input->post('institution_name')[$i]);
+				$data_educational['major'] = ucwords($this->input->post('major')[$i]);
+				$data_educational['city'] = ucwords($this->input->post('city')[$i]);
 				$data_educational['status'] = StatusActive;
 				$data_educational['account_id'] = $account_id;
 
-				$this->AccountModel->insert_education($data_educational);
+				if ($this->input->post('educational_id')[$i] > 0) {
+					$this->AccountModel->update_education($data_educational, $this->input->post('educational_id')[$i]);
+				} else {
+					$this->AccountModel->insert_education($data_educational);
+				}
 			}
 		}
 
@@ -235,17 +241,21 @@ class User extends My_Controller {
 				$data_achievement['account_id'] = $account_id;
 
 				$_FILES['file']['name']     = $_FILES['achievement_image']['name'][$i];
-                $_FILES['file']['type']     = $_FILES['achievement_image']['type'][$i];
-                $_FILES['file']['tmp_name'] = $_FILES['achievement_image']['tmp_name'][$i];
-                $_FILES['file']['error']    = $_FILES['achievement_image']['error'][$i];
-                $_FILES['file']['size']     = $_FILES['achievement_image']['size'][$i];
+				$_FILES['file']['type']     = $_FILES['achievement_image']['type'][$i];
+				$_FILES['file']['tmp_name'] = $_FILES['achievement_image']['tmp_name'][$i];
+				$_FILES['file']['error']    = $_FILES['achievement_image']['error'][$i];
+				$_FILES['file']['size']     = $_FILES['achievement_image']['size'][$i];
 
 				$image_name = $this->upload_image('file', 'user', 'acv_' . $account_id . '_' . $this->input->post('achievement_name')[$i]);
 				if ($image_name != "") {
 					$data_achievement['image'] = $image_name;
 				}
 
-				$this->AccountModel->insert_achievement($data_achievement);
+				if ($this->input->post('achievement_id')[$i] > 0) {
+					$this->AccountModel->update_achievement($data_achievement, $this->input->post('achievement_id')[$i]);
+				} else {
+					$this->AccountModel->insert_achievement($data_achievement);
+				}
 			}
 		}
 
@@ -283,6 +293,7 @@ class User extends My_Controller {
 									   'born_date' => $row->born_date,
 									   'gender' => $row->gender,
 									   'role' => $row->role,
+									   'about_me' => $row->about_me,
 									   'image' => base_url() . 'asset/img/user/' .$row->image,
 									   'instagram_id' => $row->instagram_id,
 									   'phone_number' => $row->phone_number,
@@ -293,7 +304,7 @@ class User extends My_Controller {
 
 			}
 
-			if( $this->session->userdata('role') === '2' ){
+			if( $this->session->userdata('role') == RoleAdmin ){
 				
 				if(!$index_course){
 
@@ -413,7 +424,6 @@ class User extends My_Controller {
 			'image' => $google_account['picture'],
 			'password' => md5($google_account['id']),
 			'status' => 1,
-			'role' => 2,
 			'create_time' =>  date('Y-m-d H:i:s'),
 			'update_time' =>  date('Y-m-d H:i:s'),
 			'ip_address' => $_SERVER["REMOTE_ADDR"]
