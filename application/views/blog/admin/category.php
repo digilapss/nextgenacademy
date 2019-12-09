@@ -89,13 +89,10 @@
               <div class="col-sm-6">
                 <h6>Status</h6>
                 <div class="input-group-icon mt-10">
-                    <div class="form-select" id="default-select" >
-                        <div clas="gender_alert"></div>
-                        <select name="status" id="status">
-                            <option value="1">Aktif</option>
-                            <option value="2">Tidak Aktif</option>
-                        </select>
-                    </div>
+                  <select name="status" id="status">
+                      <option value="1">Aktif</option>
+                      <option value="2">Tidak Aktif</option>
+                  </select>
                 </div>
               </div>
 
