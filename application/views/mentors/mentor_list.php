@@ -1,7 +1,7 @@
 <!--::special mentor start::-->
 <div id="special_mentor_part"></div>
-<section class="special_cource padding_top">
-<div class="container">
+<section class="special_cource padding_top" style="padding-bottom:40px">
+<div class="container" >
     <div class="row justify-content-center">
         <div class="col-xl-5">
             <div class="section_tittle text-center">
@@ -11,24 +11,24 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row" style="padding-bottom:40px">
 
-        <?php foreach($mentor as $row_mentor){ ?>
+        <?php foreach($mentor->result_array() as $row_mentor){ ?>
             <div class="col-sm-6 col-lg-4">
                 <div class="single_special_cource">
-                    <a href="mentor/detail/<?= $row_mentor['account_id'] ?>">
-                        <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" class="special_img" alt="<?= $row_mentor['name'] ?>">
+                    <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['educational_id'] ?>">
+                        <img src="<?= $this->Validator->image_validator('asset/img/user/'. $row_mentor['image'], 'default.png') ?>" class="special_img" alt="<?= $row_mentor['name'] ?>" width="100%">
                         <div class="special_cource_text">
-                            <a href="mentor/detail/<?= $row_mentor['account_id'] ?>" class="btn_4"><?= $row_mentor['educational']->major ?></a>
-                            <h4><?= $this->Converter->rupiah($row_mentor->fee); ?></h4>
+                            <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['educational_id'] ?>" class="btn_4"><?= $row_mentor['major'] ?></a>
+                            <h4><?= $this->Converter->rupiah($row_mentor['fee']); ?></h4>
                             <a href="mentor/detail/<?= $row_mentor['account_id'] ?>"><h3><?= $row_mentor['name'] ?></h3></a>
                             <p><?= $row_mentor['about_me'] ?></p>
                             <div class="author_info">
                                 <div class="author_img">
                                     <img src="<?= base_url() ?>asset/img/author/author_1.png" alt="">
                                     <div class="author_info_text">
-                                        <h5><?= $row_mentor['educational']->institution_name?></h5>
-                                        <p>Lokasi: <?= $row_mentor['educational']->city ?></p>
+                                        <h5><?= $row_mentor['institution_name']?></h5>
+                                        <p>Lokasi: <?= $row_mentor['city'] ?></p>
                                     </div>
                                 </div>
                                 <!-- <div class="author_rating">
@@ -49,6 +49,7 @@
         <?php } ?>
 
     </div>
+    <?= $links ?>
 </div>
 </section>
 <!--::special mentor end::-->
