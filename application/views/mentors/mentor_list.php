@@ -5,13 +5,85 @@
     <div class="row justify-content-center">
         <div class="col-xl-5">
             <div class="section_tittle text-center">
-                <p>Pelatihan Populer</p>
-                <h2>Spesial Buat Kamu</h2>
+                <p>Mentor Populer</p>
+                <h2>Mentor</h2>
             </div>
         </div>
     </div>
 
-    <div class="row" style="padding-bottom:40px">
+    <div class="pos-f-t">
+        <nav class="navbar navbar-dark bg-white">
+            <button class="navbar-toggler text-dark" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+             <i class="fa fa-filter"></i> <small>Filter</small>
+            </button>
+
+            <form class="form-inline my-2 my-lg-0">
+                
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Cari Mentor spesialis" aria-label="Recipient's username" aria-describedby="button-addon2">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button" id="button-addon2">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </nav>
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="p-4"  style="background-color:white;">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-select">
+                            <label for="" class="">Jenis Kelamin</label>
+                            <br>
+                            <select class="" >
+                                <option value="0">- Pilih -</option>
+                                <option value="1">Laki - laki</option>
+                                <option value="2">Perempuan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-select">
+                            <label for="" class="">Lokasi Kuliah</label>
+                            <br>
+                            <select class="" >
+                                <option value="0">- Pilih -</option>
+                                <option value="jakarta">Jakarta</option>
+                                <option value="surabaya">Surabaya</option>
+                                <option value="bandung">Bandung</option>
+                                <option value="semarang">Semarang</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-select">
+                            <label for="" class="">Nama Institusi</label>
+                            <br>
+                            <select class="" >
+                                <option value="0">- Pilih -</option>
+                                <? 
+                                foreach ($educational->result() as $row_educational) {
+                                    # code...
+                                
+                                ?>
+                                <option value="<?= $row_educational->educational_id ?>"><?= $row_educational->institution_name ?></option>
+                                <? } ?>
+                            </select>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-3">
+                       <button type="button" class="button button-contactForm btn_1 float-right mt-30" id="sv_profile">Filter</button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="padding-bottom:40px;padding-top:40px">
 
         <?php foreach($mentor->result_array() as $row_mentor){ ?>
             <div class="col-sm-6 col-lg-4">

@@ -25,6 +25,7 @@ class Mentor extends CI_Controller {
 
 		$this->load->model('Constant');
 		$this->load->model('CourseModel');
+		$this->load->model('EducationalModel');
 		$this->load->model('MentorModel');
 		$this->load->model('util/Converter');
 		$this->load->model('util/Validator');
@@ -53,6 +54,8 @@ class Mentor extends CI_Controller {
         $data['mentor'] = $this->MentorModel->all_mentor_start($data);
         $data['links'] = $this->pagination->create_links();
 
+		$data['educational'] = $this->EducationalModel->all_educational();
+
 
         $this->load->view('side/header');
         $this->load->view('mentors/mentor_list', $data);
@@ -73,6 +76,8 @@ class Mentor extends CI_Controller {
             # code...
             $data['profile_mentor'] = $value ;
         }
+
+        
 
         $this->load->view('side/header');
         $this->load->view('mentors/mentor_profile', $data);
