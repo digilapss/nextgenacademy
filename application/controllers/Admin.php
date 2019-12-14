@@ -31,7 +31,7 @@ class Admin extends CI_Controller {
         ini_set('display_error','off');
 		error_reporting(0);
 
-		if($this->session->userdata('role') == 1){
+		if($this->session->userdata('role') != RoleAdmin){
             redirect(base_url());
         } 
     
@@ -91,7 +91,6 @@ class Admin extends CI_Controller {
         $data['all_blog'] = $this->BlogModel->all_blog_start($data);
         $data['links'] = $this->pagination->create_links();
 
-
 		$data['category'] = $this->BlogModel->all_category();
 
 		
@@ -102,9 +101,10 @@ class Admin extends CI_Controller {
 	}
 
 	public function add_blog(){
+
 		if(!$this->session->userdata('account_id')){
             redirect(base_url());
-		} 
+		}
 
 		$data['title'] = $this->input->post('title');
 		$data['description'] = $this->input->post('deskripsi');
@@ -112,7 +112,7 @@ class Admin extends CI_Controller {
 		$data['create_by'] = $this->session->userdata('account_id');
 		$data['ip_address'] = $_SERVER["REMOTE_ADDR"];
 		
-		$config['upload_path']          = './blog_image/';
+		$config['upload_path']          = './img/blog/';
 		$config['allowed_types']        = 'jpeg|jpg|png';
 		$config['max_size']             = 2000;
 
@@ -149,6 +149,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function edit_blog($blog_id){
+
 		if(!$this->session->userdata('account_id')){
             redirect(base_url());
 		} 
@@ -158,13 +159,14 @@ class Admin extends CI_Controller {
 		// var_dump($blog);
 		foreach ($blog->result() as $row_blog) {
 			# code...
+
 			$data['title'] = $row_blog->title;
 			$data['blog_id'] = $row_blog->blog_id;
 			$data['description'] = $row_blog->description;
 			$data['image_blog'] = $row_blog->image_blog;
 			$data['category_name'] = $row_blog->category_name;
 			$data['blog_category_id'] =	$row_blog->blog_category_id;
-			
+		
 		}
 		
 		
@@ -179,6 +181,7 @@ class Admin extends CI_Controller {
 	}
 
 	public function delete_blog($blog_id){
+
 		if(!$this->session->userdata('account_id')){
             redirect(base_url());
 		} 
@@ -190,7 +193,24 @@ class Admin extends CI_Controller {
 		redirect(base_url().'admin/blog');
 
 
-
 	}
+
+    public function delete_category($blog_category_id){
+
+        $this->BlogModel->delete_category($blog_category_id);
+
+        if(!$this->db->affected_rows()){
+            
+            $this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert"><p>Gagal</p> </div>  ');
+            redirect(base_url().'admin/blog_category');
+
+        } else {
+
+            $this->session->set_flashdata('alert', '<div class="alert alert-warning" role="alert"><p>Success Delete</p> </div>  ');
+            redirect(base_url().'admin/blog_category');
+            
+        }
+        
+    }
 
 }

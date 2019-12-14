@@ -51,6 +51,7 @@
                 </td>
                 <td>
                   <div class="btn-group">
+
                     <button class="btn btn-primary btn-sm" 
                       type="button" data-toggle="modal" data-target="#staticBackdrop"
                       id="btn-edit-category"
@@ -60,9 +61,9 @@
                     >
                       <i class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn btn-outline-danger btn-sm">
+                    <a href="<?= base_url() ?>admin/delete_category/<?= $row_category->blog_category_id ?>" class="btn btn-outline-danger btn-sm" onclick=" return confirm('Delete Category <?= $row_category->category_name ?>') ">
                       <i class="fa fa-trash-o"></i>
-                    </button>
+                    </a>
                   </div>
                 </td>
               </tr>

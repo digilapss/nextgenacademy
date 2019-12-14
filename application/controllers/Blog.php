@@ -155,6 +155,7 @@ class Blog extends CI_Controller {
 
     }
 
+
     public function add_category(){
         
 		if($this->session->userdata('role') == 2){
@@ -190,6 +191,7 @@ class Blog extends CI_Controller {
     }
 
     public function update_category($get_id){
+        
         $data['category_name'] = $this->input->post('category');
         $data['status'] = $this->input->post('status');
         if(empty($data['category_name'])) {
@@ -197,14 +199,14 @@ class Blog extends CI_Controller {
             redirect(base_url().'admin/blog_category');
         }
 
-
         $this->BlogModel->update_category($data, $get_id);
         
         if(!$this->db->affected_rows()){
             
             $this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert">
                 <p>Gagal</p>
-            </div>  ') ;
+            </div>');
+
             redirect(base_url().'admin/blog_category');
 
         } else {
@@ -212,6 +214,7 @@ class Blog extends CI_Controller {
             $this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert">
                 <p>Update Berhasil</p>
             </div>  ') ;
+
             redirect(base_url().'admin/blog_category');
             
         }
@@ -232,6 +235,7 @@ class Blog extends CI_Controller {
             </div>  ') ;
 
             redirect(base_url().'admin/edit_blog/'.$blog_id);
+
         } else {
 
             $this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert">

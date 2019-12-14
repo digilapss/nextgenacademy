@@ -5,7 +5,7 @@ class Validator extends CI_Model {
 		if(file_exists(base_url() . $path)) {
 			return base_url() . $path;
 		} else {
-			return base_url() . $default_path;
+			return base_url() . $path . $default_path;
 		}
 	}
 }

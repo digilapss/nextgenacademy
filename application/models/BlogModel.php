@@ -102,4 +102,10 @@ class BlogModel extends CI_Model {
         return $this->db->update('blog');
     }
 
+    public function delete_category($blog_category_id){
+       return $this->db->delete('blog_category', array('blog_category_id' =>  $blog_category_id));
+    }
+
+    
+
 }

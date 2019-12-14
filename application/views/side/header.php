@@ -103,6 +103,7 @@
                                                 <a class="dropdown-item" href="<?= base_url() ?>course/member">My Course</a>
                                         <?php } ?>
 
+                                        <a class="dropdown-item" href="<?php echo base_url() ?>mentor">Mentor</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/logout">Sign Out</a>
                                     </div>
