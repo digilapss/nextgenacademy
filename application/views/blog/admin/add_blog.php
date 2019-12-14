@@ -118,7 +118,7 @@
                 <div class="col-sm-12 mt-30">
                     <h6>Image</h6>
                     <div class="form-group">
-                    <input class="form-control" name="blogfile" value="" id="name" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Title'" placeholder = 'Masukkan Title' required>
+                    <input class="form-control" name="blogimage" value="" id="name" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Title'" placeholder = 'Masukkan Title' required>
                     </div>
                 </div>
                         

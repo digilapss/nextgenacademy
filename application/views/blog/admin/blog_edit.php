@@ -69,9 +69,10 @@
 
             <div class="col-sm-12 mt-30">
                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#staticBackdrop">
-                    Ubah Image blog
-                </button>
+                
+                <div class="input-form">
+                  <input type="file" name="blogimage" class="form-control" required>
+                </div>
 
             </div>
 
@@ -82,6 +83,7 @@
           <button type="submit" class="button button-contactForm btn_1" >Update Blog</button>
         </div>
 
+        
         
       </form>
     </div>
@@ -102,9 +104,6 @@
                         </div>
                         <div class="modal-body">
                             <form action="<?= base_url() ?>blog/update_blog_image" method="post" enctype="multipart/form-data" >
-                                <div class="input-form">
-                                  <input type="file" class="form-control" required>
-                                </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
