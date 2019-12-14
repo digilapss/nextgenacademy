@@ -29,9 +29,10 @@
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="<?= $row_blog->image_blog ?>" alt="">
+                                <img class="card-img rounded-0" src="<?= $this->Validator->image_validator('asset/img/blog/',$row_blog->image, 'default.png') ?>" alt="">
                                 <a href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_blog->create_time).'/'.$row_blog->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_blog->title) ;  ?>" class="blog_item_date">
-                                    <h3><?=  date('d F Y', strtotime($row_blog->create_time)); ?></h3>
+                                    <h3><?= $this->Converter->get_date($row_blog->create_time); ?></h3>
+                                    <p><?= $this->Converter->get_month_string($row_blog->create_time) ?></p>
                                 </a>
                             </div>
 
@@ -39,11 +40,11 @@
                                 <a class="d-inline-block"   href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_blog->create_time).'/'.$row_blog->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_blog->title) ;  ?>">
                                     <h2><?= $row_blog->title ?></h2>
                                 </a>
-                                <!-- <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p> -->
+                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
+                                    he earth it first without heaven in place seed it second morning saying.</p>
                                 <ul class="blog-info-link">
-                                    <li><a href="<?= base_url() ?>blog/category/<?= $row_blog->category_name ?>"><i class="far fa-user"></i> <?= $row_blog->category_name ?></a></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> <?= $row_blog->total_comment ?> Comment</a></li>
+                                    <li><a href="<?= base_url() ?>blog/category/<?= $row_blog->category_name ?>"><i class="fa fa-user"></i> <?= $row_blog->category_name ?></a></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> <?= $row_blog->total_comment ?> Comment</a></li>
                                 </ul>
                             </div>
                         </article>

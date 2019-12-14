@@ -35,11 +35,8 @@ class Mentor extends CI_Controller {
     }
     
     public function index() {
-
-        // var_dump( $this->Constant->educational_level());
-
         $config['base_url'] = base_url()."mentor/index/" ;
-        $config['total_rows'] = $this->MentorModel->all_mentor()->num_rows();
+        $config['total_rows'] = $this->MentorModel->total_available_mentor();
         $data['total_mentor'] = $config['total_rows'] ;
         $config['per_page'] = 5;
 

@@ -16,7 +16,7 @@
         <div class=" mb-3 col-lg-6" >
             <div class="row no-gutters">
                 <div class="col-md-4">
-                    <img src="<?= $this->Validator->image_validator('asset/img/user/'. $row_mentor['image'], 'default.png') ?>" class="card-img-top img-circle" alt="...">
+                    <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" class="card-img-top img-circle" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
@@ -38,7 +38,7 @@
                     <h4>Educational</h4>
                 </div>
                 <ul class="list-group list-group-flush ml-1 mr-1 mb-1">
-                    <?
+                    <?php
                         $edu = $this->Constant->educational_level();
                     ?>
                     <li class="list-group-item">Pendidikan : <?= $edu[$profile_mentor->level] ?></li>

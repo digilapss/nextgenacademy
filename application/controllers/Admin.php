@@ -27,6 +27,7 @@ class Admin extends CI_Controller {
 		$this->load->model('AccountModel');
 		$this->load->model('BlogModel');
 		$this->load->library('session');
+        $this->load->model('util/Validator');
     
         ini_set('display_error','off');
 		error_reporting(0);
@@ -158,12 +159,10 @@ class Admin extends CI_Controller {
 
 		// var_dump($blog);
 		foreach ($blog->result() as $row_blog) {
-			# code...
-
 			$data['title'] = $row_blog->title;
 			$data['blog_id'] = $row_blog->blog_id;
 			$data['description'] = $row_blog->description;
-			$data['image_blog'] = $row_blog->image_blog;
+			$data['image_blog'] = $this->Validator->image_validator('asset/img/blog/', $row_blog->image, 'default.png');
 			$data['category_name'] = $row_blog->category_name;
 			$data['blog_category_id'] =	$row_blog->blog_category_id;
 		

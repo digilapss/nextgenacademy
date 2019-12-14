@@ -37,8 +37,8 @@ class BlogModel extends CI_Model {
 
     public function all_blog_start($get_blog){
 
+        $this->db->select('blog.image, blog.create_time, blog.description, blog.title, blog_category.category_name');
         $this->db->join('blog_category', 'blog.blog_category_id = blog_category.blog_category_id');
-        $this->db->join('account', 'blog.create_by = account.account_id');
         $this->db->limit($get_blog['limit'], $get_blog['start']);
         $this->db->order_by('blog_id', 'DESC');
         return $this->db->get('blog');

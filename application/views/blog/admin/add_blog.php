@@ -41,7 +41,7 @@
             </thead>
             <tbody>
 
-            <? 
+            <?php 
             // $n = 0 ;
               foreach ($all_blog->result() as $row_blog) {
                 # code...
@@ -66,7 +66,7 @@
                   </div>
                 </td>
               </tr>
-            <? } ?>
+            <?php } ?>
              
             </tbody>
           </table>
