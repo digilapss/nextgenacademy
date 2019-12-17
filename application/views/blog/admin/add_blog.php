@@ -41,7 +41,7 @@
             </thead>
             <tbody>
 
-            <? 
+            <?php 
             // $n = 0 ;
               foreach ($all_blog->result() as $row_blog) {
                 # code...
@@ -53,7 +53,7 @@
                 <td><?= $row_blog->title ?></td>
                 <td><?= $row_blog->category_name ?></td>
                 <td>
-                  <img src="<?= $row_blog->image_blog ?>" alt="" width="50px">
+                  <img src="<?= $row_blog->image ?>" alt="" width="50px">
                 </td>
                 <td>
                   <div class="btn-group">
@@ -66,7 +66,7 @@
                   </div>
                 </td>
               </tr>
-            <? } ?>
+            <?php } ?>
              
             </tbody>
           </table>
@@ -81,47 +81,47 @@
           <form class="form-contact"  action="<?= base_url().'admin/add_blog' ?>" method="post" enctype="multipart/form-data" >
             <div class="row">
 
-                <div class="col-sm-12">
-                    <h6>Title</h6>
-                    <div class="form-group">
-                    <input class="form-control" name="title" value="" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Title'" placeholder = 'Masukkan Title' required>
-                    </div>
-                </div>
+              <div class="col-sm-12">
+                  <h6>Title</h6>
+                  <div class="form-group">
+                  <input class="form-control" name="title" value="" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Title'" placeholder = 'Masukkan Title' required>
+                  </div>
+              </div>
 
-                <div class="col-sm-12">
-                    <h6>Category</h6>
-                    <div class="input-group-icon ">
-                        <div class="form-select" id="default-select" >
-                            <div clas="gender_alert"></div>
-                            <select name="category" id="category">
-                                <?php
-                                    foreach ($category->result() as $row_category) {
-                                        # code...
-                                ?>
-                                    <option value="<?= $row_category->blog_category_id ?>"><?= $row_category->category_name ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                
+              <div class="col-sm-12">
+                  <h6>Category</h6>
+                  <div class="input-group-icon ">
+                      <div class="form-select" id="default-select" >
+                          <div clas="gender_alert"></div>
+                          <select name="category" id="category">
+                              <?php
+                                  foreach ($category->result() as $row_category) {
+                                      # code...
+                              ?>
+                                  <option value="<?= $row_category->blog_category_id ?>"><?= $row_category->category_name ?></option>
+                              <?php } ?>
+                          </select>
+                      </div>
+                  </div>
+              </div>
+              
 
-                <div class="col-sm-12 mt-30">
-                    <h6>Deskirpsi</h6>
-                    <div class="input-group-icon mt-10">
-                      <textarea cols="80" rows="10" id="ckeExample" name="deskripsi">
-                        
-                      </textarea>
-                    </div>
-                </div>
+              <div class="col-sm-12 mt-30">
+                  <h6>Deskirpsi</h6>
+                  <div class="input-group-icon mt-10">
+                    <textarea cols="80" rows="10" id="ckeExample" name="deskripsi">
+                      
+                    </textarea>
+                  </div>
+              </div>
 
-                <div class="col-sm-12 mt-30">
-                    <h6>Image</h6>
-                    <div class="form-group">
-                    <input class="form-control" name="blogimage" value="" id="name" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Masukkan Title'" placeholder = 'Masukkan Title' required>
-                    </div>
-                </div>
-                        
+              <div class="col-sm-12 mt-30">
+                  <h6>Image</h6>
+                  <div class="form-group col-sm-4">
+                    <img id="preview_blog_image" src="<?= $image_blog ?>" class="rounded" alt="" width="200px"/>
+                    <input type="file" name="image" class="info-border circle small" value="image" id="filename1" title="Upload Foto" accept="image/*" onchange="course_img(this,'preview_blog_image')">
+                  </div>
+              </div>
 
             </div>
             <div class="form-group mt-30 pull-right">

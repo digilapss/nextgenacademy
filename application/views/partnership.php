@@ -4,7 +4,7 @@
         <div class="col-xl">
             <div class="section_tittle text-center">
                 <p>Mitra & Kerjasama</p>
-                <h2>Ingin menjadi mitra atau kerjasama?</h2>
+                <h2>Ingin Menjadi Mitra atau Kerjasama?</h2>
             </div>
         </div>
     </div>

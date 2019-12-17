@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Blog extends CI_Controller {
+require_once APPPATH.'/controllers/MyController.php';
+
+class Blog extends My_Controller {
 
 	/**
 	 * Index Page for this controller.
@@ -26,8 +28,7 @@ class Blog extends CI_Controller {
 		
 		$this->load->model('BlogModel');
 		$this->load->library('session');
-		$this->load->library('upload');
-    
+
         ini_set('display_error','off');
         error_reporting(0);
     
@@ -52,7 +53,7 @@ class Blog extends CI_Controller {
         $data['links'] = $this->pagination->create_links();
 
         // $data['all_blog'] = $this->BlogModel->all_blog();
-        $data['category_blog'] = $this->all_category(); 
+        $data['category_blog'] = $this->all_category();
         $data['recent_post'] = $this->recent_post(); 
 
         $this->load->view('side/header');
@@ -65,7 +66,7 @@ class Blog extends CI_Controller {
     public function page(){
 
         $url1 = $this->uri->segment(3);
-        $url2 = $this->uri->segment(4);
+        $blog_id = $this->uri->segment(4);
         $url3 = $this->uri->segment(5);
 
         $tahun = substr($url1,4);
@@ -75,16 +76,16 @@ class Blog extends CI_Controller {
         $blog_title = preg_replace("/[^a-zA-Z0-9]/", " ", $url3);
         $blog_tgl = $tahun.'-'.$bulan.'-'.$tgl ;
 
-        $blog_data = $this->BlogModel->one_blog($url2, $blog_tgl, $blog_title);
+        $blog_data = $this->BlogModel->one_blog($blog_id, $blog_tgl, $blog_title);
         
         foreach($blog_data->result() as $row_data){
 
             $data['blog_id'] = $row_data->blog_id;
             $data['blog_category_id'] = $row_data->blog_category_id;
-            $data['image_blog'] = $row_data->image_blog;
-            $data['image_user'] = $row_data->image;
+            $data['image_blog'] = $row_data->image;
             $data['title'] = $row_data->title;
             $data['tag'] = $row_data->tag;
+            $data['overview'] = $row_data->overview;
             $data['description'] = $row_data->description;
             $data['status'] = $row_data->status;
             $data['total_comment'] = $row_data->total_comment;
@@ -100,11 +101,11 @@ class Blog extends CI_Controller {
         $data['category_blog'] = $this->all_category(); 
         $data['recent_post'] = $this->recent_post(); 
 
-        // var_dump($data['blog_id']);
-        
+        $data['prev_blog'] = $this->BlogModel->get_prev_blog($blog_id)->row();
+        $data['next_blog'] = $this->BlogModel->get_next_blog($blog_id)->row();
 
         $this->load->view('side/header');
-        $this->load->view('blog/content', $data);
+        $this->load->view('blog/blog_detail', $data);
         $this->load->view('side/footer');
 
     }
@@ -118,7 +119,7 @@ class Blog extends CI_Controller {
     }
 
     public function recent_post(){
-        return  $this->BlogModel->recent_post(); 
+        return  $this->BlogModel->recent_post()->result(); 
     }
 
     public function category(){
@@ -141,7 +142,7 @@ class Blog extends CI_Controller {
           'start' => $this->uri->segment(4)
         );
 
-        $data['list_cateory'] = $this->BlogModel->category_list_start($data);
+        $data['all_blog'] = $this->BlogModel->category_list_start($data);
         $data['links'] = $this->pagination->create_links();
 
         // $data['all_blog'] = $this->BlogModel->all_blog();
@@ -150,7 +151,7 @@ class Blog extends CI_Controller {
         
         
         $this->load->view('side/header');
-        $this->load->view('blog/category_list', $data);
+        $this->load->view('blog/blog_list', $data);
         $this->load->view('side/footer');
 
     }
@@ -225,6 +226,11 @@ class Blog extends CI_Controller {
         $data['title'] = $this->input->post('title');
         $data['description'] = $this->input->post('deskripsi');
         $data['blog_category_id'] = $this->input->post('category');
+
+        $image_name = $this->upload_image('image', 'blog', 'b_' . $account_id . '_' . $this->input->post('title'));
+        if ($image_name != "") {
+            $data['image'] = $image_name;
+        }
 
         $this->BlogModel->update_blog($data, $blog_id);
 

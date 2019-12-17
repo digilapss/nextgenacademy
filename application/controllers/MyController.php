@@ -27,6 +27,9 @@ class My_Controller extends CI_Controller {
         $this->load->helper('file');
 		$this->load->library('upload');
 
+        $this->load->model('util/Converter');
+        $this->load->model('util/Validator');
+
         ini_set('display_error','off');
         error_reporting(0);
     
@@ -45,11 +48,11 @@ class My_Controller extends CI_Controller {
 
 		$this->upload->initialize($config);
 	    if(!$this->upload->do_upload($file)){
-	        $up_data		    = $this->upload->display_errors();
+	        $up_data = $this->upload->display_errors();
+	        var_dump($up_data);
 	        return '';
 	    }else{
-	        $up_data		    = $this->upload->data();
-	        var_dump($up_data);
+	        $up_data = $this->upload->data();
 	    	return $up_data['file_name'];
 	    }
     }

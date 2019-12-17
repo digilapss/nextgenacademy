@@ -3,10 +3,10 @@
 <section class="special_cource padding_top" style="padding-bottom:40px">
 <div class="container" >
     <div class="row justify-content-center">
-        <div class="col-xl-5">
+        <div class="">
             <div class="section_tittle text-center">
-                <p>Mentor Populer</p>
-                <h2>Mentor</h2>
+                <p></p>
+                <h2>Temukan Mentor Terbaikmu</h2>
             </div>
         </div>
     </div>
@@ -32,7 +32,7 @@
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="p-4"  style="background-color:white;">
                 <div class="row">
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <div class="form-select">
                             <label for="" class="">Jenis Kelamin</label>
                             <br>
@@ -43,7 +43,7 @@
                             </select>
                         </div>
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <div class="form-select">
                             <label for="" class="">Lokasi Kuliah</label>
                             <br>
@@ -57,7 +57,7 @@
                         </div>
                         
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-4">
                         <div class="form-select">
                             <label for="" class="">Nama Institusi</label>
                             <br>
@@ -74,7 +74,7 @@
                         </div>
                         
                     </div>
-                    <div class="col-lg-3">
+                    <div class="col-lg-12">
                        <button type="button" class="button button-contactForm btn_1 float-right mt-30" id="sv_profile">Filter</button>
                         
                     </div>
@@ -85,22 +85,24 @@
 
     <div class="row" style="padding-bottom:40px;padding-top:40px">
 
-        <?php foreach($mentor->result_array() as $row_mentor){ ?>
+        <?php foreach($mentor as $row_mentor){ ?>
             <div class="col-sm-6 col-lg-4">
                 <div class="single_special_cource">
-                    <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['educational_id'] ?>">
-                        <img src="<?= $this->Validator->image_validator('asset/img/user/'. $row_mentor['image'], 'default.png') ?>" class="special_img" alt="<?= $row_mentor['name'] ?>" width="100%">
+                    <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['account_id'] ?>">
+                        <div class="cource_img_frame">
+                            <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" class="special_img" alt="<?= $row_mentor['name'] ?>" width="100%">
+                        </div>
                         <div class="special_cource_text">
-                            <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['educational_id'] ?>" class="btn_4"><?= $row_mentor['major'] ?></a>
+                            <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['account_id'] ?>" class="btn_4"><?= $row_mentor['educational']->major ?></a>
                             <h4><?= $this->Converter->rupiah($row_mentor['fee']); ?></h4>
                             <a href="mentor/detail/<?= $row_mentor['account_id'] ?>"><h3><?= $row_mentor['name'] ?></h3></a>
-                            <p><?= $row_mentor['about_me'] ?></p>
+                            <p><?= $this->Converter->text_limit($row_mentor['about_me'], 80, '...') ?></p>
                             <div class="author_info">
                                 <div class="author_img">
                                     <img src="<?= base_url() ?>asset/img/author/author_1.png" alt="">
                                     <div class="author_info_text">
-                                        <h5><?= $row_mentor['institution_name']?></h5>
-                                        <p>Lokasi: <?= $row_mentor['city'] ?></p>
+                                        <h5><?= $row_mentor['educational']->institution_name ?></h5>
+                                        <p>Lokasi: <?= $row_mentor['educational']->city ?></p>
                                     </div>
                                 </div>
                                 <!-- <div class="author_rating">
