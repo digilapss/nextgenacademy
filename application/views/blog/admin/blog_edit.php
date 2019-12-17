@@ -71,7 +71,7 @@
                <!-- Button trigger modal -->
                 
                 <div class="input-form">
-                  <input type="file" name="blogimage" class="form-control" required>
+                  <input type="file" name="blogimage" class="form-control" >
                 </div>
 
             </div>
@@ -83,7 +83,7 @@
           <button type="submit" class="button button-contactForm btn_1" >Update Blog</button>
         </div>
 
-        
+
         
       </form>
     </div>

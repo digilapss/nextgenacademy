@@ -37,6 +37,7 @@ class Mentor extends CI_Controller {
     public function index() {
 
         // var_dump( $this->Constant->educational_level());
+        
 
         $config['base_url'] = base_url()."mentor/index/" ;
         $config['total_rows'] = $this->MentorModel->all_mentor()->num_rows();
@@ -47,6 +48,7 @@ class Mentor extends CI_Controller {
 
         $data = array(
         //   'role' =>  ,
+            
           'limit' => $config['per_page'],
           'start' => $this->uri->segment(3)
         );
@@ -82,5 +84,44 @@ class Mentor extends CI_Controller {
         $this->load->view('side/header');
         $this->load->view('mentors/mentor_profile', $data);
         $this->load->view('side/header');
+    }
+
+
+    public function search(){
+        
+        $mentor_post['role'] = 2;
+        
+        // $mentor_post['gender'] = $this->input->post('mentor_jk');
+        // $mentor_post['city'] = $this->input->post('mentor_lk');
+        // $mentor_post['institution_name'] = $this->input->post('mentor_ni');
+
+        $mentor_post['gender'] = $_GET['gender'];
+        $mentor_post['city'] = $_GET['lk'];
+        $mentor_post['institution_name'] = $_GET['ni'];
+
+
+        $config['base_url'] = base_url()."mentor/index/" ;
+        $config['total_rows'] = $this->MentorModel->all_mentor_filter($mentor_post)->num_rows();
+        $data['total_mentor'] = $config['total_rows'] ;
+        $config['per_page'] = 5;
+
+
+        $this->pagination->initialize($config);
+
+
+        $filter['limit'] = $config['per_page'] ;
+        $filter['start'] = $this->uri->segment(3);
+
+        
+        $data['mentor'] = $this->MentorModel->all_mentor_start_filter($filter, $mentor_post);
+        $data['links'] = $this->pagination->create_links();
+
+		$data['educational'] = $this->EducationalModel->all_educational();
+
+
+        $this->load->view('side/header');
+        $this->load->view('mentors/mentor_list', $data);
+        $this->load->view('side/footer');
+
     }
 }

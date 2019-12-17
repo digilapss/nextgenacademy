@@ -17,6 +17,8 @@
              <i class="fa fa-filter"></i> <small>Filter</small>
             </button>
 
+            <p><?= $total_mentor == null ? '' : $total_mentor.' Mentor' ?>  </p>
+
             <form class="form-inline my-2 my-lg-0">
                 
                 <div class="input-group">
@@ -27,58 +29,65 @@
                         </button>
                     </div>
                 </div>
+                
             </form>
         </nav>
+        
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="p-4"  style="background-color:white;">
-                <div class="row">
-                    <div class="col-lg-3">
-                        <div class="form-select">
-                            <label for="" class="">Jenis Kelamin</label>
-                            <br>
-                            <select class="" >
-                                <option value="0">- Pilih -</option>
-                                <option value="1">Laki - laki</option>
-                                <option value="2">Perempuan</option>
-                            </select>
+                <form action="<?= base_url() ?>mentor/search" method="get">
+                    <div class="row">
+
+                        <div class="col-lg-3">
+                            <div class="form-select">
+                                <label for="" class="">Jenis Kelamin</label>
+                                <br>
+                                <select class="" name="gender" >
+                                    <option value="0" <?= $_GET['gender'] == 0 ? 'selected' : '' ?>>- Pilih -</option>
+                                    <option value="1" <?= $_GET['gender'] == 1 ? 'selected' : '' ?>>Laki - laki</option>
+                                    <option value="2" <?= $_GET['gender'] == 2 ? 'selected' : '' ?>>Perempuan</option>
+                                </select>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-select">
-                            <label for="" class="">Lokasi Kuliah</label>
-                            <br>
-                            <select class="" >
-                                <option value="0">- Pilih -</option>
-                                <option value="jakarta">Jakarta</option>
-                                <option value="surabaya">Surabaya</option>
-                                <option value="bandung">Bandung</option>
-                                <option value="semarang">Semarang</option>
-                            </select>
+                        <div class="col-lg-3">
+                            <div class="form-select">
+                                <label for="" class="">Lokasi Kuliah</label>
+                                <br>
+                                <select class="" name="lk" >
+                                    <option value="0"  <?= $_GET['lk'] == 0 ? 'selected' : '' ?> >- Pilih -</option>
+                                    <option value="Jakarta"  <?= $_GET['lk'] === 'Jakarta' ? 'selected' : '' ?> >Jakarta</option>
+                                    <option value="Surabaya"  <?= $_GET['lk'] === 'Surabaya' ? 'selected' : '' ?> >Surabaya</option>
+                                    <option value="Bandung"  <?= $_GET['lk'] === 'Bandung' ? 'selected' : '' ?> >Bandung</option>
+                                    <option value="Semarang"  <?= $_GET['lk'] === 'Semarang' ? 'selected' : '' ?> >Semarang</option>
+                                </select>
+                            </div>
+                            
                         </div>
-                        
-                    </div>
-                    <div class="col-lg-3">
-                        <div class="form-select">
-                            <label for="" class="">Nama Institusi</label>
-                            <br>
-                            <select class="" >
-                                <option value="0">- Pilih -</option>
-                                <? 
-                                foreach ($educational->result() as $row_educational) {
-                                    # code...
-                                
-                                ?>
-                                <option value="<?= $row_educational->educational_id ?>"><?= $row_educational->institution_name ?></option>
-                                <? } ?>
-                            </select>
+                        <div class="col-lg-3">
+                            <div class="form-select">
+                                <label for="" class="">Nama Institusi</label>
+                                <br>
+                                <select class="" name="ni" >
+                                    <option value="0">- Pilih -</option>
+                                    <? 
+                                    foreach ($educational->result() as $row_educational) {
+                                        # code...
+                                    
+                                    ?>
+                                    <option value="<?= $row_educational->institution_name ?>"  <?= $_GET['ni'] === $row_educational->institution_name ? 'selected' : '' ?>   ><?= $row_educational->institution_name ?></option>
+                                    <? } ?>
+                                </select>
+                            </div>
+                            
                         </div>
-                        
+
+                        <div class="col-lg-3">
+                        <button type="submit" class="button button-contactForm btn_1 float-right mt-30" id="sv_profile">Filter</button>
+                            
+                        </div>
+
                     </div>
-                    <div class="col-lg-3">
-                       <button type="button" class="button button-contactForm btn_1 float-right mt-30" id="sv_profile">Filter</button>
-                        
-                    </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>

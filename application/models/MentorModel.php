@@ -32,11 +32,28 @@ class MentorModel extends CI_Model {
 
     public function all_mentor_start($get_mentor){
 
-
         $this->db->join('educational', 'educational.account_id = account.account_id', DESC);
         $this->db->limit($get_mentor['limit'], $get_mentor['start']);
         $this->db->where('role', 2);
         return $this->db->get('account');
+
+    }
+
+    public function all_mentor_filter($mentor_post) {
+
+        $this->db->join('educational', 'account.account_id = educational.account_id');
+ 
+        return $this->db->get_where('account', $mentor_post);
+
+    }
+
+    public function all_mentor_start_filter($filter, $mentor_post){
+
+        $this->db->join('educational', 'educational.account_id = account.account_id', DESC);
+        $this->db->limit($filter['limit'], $filter['start']);
+        // $this->db->where(array('role' => 2, 'gender' => $get_mentor['gender'], 'city' => $get_mentor['city'], 'institution_name' => $get_mentor['institution_name']));
+        return $this->db->get_where('account', $mentor_post);
+
     }
 
     public function detail_mentor($educational_id){
