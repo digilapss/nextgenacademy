@@ -18,6 +18,10 @@ class Converter extends CI_Model {
 		return $plain_text;
 	}
 
+	function get_full_date($time_stamp) {
+		return date('d M Y', strtotime($time_stamp));
+	}
+
 	function get_date($time_stamp) {
 		return date('d', strtotime($time_stamp));
 	}

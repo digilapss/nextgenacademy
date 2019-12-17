@@ -66,7 +66,7 @@ class Blog extends My_Controller {
     public function page(){
 
         $url1 = $this->uri->segment(3);
-        $url2 = $this->uri->segment(4);
+        $blog_id = $this->uri->segment(4);
         $url3 = $this->uri->segment(5);
 
         $tahun = substr($url1,4);
@@ -76,16 +76,16 @@ class Blog extends My_Controller {
         $blog_title = preg_replace("/[^a-zA-Z0-9]/", " ", $url3);
         $blog_tgl = $tahun.'-'.$bulan.'-'.$tgl ;
 
-        $blog_data = $this->BlogModel->one_blog($url2, $blog_tgl, $blog_title);
+        $blog_data = $this->BlogModel->one_blog($blog_id, $blog_tgl, $blog_title);
         
         foreach($blog_data->result() as $row_data){
 
             $data['blog_id'] = $row_data->blog_id;
             $data['blog_category_id'] = $row_data->blog_category_id;
-            $data['image_blog'] = $row_data->image_blog;
-            $data['image_user'] = $row_data->image;
+            $data['image_blog'] = $row_data->image;
             $data['title'] = $row_data->title;
             $data['tag'] = $row_data->tag;
+            $data['overview'] = $row_data->overview;
             $data['description'] = $row_data->description;
             $data['status'] = $row_data->status;
             $data['total_comment'] = $row_data->total_comment;
@@ -101,11 +101,11 @@ class Blog extends My_Controller {
         $data['category_blog'] = $this->all_category(); 
         $data['recent_post'] = $this->recent_post(); 
 
-        // var_dump($data['blog_id']);
-        
+        $data['prev_blog'] = $this->BlogModel->get_prev_blog($blog_id)->row();
+        $data['next_blog'] = $this->BlogModel->get_next_blog($blog_id)->row();
 
         $this->load->view('side/header');
-        $this->load->view('blog/content', $data);
+        $this->load->view('blog/blog_detail', $data);
         $this->load->view('side/footer');
 
     }
@@ -119,7 +119,7 @@ class Blog extends My_Controller {
     }
 
     public function recent_post(){
-        return  $this->BlogModel->recent_post(); 
+        return  $this->BlogModel->recent_post()->result(); 
     }
 
     public function category(){

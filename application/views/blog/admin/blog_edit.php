@@ -54,6 +54,13 @@
                 </div>
             </div>            
 
+             <div class="col-sm-12 mt-30">
+              <h6>Overview</h6>
+              <div class="form-group">
+                <textarea cols="80" rows="10" id="ckeExample" name="overview"><?= $overview ?></textarea>
+              </div>
+            </div>
+
             <div class="col-sm-12 mt-30">
               <h6>Deskirpsi</h6>
               <div class="form-group">

@@ -12,12 +12,11 @@
     </div>
 
     <div class="row">
-
         <?php foreach($mentor as $row_mentor){ ?>
             <div class="col-sm-6 col-lg-4">
                 <div class="single_special_cource">
                     <a href="mentor/detail/<?= $row_mentor['account_id'] ?>">
-                        <div style="height: 350px; overflow: hidden;">
+                        <div class="cource_img_frame">
                             <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" class="special_img" width="100%" alt="<?= $row_mentor['name'] ?>">
                         </div>
                         <div class="special_cource_text">

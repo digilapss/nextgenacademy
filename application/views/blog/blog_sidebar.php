@@ -41,12 +41,12 @@
                   <aside class="single_sidebar_widget popular_post_widget">
                      <h3 class="widget_title">Artikel Terbaru</h3>
                            
-                     <?php foreach($recent_post->result() as $row_recent_post ){ ?>
+                     <?php foreach($recent_post as $row_recent_post ){ ?>
 
                      <div class="media post_item">
                         <img src="<?= $this->Validator->image_validator('asset/img/blog/',$row_recent_post->image, 'default.png') ?>" alt="post" width="70px">
                         <div class="media-body">
-                           <a href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_recent_post->create_time).'/'.$row_recent_post->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_recent_post->title) ;  ?>">
+                           <a href="<?= $this->BlogModel->get_blog_link($row_recent_post->create_time, $row_recent_post->blog_id, $row_recent_post->title)  ?>">
                               <h3><?= $row_recent_post->title ?></h3>
                            </a>
                            <p><?= $row_recent_post->create_time ?></p>

@@ -6761,4 +6761,9 @@ input[type='file'] {
   color: transparent;
 }
 
+.img-blog-navigation {
+  width: 60px;
+  height: 50px;
+}
+
 sourceMappingURL=style.css.map 

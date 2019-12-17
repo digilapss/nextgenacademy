@@ -1,7 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Admin extends CI_Controller {
+require_once APPPATH.'/controllers/MyController.php';
+
+class Admin extends My_Controller {
+
 
 	/**
 	 * Index Page for this controller.
@@ -103,7 +106,8 @@ class Admin extends CI_Controller {
 
 	public function add_blog(){
 
-		if(!$this->session->userdata('account_id')){
+		$account_id = $this->session->userdata('account_id');
+		if(!$account_id) {
             redirect(base_url());
 		}
 
@@ -113,39 +117,26 @@ class Admin extends CI_Controller {
 		$data['create_by'] = $this->session->userdata('account_id');
 		$data['ip_address'] = $_SERVER["REMOTE_ADDR"];
 		
-		$config['upload_path']          = './img/blog/';
-		$config['allowed_types']        = 'jpeg|jpg|png';
-		$config['max_size']             = 2000;
-
-		$this->load->library('upload', $config);
-		$this->upload->initialize($config);
-
-		if ( ! $this->upload->do_upload('blogfile')) {
-
-			$this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert"><small>Gagal Upload Blog</small></div>');
+		$image_name = $this->upload_image('image', 'blog', 'b_' . $account_id . '_' . $this->input->post('title'));
+		if ($image_name != "") {
+			$data['image_blog'] = $image_name;
+		}
+		
+		$this->BlogModel->add_blog($data);
+		if(!$this->db->affected_rows()){ 
+			# code...
+			$this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert"><small>Gagal Tambah Blog</small></div>');
 
 			redirect(base_url().'admin/blog');
 
 		} else {
 
-			$do_upload = $this->upload->data();
-			$data['image_blog'] = $do_upload['file_name'];
-			
-			$this->BlogModel->add_blog($data);
-			if(!$this->db->affected_rows()){ 
-				# code...
-				$this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert"><small>Gagal Tambah Blog</small></div>');
+			$this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert"><small>Berhasil Tambah Blog</small></div>');
 
-				redirect(base_url().'admin/blog');
-
-			} else {
-
-				$this->session->set_flashdata('alert', '<div class="alert alert-success" role="alert"><small>Berhasil Tambah Blog</small></div>');
-
-				redirect(base_url().'admin/blog');
-			}
-
+			redirect(base_url().'admin/blog');
 		}
+
+		
 		
 	}
 
@@ -176,6 +167,35 @@ class Admin extends CI_Controller {
 		$this->load->view('side/header');
 		$this->load->view('blog/admin/blog_edit.php', $data);
 		$this->load->view('side/footer');
+
+	}
+
+	public function update_blog($blog_id){
+
+		$account_id = $this->session->userdata('account_id');
+		if(!$account_id) {
+            redirect(base_url());
+		}
+
+		$data['title'] = $this->input->post('title');
+		$data['blog_category_id'] = $this->input->post('category');
+		$data['description'] = $this->input->post('deskripsi');
+
+		$image_name = $this->upload_image('image', 'blog', 'b_u_' . $account_id . '_' . $this->input->post('title'));
+		if ($image_name != "") {
+			$data['image_blog'] = $image_name;
+		}
+
+		$this->BlogModel->update_blog($data, $blog_id);
+
+        if(!$this->db->affected_rows()){
+
+			$this->session->set_flashdata('alert', '<div class="alert alert-danger" role="alert"><p>Gagal</p> </div>  ');
+			
+			redirect(base_url().'admin/blog');
+		}
+
+		redirect(base_url().'admin/blog');
 
 	}
 

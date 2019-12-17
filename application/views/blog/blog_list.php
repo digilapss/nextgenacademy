@@ -29,22 +29,28 @@
 
                         <article class="blog_item">
                             <div class="blog_item_img">
-                                <img class="card-img rounded-0" src="<?= $this->Validator->image_validator('asset/img/blog/',$row_blog->image, 'default.png') ?>" alt="">
-                                <a href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_blog->create_time).'/'.$row_blog->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_blog->title) ;  ?>" class="blog_item_date">
+                                <a href="<?= $this->BlogModel->get_blog_link($row_blog->create_time, $row_blog->blog_id, $row_blog->title) ?>">
+                                    <img class="card-img rounded-0" src="<?= $this->Validator->image_validator('asset/img/blog/',$row_blog->image, 'default.png') ?>" alt="">
+                                </a>
+                                <a class="blog_item_date">
                                     <h3><?= $this->Converter->get_date($row_blog->create_time); ?></h3>
                                     <p><?= $this->Converter->get_month_string($row_blog->create_time) ?></p>
                                 </a>
                             </div>
 
                             <div class="blog_details">
-                                <a class="d-inline-block"   href="<?= base_url().'blog/page/'.preg_replace("/[^a-zA-Z0-9]/", "", $row_blog->create_time).'/'.$row_blog->blog_id.'/'.preg_replace("/[^A-Za-z0-9-]/", "", $row_blog->title) ;  ?>">
+                                <a class="d-inline-block"  href="<?= $this->BlogModel->get_blog_link($row_blog->create_time, $row_blog->blog_id, $row_blog->title) ?>">
                                     <h2><?= $row_blog->title ?></h2>
                                 </a>
-                                <p>That dominion stars lights dominion divide years for fourth have don't stars is that
-                                    he earth it first without heaven in place seed it second morning saying.</p>
+                                <p>
+                                    <?= $row_blog->overview ?> <br> 
+                                    <a class="d-inline-block"  href="<?= $this->BlogModel->get_blog_link($row_blog->create_time, $row_blog->blog_id, $row_blog->title) ?>">
+                                        <i>Baca Selengkapnya >></i>
+                                    </a>
+                                </p>
                                 <ul class="blog-info-link">
-                                    <li><a href="<?= base_url() ?>blog/category/<?= $row_blog->category_name ?>"><i class="fa fa-user"></i> <?= $row_blog->category_name ?></a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> <?= $row_blog->total_comment ?> Comment</a></li>
+                                    <li><a href="<?= base_url() ?>blog/category/<?= $row_blog->category_name ?>"><i class="fa fa-bookmark"></i> <?= $row_blog->category_name ?></a></li>
+                                    <li><a href="#"><i class="fa fa-calendar"></i><?= $this->Converter->get_full_date($row_blog->create_time) ?></a></li>
                                 </ul>
                             </div>
                         </article>
