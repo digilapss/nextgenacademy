@@ -52,7 +52,7 @@
                                 <br>
                                 <select class="" name="city" >
                                     <option value="0"  <?= $_GET['lk'] == 0 ? 'selected' : '' ?> >- Pilih -</option>
-                                    <?php foreach ($city_list as $key => $value) { ?>
+                                    <?php foreach ($city_list as $value) { ?>
                                     <option value="<?= $value['city'] ?>"  <?= $_GET['city'] === $value['city'] ? 'selected' : '' ?> > <?= $value['city'] ?> </option>
                                     <?php } ?>
                                 </select>
@@ -65,8 +65,8 @@
                                 <br>
                                 <select class="" name="institution_name" >
                                     <option value="0">- Pilih -</option>
-                                    <?php foreach ($educational->result() as $row_educational) { ?>
-                                    <option value="<?= $row_educational->institution_name ?>"  <?= $_GET['institution_name'] === $row_educational->institution_name ? 'selected' : '' ?>   ><?= $row_educational->institution_name ?></option>
+                                    <?php foreach ($institution_list as $value) { ?>
+                                    <option value="<?= $value['institution_name'] ?>"  <?= $_GET['institution_name'] === $value['institution_name'] ? 'selected' : '' ?>   ><?= $value['institution_name'] ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

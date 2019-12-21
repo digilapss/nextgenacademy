@@ -51,8 +51,8 @@ class Mentor extends CI_Controller {
         $data['mentor'] = $this->MentorModel->all_mentor($filters);
         $data['links'] = $this->pagination->create_links();
 
-        $data['educational'] = $this->EducationalModel->all_educational();
         $data['city_list'] = $this->EducationalModel->city_list();
+        $data['institution_list'] = $this->EducationalModel->institution_list();
 		$data['gender'] = $this->Constant->gender();
 
 
@@ -108,8 +108,8 @@ class Mentor extends CI_Controller {
         $data['mentor'] = $this->MentorModel->all_mentor($filters);
         $data['links'] = $this->pagination->create_links();
 
-		$data['educational'] = $this->EducationalModel->all_educational();
         $data['city_list'] = $this->EducationalModel->city_list();
+        $data['institution_list'] = $this->EducationalModel->institution_list();
         $data['gender'] = $this->Constant->gender();
 
         $this->load->view('side/header');
