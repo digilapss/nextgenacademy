@@ -5,7 +5,6 @@ class BlogModel extends CI_Model {
     public function one_blog($blog_id){
 
         $this->db->join('blog_category', 'blog.blog_category_id = blog_category.blog_category_id');
-        $this->db->join('account', 'blog.create_by = account.account_id');
         $this->db->where('blog_id', $blog_id);
         return $this->db->get('blog');
 
@@ -21,10 +20,9 @@ class BlogModel extends CI_Model {
         return $this->db->get('blog_category');
     }
 
-    public function recent_post(){
-
-        $this->db->limit(4, 'DESC');
-        // $this->db->where('blog_id', 'DESC');
+    public function recent_post() {
+        $this->db->order_by("blog_id", "desc");
+        $this->db->limit(5);
         return $this->db->get('blog');
     }
 
@@ -37,8 +35,8 @@ class BlogModel extends CI_Model {
 
     public function all_blog_start($get_blog){
 
+        $this->db->select('blog_id, blog.image, blog.create_time, blog.description, blog.overview, blog.title, blog_category.category_name');
         $this->db->join('blog_category', 'blog.blog_category_id = blog_category.blog_category_id');
-        $this->db->join('account', 'blog.create_by = account.account_id');
         $this->db->limit($get_blog['limit'], $get_blog['start']);
         $this->db->order_by('blog_id', 'DESC');
         return $this->db->get('blog');
@@ -102,10 +100,30 @@ class BlogModel extends CI_Model {
         return $this->db->update('blog');
     }
 
+    public function get_prev_blog($blog_id) {
+        $this->db->select('blog_id, image, title, create_time');
+        $this->db->order_by("blog_id", "desc");
+        $this->db->where('blog_id < ',  $blog_id);
+        $this->db->limit(1);
+        return $this->db->get('blog');
+    }
+
+    public function get_next_blog($blog_id) {
+        $this->db->select('blog_id, image, title, create_time');
+        $this->db->order_by("blog_id", "asc");
+        $this->db->where('blog_id > ',  $blog_id);
+        $this->db->limit(1);
+        return $this->db->get('blog');
+    }
+
     public function delete_category($blog_category_id){
        return $this->db->delete('blog_category', array('blog_category_id' =>  $blog_category_id));
     }
 
-    
+    public function get_blog_link($create_time, $blog_id, $title) {
+        $create_time = date('Y-m-d', strtotime($create_time));
+        $title = str_replace(' ', '-', strtolower($title));
+        return base_url() . 'blog/page/' . $create_time . '/' . $blog_id . '/' . $title;
+    }
 
 }

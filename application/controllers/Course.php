@@ -26,7 +26,7 @@ class Course extends CI_Controller {
 		
 		$this->load->model('AccountModel');
 		$this->load->model('CourseModel');
-		$this->load->model('Converter');
+		$this->load->model('util/Converter');
 		$this->load->model('ClassModel');
 		$this->load->model('ScheduleModel');
 		$this->load->model('PaymentModel');
@@ -111,7 +111,7 @@ class Course extends CI_Controller {
 
     public function course(){
 
-        if($this->session->userdata('role') !== 'mentor'){
+        if($this->session->userdata('role') !== RoleAdmin){
             redirect(base_url());
         }
 

@@ -30,6 +30,7 @@ class Admin extends My_Controller {
 		$this->load->model('AccountModel');
 		$this->load->model('BlogModel');
 		$this->load->library('session');
+        $this->load->model('util/Validator');
     
         ini_set('display_error','off');
 		error_reporting(0);
@@ -105,7 +106,8 @@ class Admin extends My_Controller {
 
 	public function add_blog(){
 
-		if(!$this->session->userdata('account_id')){
+		$account_id = $this->session->userdata('account_id');
+		if(!$account_id) {
             redirect(base_url());
 		}
 
@@ -115,7 +117,7 @@ class Admin extends My_Controller {
 		$data['create_by'] = $this->session->userdata('account_id');
 		$data['ip_address'] = $_SERVER["REMOTE_ADDR"];
 		
-		$image_name = $this->upload_image($this->input->post('blogimage'), 'blog', 'b_' . $account_id . '_' . $this->input->post('blogimage'));
+		$image_name = $this->upload_image('image', 'blog', 'b_' . $account_id . '_' . $this->input->post('title'));
 		if ($image_name != "") {
 			$data['image_blog'] = $image_name;
 		}
@@ -148,12 +150,10 @@ class Admin extends My_Controller {
 
 		// var_dump($blog);
 		foreach ($blog->result() as $row_blog) {
-			# code...
-
 			$data['title'] = $row_blog->title;
 			$data['blog_id'] = $row_blog->blog_id;
 			$data['description'] = $row_blog->description;
-			$data['image_blog'] = $row_blog->image_blog;
+			$data['image_blog'] = $this->Validator->image_validator('asset/img/blog/', $row_blog->image, 'default.png');
 			$data['category_name'] = $row_blog->category_name;
 			$data['blog_category_id'] =	$row_blog->blog_category_id;
 		
@@ -171,15 +171,20 @@ class Admin extends My_Controller {
 	}
 
 	public function update_blog($blog_id){
-		
-		$image_name = $this->upload_image($this->input->post('blogimage'), 'blog', 'b_u_' . $account_id . '_' . $this->input->post('blogimage'));
-		if ($image_name != "") {
-			$data['image_blog'] = $image_name;
+
+		$account_id = $this->session->userdata('account_id');
+		if(!$account_id) {
+            redirect(base_url());
 		}
 
 		$data['title'] = $this->input->post('title');
 		$data['blog_category_id'] = $this->input->post('category');
 		$data['description'] = $this->input->post('deskripsi');
+
+		$image_name = $this->upload_image('image', 'blog', 'b_u_' . $account_id . '_' . $this->input->post('title'));
+		if ($image_name != "") {
+			$data['image_blog'] = $image_name;
+		}
 
 		$this->BlogModel->update_blog($data, $blog_id);
 

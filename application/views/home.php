@@ -10,7 +10,7 @@
                             Academy
                         </h1>
                         <p>NextGen Academy adalah Platform smart city kolaboratif untuk <strong> pendidikan non formal </strong> yang fokus pada pendidikan keterampilan praktis, Kewirausahaan dan pengembangan diri</p>
-                        <a href="#special_course_part" class="btn_2" style="background-color:#FF8100;border-color:#FF8100;color:white">Lihat Pelatihan</a>
+                        <a href="#special_mentor_part" class="btn_2" style="background-color:#FF8100;border-color:#FF8100;color:white">Lihat Pelatihan</a>
                         <a href="#feature_part" class="btn_2">Jelajahi</a>
                     </div>
                 </div>

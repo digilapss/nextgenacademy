@@ -31,8 +31,6 @@ class User extends My_Controller {
 		$this->load->model('AccountModel');
 		$this->load->model('Constant');
 		$this->load->library('session');
-		$this->load->helper('file');
-		$this->load->library('upload');
     
         ini_set('display_error','off');
         error_reporting(0);

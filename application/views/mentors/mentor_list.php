@@ -3,10 +3,10 @@
 <section class="special_cource padding_top" style="padding-bottom:40px">
 <div class="container" >
     <div class="row justify-content-center">
-        <div class="col-xl-5">
+        <div class="">
             <div class="section_tittle text-center">
-                <p>Mentor Populer</p>
-                <h2>Mentor</h2>
+                <p></p>
+                <h2>Temukan Mentor Terbaikmu</h2>
             </div>
         </div>
     </div>
@@ -16,8 +16,6 @@
             <button class="navbar-toggler text-dark" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
              <i class="fa fa-filter"></i> <small>Filter</small>
             </button>
-
-            <p><?= $total_mentor == null ? '' : $total_mentor.' Mentor' ?>  </p>
 
             <form class="form-inline my-2 my-lg-0">
                 
@@ -29,62 +27,55 @@
                         </button>
                     </div>
                 </div>
-                
             </form>
         </nav>
-        
         <div class="collapse" id="navbarToggleExternalContent">
             <div class="p-4"  style="background-color:white;">
                 <form action="<?= base_url() ?>mentor/search" method="get">
                     <div class="row">
 
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-select">
                                 <label for="" class="">Jenis Kelamin</label>
                                 <br>
                                 <select class="" name="gender" >
                                     <option value="0" <?= $_GET['gender'] == 0 ? 'selected' : '' ?>>- Pilih -</option>
-                                    <option value="1" <?= $_GET['gender'] == 1 ? 'selected' : '' ?>>Laki - laki</option>
-                                    <option value="2" <?= $_GET['gender'] == 2 ? 'selected' : '' ?>>Perempuan</option>
+                                    <?php foreach ($gender as $key => $value) { ?>
+                                    <option value="<?= $key ?>" <?= $_GET['gender'] == $key ? 'selected' : '' ?>> <?= $value ?> </option>
+                                    <?php } ?>
                                 </select>
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-select">
                                 <label for="" class="">Lokasi Kuliah</label>
                                 <br>
-                                <select class="" name="lk" >
+                                <select class="" name="city" >
                                     <option value="0"  <?= $_GET['lk'] == 0 ? 'selected' : '' ?> >- Pilih -</option>
-                                    <option value="Jakarta"  <?= $_GET['lk'] === 'Jakarta' ? 'selected' : '' ?> >Jakarta</option>
-                                    <option value="Surabaya"  <?= $_GET['lk'] === 'Surabaya' ? 'selected' : '' ?> >Surabaya</option>
-                                    <option value="Bandung"  <?= $_GET['lk'] === 'Bandung' ? 'selected' : '' ?> >Bandung</option>
-                                    <option value="Semarang"  <?= $_GET['lk'] === 'Semarang' ? 'selected' : '' ?> >Semarang</option>
+                                    <?php foreach ($city_list as $key => $value) { ?>
+                                    <option value="<?= $value['city'] ?>"  <?= $_GET['city'] === $value['city'] ? 'selected' : '' ?> > <?= $value['city'] ?> </option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-select">
                                 <label for="" class="">Nama Institusi</label>
                                 <br>
-                                <select class="" name="ni" >
+                                <select class="" name="institution_name" >
                                     <option value="0">- Pilih -</option>
-                                    <? 
-                                    foreach ($educational->result() as $row_educational) {
-                                        # code...
-                                    
-                                    ?>
-                                    <option value="<?= $row_educational->institution_name ?>"  <?= $_GET['ni'] === $row_educational->institution_name ? 'selected' : '' ?>   ><?= $row_educational->institution_name ?></option>
-                                    <? } ?>
+                                    <?php foreach ($educational->result() as $row_educational) { ?>
+                                    <option value="<?= $row_educational->institution_name ?>"  <?= $_GET['institution_name'] === $row_educational->institution_name ? 'selected' : '' ?>   ><?= $row_educational->institution_name ?></option>
+                                    <?php } ?>
                                 </select>
                             </div>
                             
                         </div>
 
-                        <div class="col-lg-3">
-                        <button type="submit" class="button button-contactForm btn_1 float-right mt-30" id="sv_profile">Filter</button>
-                            
-                        </div>
+                        <div class="col-lg-12">
+                       		<button type="submit" class="button button-contactForm btn_1 float-right mt-30" id="sv_profile">Filter</button>
+                    	</div>
 
                     </div>
                 </form>
@@ -94,22 +85,24 @@
 
     <div class="row" style="padding-bottom:40px;padding-top:40px">
 
-        <?php foreach($mentor->result_array() as $row_mentor){ ?>
+        <?php foreach($mentor as $row_mentor){ ?>
             <div class="col-sm-6 col-lg-4">
                 <div class="single_special_cource">
-                    <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['educational_id'] ?>">
-                        <img src="<?= $this->Validator->image_validator('asset/img/user/'. $row_mentor['image'], 'default.png') ?>" class="special_img" alt="<?= $row_mentor['name'] ?>" width="100%">
+                    <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['account_id'] ?>">
+                        <div class="cource_img_frame">
+                            <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" class="special_img" alt="<?= $row_mentor['name'] ?>" width="100%">
+                        </div>
                         <div class="special_cource_text">
-                            <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['educational_id'] ?>" class="btn_4"><?= $row_mentor['major'] ?></a>
+                            <a href="<?= base_url() ?>mentor/detail/<?= $row_mentor['account_id'] ?>" class="btn_4"><?= $row_mentor['educational']->major ?></a>
                             <h4><?= $this->Converter->rupiah($row_mentor['fee']); ?></h4>
                             <a href="mentor/detail/<?= $row_mentor['account_id'] ?>"><h3><?= $row_mentor['name'] ?></h3></a>
-                            <p><?= $row_mentor['about_me'] ?></p>
+                            <p><?= $this->Converter->text_limit($row_mentor['about_me'], 80, '...') ?></p>
                             <div class="author_info">
                                 <div class="author_img">
                                     <img src="<?= base_url() ?>asset/img/author/author_1.png" alt="">
                                     <div class="author_info_text">
-                                        <h5><?= $row_mentor['institution_name']?></h5>
-                                        <p>Lokasi: <?= $row_mentor['city'] ?></p>
+                                        <h5><?= $row_mentor['educational']->institution_name ?></h5>
+                                        <p>Lokasi: <?= $row_mentor['educational']->city ?></p>
                                     </div>
                                 </div>
                                 <!-- <div class="author_rating">

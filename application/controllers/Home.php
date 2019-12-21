@@ -37,16 +37,13 @@ class Home extends CI_Controller {
     public function index() {
 			$data['list_course'] = $this->CourseModel->list_course(3);
 			$data['mentor'] = $this->MentorModel->popular_mentor(3);
-			// var_dump($data);
-			// die();
 			$data['is_homepage'] = true;
 			$data['header_class'] = 'transparent_background';
 
 			$this->load->view('side/header', $data);
 			$this->load->view('home');
 			$this->load->view('feature');
-			// $this->load->view('special_course');
-			$this->load->view('mentor_list');
+			$this->load->view('mentors/popular_mentor');
 			$this->load->view('about_us');
 			$this->load->view('partnership');
 			$this->load->view('side/footer');

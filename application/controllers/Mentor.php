@@ -35,28 +35,25 @@ class Mentor extends CI_Controller {
     }
     
     public function index() {
-
-        // var_dump( $this->Constant->educational_level());
-        
-
         $config['base_url'] = base_url()."mentor/index/" ;
-        $config['total_rows'] = $this->MentorModel->all_mentor()->num_rows();
+        $config['total_rows'] = $this->MentorModel->total_available_mentor();
         $data['total_mentor'] = $config['total_rows'] ;
         $config['per_page'] = 5;
 
         $this->pagination->initialize($config);
 
-        $data = array(
+        $filters = array(
         //   'role' =>  ,
-            
           'limit' => $config['per_page'],
           'start' => $this->uri->segment(3)
         );
         
-        $data['mentor'] = $this->MentorModel->all_mentor_start($data);
+        $data['mentor'] = $this->MentorModel->all_mentor($filters);
         $data['links'] = $this->pagination->create_links();
 
-		$data['educational'] = $this->EducationalModel->all_educational();
+        $data['educational'] = $this->EducationalModel->all_educational();
+        $data['city_list'] = $this->EducationalModel->city_list();
+		$data['gender'] = $this->Constant->gender();
 
 
         $this->load->view('side/header');
@@ -89,19 +86,15 @@ class Mentor extends CI_Controller {
 
     public function search(){
         
-        $mentor_post['role'] = 2;
-        
-        // $mentor_post['gender'] = $this->input->post('mentor_jk');
-        // $mentor_post['city'] = $this->input->post('mentor_lk');
-        // $mentor_post['institution_name'] = $this->input->post('mentor_ni');
+        $filters['role'] = 2;
 
-        $mentor_post['gender'] = $_GET['gender'];
-        $mentor_post['city'] = $_GET['lk'];
-        $mentor_post['institution_name'] = $_GET['ni'];
+        $filters['gender'] = $this->input->get('gender');
+        $filters['institution_name'] = $this->input->get('institution_name');
+        $filters['city'] = $this->input->get('city');
 
 
         $config['base_url'] = base_url()."mentor/index/" ;
-        $config['total_rows'] = $this->MentorModel->all_mentor_filter($mentor_post)->num_rows();
+        $config['total_rows'] = $this->MentorModel->total_available_mentor($filters);
         $data['total_mentor'] = $config['total_rows'] ;
         $config['per_page'] = 5;
 
@@ -109,15 +102,15 @@ class Mentor extends CI_Controller {
         $this->pagination->initialize($config);
 
 
-        $filter['limit'] = $config['per_page'] ;
-        $filter['start'] = $this->uri->segment(3);
-
+        $filters['limit'] = $config['per_page'] ;
+        $filters['start'] = $this->uri->segment(3);
         
-        $data['mentor'] = $this->MentorModel->all_mentor_start_filter($filter, $mentor_post);
+        $data['mentor'] = $this->MentorModel->all_mentor($filters);
         $data['links'] = $this->pagination->create_links();
 
 		$data['educational'] = $this->EducationalModel->all_educational();
-
+        $data['city_list'] = $this->EducationalModel->city_list();
+        $data['gender'] = $this->Constant->gender();
 
         $this->load->view('side/header');
         $this->load->view('mentors/mentor_list', $data);

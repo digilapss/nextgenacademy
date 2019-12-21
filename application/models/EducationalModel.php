@@ -6,4 +6,11 @@ class EducationalModel extends CI_Model {
         return $this->db->get('educational');
     }
 
+    public function city_list() {
+    	$this->db->distinct();
+    	$this->db->select('city');
+        $this->db->order_by('city');
+    	return $this->db->get('educational')->result_array();
+    }
+
 }

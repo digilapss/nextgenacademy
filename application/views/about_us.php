@@ -23,9 +23,9 @@
                     <!-- <a href="#" class="btn_1">Baca Selengkapnya</a> -->
                 </div>
 
-                <div class="row justify-content-center">
+                <!-- <div class="row justify-content-center">
                     <a href="#" class="btn_1">Baca Selengkapnya</a>
-                </div>
+                </div> -->
             </div>
         </div>
 

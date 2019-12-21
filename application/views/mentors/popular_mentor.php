@@ -5,24 +5,25 @@
     <div class="row justify-content-center">
         <div class="col-xl-5">
             <div class="section_tittle text-center">
-                <p>Pelatihan Populer</p>
-                <h2>Spesial Buat Kamu</h2>
+                <p>Mentor Populer</p>
+                <h2>Rekomendasi Terbaik Buat Kamu</h2>
             </div>
         </div>
     </div>
 
     <div class="row">
-
         <?php foreach($mentor as $row_mentor){ ?>
             <div class="col-sm-6 col-lg-4">
                 <div class="single_special_cource">
                     <a href="mentor/detail/<?= $row_mentor['account_id'] ?>">
-                        <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" class="special_img" alt="<?= $row_mentor['name'] ?>">
+                        <div class="cource_img_frame">
+                            <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" class="special_img" width="100%" alt="<?= $row_mentor['name'] ?>">
+                        </div>
                         <div class="special_cource_text">
                             <a href="mentor/detail/<?= $row_mentor['account_id'] ?>" class="btn_4"><?= $row_mentor['educational']->major ?></a>
                             <h4><?= $this->Converter->rupiah($row_mentor->fee); ?></h4>
                             <a href="mentor/detail/<?= $row_mentor['account_id'] ?>"><h3><?= $row_mentor['name'] ?></h3></a>
-                            <p><?= $row_mentor['about_me'] ?></p>
+                            <p><?= $this->Converter->text_limit($row_mentor['about_me'], 80, '...') ?></p>
                             <div class="author_info">
                                 <div class="author_img">
                                     <img src="<?= base_url() ?>asset/img/author/author_1.png" alt="">

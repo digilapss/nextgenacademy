@@ -79,31 +79,31 @@
                             id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url('') ?>">Beranda</a>
+                                    <a class="nav-link" href="<?= base_url() ?>mentor">Mentor</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="<?php echo base_url('') ?>contact">Hubungi Kami</a>
+                                    <a class="nav-link" href="<?= base_url() ?>blog">Blog</a>
                                 </li>
-                                <?php  if($this->session->userdata('account_id') ){  
-                                    
-                                ?>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="<?= base_url() ?>contact">Hubungi Kami</a>
+                                </li>
+                                <?php  if($this->session->userdata('account_id') ) {  ?>
                                 
                                     
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src="<?php echo $this->session->userdata('image')  ?>" width="30" class="rounded" alt="" >    
+                                    <img src="<?php echo $this->session->userdata('image')  ?>" style=" max-height: 30px; max-width: 30px" class="rounded" alt="" >    
                                     <?php echo $this->session->userdata('name')  ?>
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                         <?php if($this->session->userdata('role') != RoleAdmin ) { ?> 
-                                                <a class="dropdown-item" href="<?= base_url() ?>admin/course">Course</a> 
+                                                <a class="dropdown-item" href="<?= base_url() ?>course">Mentorku</a> 
                                         <?php } else { ?>
                                                 <a class="dropdown-item" href="<?= base_url() ?>admin/blog">Blog</a> 
                                                 <a class="dropdown-item" href="<?= base_url() ?>admin/blog_category">Blog Category</a> 
                                                 <a class="dropdown-item" href="<?= base_url() ?>course/member">My Course</a>
                                         <?php } ?>
 
-                                        <a class="dropdown-item" href="<?php echo base_url() ?>mentor">Mentor</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/profile">Profile</a>
                                         <a class="dropdown-item" href="<?php echo base_url() ?>user/logout">Sign Out</a>
                                     </div>
