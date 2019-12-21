@@ -42,16 +42,18 @@ class Mentor extends CI_Controller {
 
         $this->pagination->initialize($config);
 
-        $data = array(
+        $filters = array(
         //   'role' =>  ,
           'limit' => $config['per_page'],
           'start' => $this->uri->segment(3)
         );
         
-        $data['mentor'] = $this->MentorModel->all_mentor_start($data);
+        $data['mentor'] = $this->MentorModel->all_mentor($filters);
         $data['links'] = $this->pagination->create_links();
 
-		$data['educational'] = $this->EducationalModel->all_educational();
+        $data['city_list'] = $this->EducationalModel->city_list();
+        $data['institution_list'] = $this->EducationalModel->institution_list();
+		$data['gender'] = $this->Constant->gender();
 
 
         $this->load->view('side/header');
@@ -79,5 +81,40 @@ class Mentor extends CI_Controller {
         $this->load->view('side/header');
         $this->load->view('mentors/mentor_profile', $data);
         $this->load->view('side/header');
+    }
+
+
+    public function search(){
+        
+        $filters['role'] = 2;
+
+        $filters['gender'] = $this->input->get('gender');
+        $filters['institution_name'] = $this->input->get('institution_name');
+        $filters['city'] = $this->input->get('city');
+
+
+        $config['base_url'] = base_url()."mentor/index/" ;
+        $config['total_rows'] = $this->MentorModel->total_available_mentor($filters);
+        $data['total_mentor'] = $config['total_rows'] ;
+        $config['per_page'] = 5;
+
+
+        $this->pagination->initialize($config);
+
+
+        $filters['limit'] = $config['per_page'] ;
+        $filters['start'] = $this->uri->segment(3);
+        
+        $data['mentor'] = $this->MentorModel->all_mentor($filters);
+        $data['links'] = $this->pagination->create_links();
+
+        $data['city_list'] = $this->EducationalModel->city_list();
+        $data['institution_list'] = $this->EducationalModel->institution_list();
+        $data['gender'] = $this->Constant->gender();
+
+        $this->load->view('side/header');
+        $this->load->view('mentors/mentor_list', $data);
+        $this->load->view('side/footer');
+
     }
 }
