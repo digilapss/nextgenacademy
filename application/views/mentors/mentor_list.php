@@ -29,7 +29,6 @@
                         </button>
                     </div>
                 </div>
-                
             </form>
         </nav>
         
@@ -112,6 +111,7 @@
                                         <p>Lokasi: <?= $row_mentor['city'] ?></p>
                                     </div>
                                 </div>
+
                                 <!-- <div class="author_rating">
                                     <div class="rating">
                                         <a href="#"><img src="<?= base_url() ?>asset/img/icon/color_star.svg" alt=""></a>
@@ -122,6 +122,7 @@
                                     </div>
                                     <p>3.8 Ratings</p>
                                 </div> -->
+                                
                             </div>
                         </div>
                     </a>
