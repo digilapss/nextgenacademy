@@ -12,7 +12,7 @@
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="<?= $this->Validator->image_validator('asset/img/user/'. $row_mentor['image'], 'default.png') ?>" width="100%" alt="">
+                        <img class="img-fluid" src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" width="100%" alt="">
                     </div>
                     <div class="content_wrapper">
                       
@@ -22,7 +22,7 @@
 
                 <div class="col-lg-4 right-contents">
                     <div class="sidebar_top">
-                    <?
+                    <?php
                         $edu = $this->Constant->educational_level();
                     ?>
                         <ul>
