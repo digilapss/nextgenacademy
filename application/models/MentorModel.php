@@ -63,11 +63,31 @@ class MentorModel extends CI_Model {
         return $data;
     }
 
-    public function detail_mentor($educational_id){
+    public function detail_mentor($account_id){
 
-        $this->db->join('account', 'educational.account_id = account.account_id');
-        $this->db->where('educational_id', $educational_id);
+        $this->db->select('a.*');
+        $this->db->from('account a');
+        $this->db->join('educational e', 'a.account_id = e.account_id');
+        $this->db->where('a.account_id', $account_id);
+        return $this->db->get();
+
+
+    }
+
+    public function educational_mentor($account_id){
+        
+        $this->db->where('account_id', $account_id);
+        $this->db->order_by('level', ASC);
         return $this->db->get('educational');
+
+    }
+
+    public function achievement_mentor($account_id){
+
+        $this->db->where('account_id', $account_id);
+        $this->db->order_by('level', ASC);
+        return $this->db->get('achievement');
+
     }
 
 }

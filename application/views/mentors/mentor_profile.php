@@ -12,19 +12,79 @@
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="<?= $this->Validator->image_validator('asset/img/user/', $row_mentor['image'], 'default.png') ?>" width="100%" alt="">
+                        <img class="img-fluid" src="<?= $this->Validator->image_validator('asset/img/user/', $profile_mentor->image, 'default.png') ?>" width="100%" alt="">
                     </div>
                     <div class="content_wrapper">
-                      
+                        <h4 class="title_top">About Me</h4>
+                        <div class="content">
+
+                            <?= $profile_mentor->about_me ?>
+
+                        </div>
+
+                        <h4 class="title">Riwayat Sekolah</h4>
+                        <div class="content">
+
+                            
+                        <ul class="course_list">
+                            <?
+
+                                $edu_level = $this->Constant->educational_level();
+
+                                foreach ($educational_mentor->result() as  $row_educational) {
+                                # code...
+                                
+                            ?>
+
+                            <li class="justify-content-between align-items-center d-flex shadow-sm p-3 mb-5 bg-white rounded">
+                                <p>
+
+                                    <?= $row_educational->major ?>  ( <?= $edu_level[$row_educational->level] ?> ) : <?= $row_educational->year_in ?> - <?= $row_educational->year_out ?>
+
+                                </p>
+                                <a class="btn_2 text-uppercase" href="#"> <?= $row_educational->institution_name ?></a>
+                            </li>
+
+
+                            <? } ?>
+
+                        </ul>
+                        
+                        </div>
+
+                        <h4 class="title">Prestasi</h4>
+
+                        <div class="content">
+
+                            <!-- Speaker -->
+
+                            <ul class="course_list">
+
+                            <?
+                                foreach ($achievement_mentor->result() as $row_achievement) {
+                                    # code...
+                            ?>
+
+                                <li class=" shadow p-3 mb-5 bg-white rounded">
+                                    <img src="<?= $this->Validator->image_validator('asset/img/user/', $row_achievement->image, 'default.png') ?>" width="100%" alt="">
+                                    <h2 class="pt-3 mt-3" ><?= $row_achievement->achievement_name ?></h2>
+                                    <small>Prestasi pada tahun <?= $row_achievement->year ?></small>
+                                    <p class="pt-1 mb-4"><?= $row_achievement->description ?></p>
+                                    <a class="btn_2 text-uppercase" href="#"><?= $edu_level[$row_achievement->level] ?> </a>
+                                </li>
+
+                            <? } ?>
+
+                            </ul>
+
+                        </div>
                     </div>
                 </div>
 
 
                 <div class="col-lg-4 right-contents">
                     <div class="sidebar_top">
-                    <?php
-                        $edu = $this->Constant->educational_level();
-                    ?>
+                    
                         <ul>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
@@ -41,170 +101,35 @@
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
                                     <p>Jenis Kelamin </p>
-                                    <span class="color"><?= $profile_mentor->gender ?></span>
+                                    <span class="color">
+                                        <?= $profile_mentor->gender == 1 ? 'Laki - laki' : '' ?>
+                                        <?= $profile_mentor->gender == 2 ? 'Laki - laki' : '' ?>
+                                    </span>
                                 </a>
                             </li>
+                            
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Pendidikan </p>
-                                    <span class="color"> <?= $edu[$profile_mentor->level] ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>Institution  </p>
-                                    <span class="color"> <?= $profile_mentor->institution_name ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>Major  </p>
-                                    <span class="color"> <?= $profile_mentor->major ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>Tahun Pendidikan  </p>
-                                    <span class="color"> <?= $profile_mentor->year_in ?> - <?= $profile_mentor->year_out ?></span>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="justify-content-between d-flex" href="#">
-                                    <p>Kota </p>
-                                    <span class="color"> <?= $profile_mentor->city ?></span>
+                                    <p>Phone Number </p>
+                                    <span class="color"><?= $profile_mentor->phone_number ?></span>
                                 </a>
                             </li>
 
+                            <li>
+                                <a class="justify-content-between d-flex" href="#">
+                                    <p>Instagram ID </p>
+                                    <span class="color"><?= $profile_mentor->instagram_id ?></span>
+                                </a>
+                            </li>
 
                         </ul>
 
                     
-                        <a href="https://staging.nextgenacademy.id/course/apply_course_wa/marketing-foodpreneur-in-digital-era" class="btn_1 d-block">Apply</a>                    </div>
+                        <a href="#" class="btn_1 d-block">Apply</a>                    
+                        
+                    </div>
 
-                    <!-- <h4 class="title">Reviews</h4>
-                    <div class="content">
-                        <div class="review-top row pt-40">
-                            <div class="col-lg-12">
-                                <h6 class="mb-15">Provide Your Rating</h6>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Quality</span>
-                                    <div class="rating">
-                                            <input hidden="true" name="course_rating1">
-                                            <a class="course-rating" course_category="1" star="1"><img id="course-rating1-1" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="1" star="2"><img id="course-rating1-2" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="1" star="3"><img id="course-rating1-3" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="1" star="4"><img id="course-rating1-4" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="1" star="5"><img id="course-rating1-5" src="img/icon/star.svg" alt=""></a>
-                                        </div>
-                                    <span id="rating-description1">N/A</span>
-                                </div>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Puncuality</span>
-                                    <div class="rating">
-                                            <a class="course-rating" course_category="2" star="1"><img id="course-rating2-1" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="2" star="2"><img id="course-rating2-2" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="2" star="3"><img id="course-rating2-3" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="2" star="4"><img id="course-rating2-4" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="2" star="5"><img id="course-rating2-5" src="img/icon/star.svg" alt=""></a>
-                                        </div>
-                                    <span id="rating-description2">N/A</span>
-                                </div>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Quality</span>
-                                    <div class="rating">
-                                            <a class="course-rating" course_category="3" star="1"><img id="course-rating3-1" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="3" star="2"><img id="course-rating3-2" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="3" star="3"><img id="course-rating3-3" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="3" star="4"><img id="course-rating3-4" src="img/icon/star.svg" alt=""></a>
-                                            <a class="course-rating" course_category="3" star="5"><img id="course-rating3-5" src="img/icon/star.svg" alt=""></a>
-                                        </div>
-                                    <span id="rating-description3">N/A</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="feedeback">
-                            <h6>Your Feedback</h6>
-                            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
-                            <div class="mt-10 text-right">
-                                <a href="#" class="btn_1">Read more</a>
-                            </div>
-                        </div>
-                        <div class="comments-area mb-30">
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/cource/cource_1.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <div class="rating">
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                            </div>
-                                            <p class="comment">
-                                                Blessed made of meat doesn't lights doesn't was dominion and sea earth
-                                                form
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/cource/cource_2.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Elsie Cunningham</a>
-                                            </h5>
-                                            <div class="rating">
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                            </div>
-                                            <p class="comment">
-                                                Blessed made of meat doesn't lights doesn't was dominion and sea earth
-                                                form
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/cource/cource_3.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Maria Luna</a>
-                                            </h5>
-                                            <div class="rating">
-                                                <a href=""><img src="img/icon/star.svg" alt=""></a>
-                                                <a href=""><img src="img/icon/star.svg" alt=""></a>
-                                                <a href=""><img src="img/icon/star.svg" alt=""></a>
-                                                <a href=""><img src="img/icon/star.svg" alt=""></a>
-                                                <a href=""><img src="img/icon/star.svg" alt=""></a>
-                                            </div>
-                                            <p class="comment">
-                                                Blessed made of meat doesn't lights doesn't was dominion and sea earth
-                                                form
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                    
                 </div>
             </div>
         </div>
