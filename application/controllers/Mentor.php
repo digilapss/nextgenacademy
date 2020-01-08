@@ -76,11 +76,15 @@ class Mentor extends CI_Controller {
             $data['profile_mentor'] = $value ;
         }
 
-        
+        $data['educational_mentor'] = $this->MentorModel->educational_mentor($get_id);
+        $data['achievement_mentor'] = $this->MentorModel->achievement_mentor($get_id);
+
+        // var_dump($data['educational_mentor']);
 
         $this->load->view('side/header');
         $this->load->view('mentors/mentor_profile', $data);
         $this->load->view('side/header');
+
     }
 
 
